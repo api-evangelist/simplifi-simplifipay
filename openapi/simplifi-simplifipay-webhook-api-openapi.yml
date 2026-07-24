@@ -1,0 +1,454 @@
+openapi: 3.0.1
+info:
+  title: SimpliFi Cards Auth Webhook API
+  version: 1.0.0
+  description: 'SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.'
+  contact:
+    name: SimpliFi Support
+    email: info@simplifipay.com
+    url: https://apidoc.simplifipay.com/
+servers:
+- url: https://{env}-lb.simplifipay.com
+  description: Load-balanced API host; {env} is the environment token issued during onboarding
+  variables:
+    env:
+      default: uat
+      description: Environment token issued by SimpliFi
+security:
+- bearerAuth: []
+tags:
+- name: Webhook
+paths:
+  /v1/webhook/events:
+    get:
+      summary: Get all events
+      deprecated: false
+      description: This endpoint fetches all available events for webhooks
+      tags:
+      - Webhook
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEventModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: getAllEvents
+  /v1/webhook:
+    post:
+      summary: Create a webhook
+      deprecated: false
+      description: This endpoint allows you to create a webhook, where events will be posted
+      tags:
+      - Webhook
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequestModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponseModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: createAWebhook
+  /webhook/{uuid}:
+    put:
+      summary: Update a Webhook
+      deprecated: false
+      description: This endpoint allows you to update an existing webhook
+      tags:
+      - Webhook
+      parameters:
+      - name: uuid
+        in: path
+        description: This is the unique identifier of the webhook.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequestModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponseModel'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: updateAWebhook
+    delete:
+      summary: Delete a Webhook
+      deprecated: false
+      description: This endpoint allows you to delete an existing webhook
+      tags:
+      - Webhook
+      parameters:
+      - name: uuid
+        in: path
+        description: This is the unique identifier of the webhook.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: Webhook Deleted
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: deleteAWebhook
+  /webhook/{uuid}/status:
+    put:
+      summary: Updates the status of Webhook
+      deprecated: false
+      description: This endpoint allows you to update the status of an existing webhook
+      tags:
+      - Webhook
+      parameters:
+      - name: uuid
+        in: path
+        description: This is the unique identifier of the webhook.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: enable
+        in: query
+        description: Webhook Status
+        required: true
+        schema:
+          type: boolean
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponseModel'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: updatesTheStatusOfWebhook
+components:
+  schemas:
+    WebhookResponseModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the webhook.
+          examples:
+          - 84503d40-93b1-4f1d-b265-41553528a028
+        name:
+          type: string
+          description: A name to uniquely identify the webhook.
+          examples:
+          - Card Status Change
+        eventType:
+          $ref: '#/components/schemas/WebhookEventType'
+        status:
+          type: string
+          description: Current status of the webhook
+          enum:
+          - ENABLED
+          - DISABLED
+          examples:
+          - ENABLED
+        endpointUrl:
+          type: string
+          description: The endpoint URL hosted by you where webhooks will be sent.
+          examples:
+          - https://webhook.simplifipay.com
+        creationDate:
+          type: string
+          format: date-time
+          examples:
+          - '2025-02-28 13:31:00'
+        lastModified:
+          type: string
+          format: date-time
+          examples:
+          - '2025-02-28 13:31:00'
+      required:
+      - uuid
+      - name
+      - eventType
+      - status
+      - endpointUrl
+      - creationDate
+      - lastModified
+    WebhookRequestModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name to uniquely identify the webhook.
+          examples:
+          - Card Status Change
+        eventType:
+          $ref: '#/components/schemas/WebhookEventType'
+        endpointUrl:
+          type: string
+          description: The endpoint URL hosted by you where webhooks will be sent.
+          examples:
+          - https://webhook.simplifipay.com
+        extra:
+          type: object
+          description: A key-value pair of any extra header to be sent when calling the `endpoitnUrl`.
+          additionalProperties:
+            type: string
+          properties: {}
+      required:
+      - name
+      - eventType
+      - endpointUrl
+    WebhookEventType:
+      type: string
+      enum:
+      - CARD_ACTIVATION
+      - CARD_ISSUANCE
+      - CARD_PIN_SETUP
+      - CARD_RENEWED
+      - CARD_STATUS_CHANGE
+      - CARD_TYPE_CHANGE
+      - CARD_RULE_GROUP_CREATION
+      - CARD_RULE_GROUP_DELETION
+      - CARD_LOAD
+      - CARD_UNLOAD
+      - CARD_TO_CARD_TRANSFER
+      - CARD_HOLDER_CREATION
+      - CARD_HOLDER_UPDATION
+      - CARD_HOLDER_DELETION
+      - CARD_PROGRAM_CREATION
+      - WALLET_RULE_GROUP_CREATION
+      - WALLET_RULE_GROUP_DELETION
+      - FUNDS_TRANSFER
+      - RAISE_FUNDING_SOURCE
+      - RULE_GROUP_CREATION
+      - RULE_GROUP_UPDATION
+      - RULE_GROUP_DELETION
+      - TRANSACTION
+      - TRANSACTION_ENRICHMENT
+      - FEES_APPLY
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
+    WebhookEventModel:
+      type: object
+      properties:
+        eventType:
+          $ref: '#/components/schemas/WebhookEventType'
+      required:
+      - eventType
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token from POST /v1/auth/login/{companyName}, sent as Authorization: Bearer <token>.'

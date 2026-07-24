@@ -1,0 +1,307 @@
+openapi: 3.0.1
+info:
+  title: SimpliFi Cards Auth Document API
+  version: 1.0.0
+  description: 'SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.'
+  contact:
+    name: SimpliFi Support
+    email: info@simplifipay.com
+    url: https://apidoc.simplifipay.com/
+servers:
+- url: https://{env}-lb.simplifipay.com
+  description: Load-balanced API host; {env} is the environment token issued during onboarding
+  variables:
+    env:
+      default: uat
+      description: Environment token issued by SimpliFi
+security:
+- bearerAuth: []
+tags:
+- name: Document
+paths:
+  /v1/document/upload:
+    post:
+      summary: Raise Funding Document Upload
+      deprecated: false
+      description: 'This API should be called before calling Raise Funding API to attach `Proof of funds / Confirmation of
+
+        funds transfer from the Bank` document (PNG, JPEG, PDF are allowed formats) and the string value returned
+
+        in the `documentUploadUuid` field of the response should be used in Raise Funding API''s document parameter.
+
+
+        Note: After the funds are transferred from the whitelisted Bank account to the Issuer/Processor Bank
+
+        account, the confirmation of transfer of funds screenshot/image/PDF should be used as an attachment.'
+      tags:
+      - Document
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  example: ''
+                cardProgramUuid:
+                  type: string
+                  description: 'This field contains the system generated unique identifier for the program
+
+                    that was created using the Create Card Program API.'
+                  examples:
+                  - 22b52244-fb76-4ae7-be85-ecafba89e5ca
+                  example: 22b52244-fb76-4ae7-be85-ecafba89e5ca
+                amount:
+                  type: number
+                  description: This field contains the amount that has been requested for fund transfer.
+                  examples:
+                  - '10000.00'
+                  example: 10000
+                fundRequestType:
+                  type: string
+                  description: This field contains the type for fund request.
+                  enum:
+                  - LOAD
+                  - UNLOAD
+                  examples:
+                  - LOAD
+                  example: LOAD
+              required:
+              - file
+              - cardProgramUuid
+              - amount
+              - fundRequestType
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUploadModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: raiseFundingDocumentUpload
+  /v1/document:
+    post:
+      summary: Upload Document
+      deprecated: false
+      description: 'The Upload Document endpoint uploads the user documents to the SimpliFi system which are required
+
+        as part of the sanctions screening or KYC process. The documents can be uploaded in one of the
+
+        following formats (.jpg, .jpeg, .png, .pdf)'
+      tags:
+      - Document
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  example: ''
+                userUuid:
+                  type: string
+                  description: 'This is a system-generated unique identifier of the user that was
+
+                    created using the Create User API.'
+                  examples:
+                  - 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
+                  example: 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
+                documentType:
+                  type: string
+                  description: This field contains the type of the document attached by the cardholder.
+                  enum:
+                  - ID_CARD
+                  - PASSPORT
+                  examples:
+                  - PASSPORT
+                  example: PASSPORT
+                documentContext:
+                  type: string
+                  description: This field contains the orientation of the document to be uploaded.
+                  enum:
+                  - DOCUMENT_FRONT
+                  - DOCUMENT_BACK
+                  - FACE
+                  examples:
+                  - DOCUMENT_FRONT
+                  example: DOCUMENT_FRONT
+              required:
+              - file
+              - userUuid
+              - documentType
+              - documentContext
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: uploadDocument
+components:
+  schemas:
+    DocumentModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This is a system-generated unique identifier of the document
+          examples:
+          - e2a60b44-88ef-4102-a1ac-fb0f00a3fd3e
+        userUuid:
+          type: string
+          description: 'This is a system-generated unique identifier of the user that was
+
+            created using the Create User API.'
+          examples:
+          - 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
+        documentType:
+          type: string
+          description: This field contains the type of the document attached by the cardholder.
+          enum:
+          - ID_CARD
+          - PASSPORT
+          examples:
+          - PASSPORT
+        documentContext:
+          type: string
+          description: This field contains the orientation of the document to be uploaded.
+          enum:
+          - DOCUMENT_FRONT
+          - DOCUMENT_BACK
+          - FACE
+          examples:
+          - DOCUMENT_FRONT
+      required:
+      - userUuid
+      - documentType
+      - documentContext
+    FileUploadModel:
+      type: object
+      properties:
+        cardProgramUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the program
+
+            that was created using the Create Card Program API.'
+          examples:
+          - 22b52244-fb76-4ae7-be85-ecafba89e5ca
+        amount:
+          type: number
+          description: This field contains the amount that has been requested for fund transfer.
+          examples:
+          - '10000.00'
+        fundRequestType:
+          type: string
+          description: This field contains the type for fund request.
+          enum:
+          - LOAD
+          - UNLOAD
+          examples:
+          - LOAD
+        documentUploadUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the document
+
+            that was uploaded'
+          examples:
+          - e95a7a97-5889-4001-8c40-ed79a8ab6ae9
+      required:
+      - cardProgramUuid
+      - amount
+      - fundRequestType
+      - documentUploadUuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token from POST /v1/auth/login/{companyName}, sent as Authorization: Bearer <token>.'

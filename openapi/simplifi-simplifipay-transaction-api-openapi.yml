@@ -1,0 +1,782 @@
+openapi: 3.0.1
+info:
+  title: SimpliFi Cards Auth Transaction API
+  version: 1.0.0
+  description: 'SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.'
+  contact:
+    name: SimpliFi Support
+    email: info@simplifipay.com
+    url: https://apidoc.simplifipay.com/
+servers:
+- url: https://{env}-lb.simplifipay.com
+  description: Load-balanced API host; {env} is the environment token issued during onboarding
+  variables:
+    env:
+      default: uat
+      description: Environment token issued by SimpliFi
+security:
+- bearerAuth: []
+tags:
+- name: Transaction
+paths:
+  /v1/statement:
+    get:
+      summary: Funding Source Statement
+      deprecated: false
+      description: Get funding source statement based on date range.
+      tags:
+      - Transaction
+      parameters:
+      - name: accountId
+        in: query
+        description: The account ID of the processor mapping (wallet).
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: start date of date-range
+        required: false
+        schema:
+          type: string
+          format: date
+          examples:
+          - '2025-02-28'
+      - name: endDate
+        in: query
+        description: end date date of date-range
+        required: false
+        schema:
+          type: string
+          format: date
+          examples:
+          - '2025-02-28'
+      - name: sortBy
+        in: query
+        description: sort statement column value
+        required: false
+        schema:
+          type: string
+      - name: sortDir
+        in: query
+        description: sort direction
+        required: false
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementResponse'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: fundingSourceStatement
+  /v1/statement/card/{uuid}:
+    get:
+      summary: Get Card Statement
+      deprecated: false
+      description: Get card statement based on date range.
+      tags:
+      - Transaction
+      parameters:
+      - name: uuid
+        in: path
+        description: This field contains a unique identifier of the card.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: start date of date-range
+        required: false
+        schema:
+          type: string
+          format: date
+          examples:
+          - '2025-02-28'
+      - name: endDate
+        in: query
+        description: end date date of date-range
+        required: false
+        schema:
+          type: string
+          format: date
+          examples:
+          - '2025-02-28'
+      - name: sortBy
+        in: query
+        description: sort statement column value
+        required: false
+        schema:
+          type: string
+      - name: sortDir
+        in: query
+        description: sort direction
+        required: false
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardStatementResponse'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: getCardStatement
+  /v1/transaction:
+    post:
+      summary: List All Transactions
+      deprecated: false
+      description: 'The List All Transactions endpoint retrieves a paginated array of all the transactions carried
+
+        out in the last 90 days. The results are displayed with a default page size of 10 and the response
+
+        returns the transaction list with total no. of elements. Following are the properties of this endpoint.'
+      tags:
+      - Transaction
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionRequestModel'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: listAllTransactions
+components:
+  schemas:
+    TransactionUuidParameter:
+      type: string
+      description: This is a unique identifier of the transaction.
+      examples:
+      - f0888e10-43e3-4686-9c79-256633d79559
+    CardStatementResponse:
+      type: object
+      properties:
+        companyName:
+          type: string
+          description: Name of the company.
+          examples:
+          - SimpliFi
+        statementDate:
+          type: string
+          format: date
+          description: The date on which the statement is created.
+          examples:
+          - '2025-02-28'
+        maskPan:
+          type: string
+          description: The Masked PAN of card.
+          examples:
+          - '************2737'
+        currency:
+          type: string
+          description: The currency of the card.
+          examples:
+          - AED
+        startDate:
+          type: string
+          format: date-time
+          description: The start date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        endDate:
+          type: string
+          format: date-time
+          description: The end date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        openingBalance:
+          type: number
+          format: decimal
+          description: The opening balance of the card from the start date of the date range.
+          examples:
+          - '6.95'
+        currentBalance:
+          type: number
+          format: decimal
+          description: The current balance of the card
+          examples:
+          - '6.95'
+        settledBalance:
+          type: number
+          format: decimal
+          description: The settled balance of the card
+          examples:
+          - '6.95'
+        unsettledBalance:
+          type: number
+          format: decimal
+          description: The unsettled balance of the card
+          examples:
+          - '6.95'
+        blockedAmount:
+          type: number
+          format: decimal
+          description: The blocked amount of the card
+          examples:
+          - '6.95'
+        totals:
+          type: object
+          additionalProperties:
+            type: number
+            format: decimal
+          properties: {}
+        transactions:
+          type: array
+          description: The array of transactions.
+          items:
+            $ref: '#/components/schemas/TransactionResponseDetails'
+      required:
+      - companyName
+      - statementDate
+      - maskPan
+      - currency
+      - startDate
+      - endDate
+      - openingBalance
+      - currentBalance
+      - settledBalance
+      - unsettledBalance
+      - blockedAmount
+      - totals
+      - transactions
+    StatementResponse:
+      type: object
+      properties:
+        companyName:
+          type: string
+          description: Name of the company.
+          examples:
+          - SimpliFi
+        statementDate:
+          type: string
+          format: date
+          description: The date on which the statement is created.
+          examples:
+          - '2025-02-28'
+        accountId:
+          type: string
+          description: The account ID of wallet.
+          examples:
+          - '885180123'
+        currency:
+          type: string
+          description: The currency in which the amounts are transacted.
+          examples:
+          - USD
+        startDate:
+          type: string
+          format: date-time
+          description: The start date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        endDate:
+          type: string
+          format: date-time
+          description: The end date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        openingBalance:
+          type: number
+          format: decimal
+          description: The opening balance on the account from the start date of the date range.
+          examples:
+          - '6.95'
+        closingBalance:
+          type: number
+          format: decimal
+          description: The closing balance on the account till the end date of the date range.
+          examples:
+          - '6.95'
+        transactions:
+          type: array
+          description: The array of transactions.
+          items:
+            $ref: '#/components/schemas/StatementResponseDetails'
+      required:
+      - companyName
+      - statementDate
+      - accountId
+      - currency
+      - startDate
+      - endDate
+      - openingBalance
+      - closingBalance
+      - transactions
+    TransactionIdParameter:
+      type: string
+      description: This is an identifier of the transaction.
+      examples:
+      - '6712309'
+    TransactionResponseDetails:
+      type: object
+      properties:
+        transactionUuid:
+          $ref: '#/components/schemas/TransactionUuidParameter'
+        transactionId:
+          $ref: '#/components/schemas/TransactionIdParameter'
+        cardUuid:
+          type: string
+          description: This is a unique identifier of the card.
+          examples:
+          - 95e8008f-c14b-4d4c-bc3b-6378be83618c
+        maskedPan:
+          $ref: '#/components/schemas/MaskedPanParameter'
+        userName:
+          type: string
+          description: username of user.
+          examples:
+          - john.smith
+        userEmail:
+          type: string
+          description: email of user.
+          examples:
+          - user@simplifipay.com
+        userFullName:
+          type: string
+          description: full name of user.
+          examples:
+          - John Smith
+        transactionType:
+          type: string
+          description: This is a transaction type
+          enum:
+          - Auth
+          - Reversal
+          - Settlement
+          - Refund
+          - Load
+          - Unload
+          - Fees
+          examples:
+          - Auth
+        statusCode:
+          type: string
+          description: This field contains the status code of the transaction code received from processor.
+          examples:
+          - '00'
+        statusCodeDescription:
+          type: string
+          description: This field contains the status description of the transaction code received from processor.
+          examples:
+          - Approved
+        authResponse:
+          type: string
+          description: This field contains the auth response value of the transaction received from processor.
+          examples:
+          - '51'
+        mccCode:
+          type: string
+          description: 'This field contains the Merchant Category Code. These, MCCs are four-digit numbers that
+
+            describe a merchant''s primary business activity.'
+          examples:
+          - '6011'
+        merchantId:
+          type: string
+          description: This field contains the registered merchant ID.
+          examples:
+          - F09089372443345
+        merchantName:
+          type: string
+          description: This field contains the registered merchant name.
+          examples:
+          - GOOGLE *TEMPORARY HOLD
+        transactionAmount:
+          type: number
+          format: decimal
+          description: This field contains the total amount that was transacted.
+          examples:
+          - '100.54'
+        transactionCurrency:
+          type: string
+          description: This field contains the currency in which the amount was transacted.
+          examples:
+          - AED
+        transactionDate:
+          type: string
+          format: date-time
+          description: This field contains the date on which the transaction was carried out.
+          examples:
+          - '2025-02-28 13:31:00'
+        billAmount:
+          type: number
+          format: decimal
+          description: This field contains the billed amount.
+          examples:
+          - '6.95'
+        billCurrency:
+          type: string
+          description: This field contains the name of currency in which the amount is stored in the card
+          examples:
+          - AED
+        fxFee:
+          type: number
+          format: decimal
+          description: This field contains the FX fee amount.
+          examples:
+          - '0.31'
+        feeOperationType:
+          type: string
+          description: This field specifies the Fee Operation Type
+          examples:
+          - PRIMARY_VIRTUAL_CARD_ISSUANCE
+        feeOperationTypeDescription:
+          type: string
+          description: This field specifies the Fee Operation Type description
+          examples:
+          - Virtual Card Issuance Fee
+        comments:
+          type: string
+          description: Any notes for this transaction
+        classificationType:
+          type: string
+          description: Classification of the transaction (Business/Personal)
+      required:
+      - transactionUuid
+      - transactionId
+      - cardUuid
+      - maskedPan
+      - userName
+      - userEmail
+      - userFullName
+      - transactionType
+      - statusCode
+      - authResponse
+      - transactionAmount
+      - transactionCurrency
+      - transactionDate
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
+    TransactionResponse:
+      type: object
+      properties:
+        transactions:
+          type: array
+          description: 'This array of objects is a collection of transaction fields,
+
+            possessing sub-fields explained in the rows below.'
+          items:
+            $ref: '#/components/schemas/TransactionResponseDetails'
+        totalElement:
+          type: integer
+          format: int64
+          description: This field contains the total number of elements against the criteria.
+      required:
+      - transactions
+      - totalElement
+    StatementResponseDetails:
+      type: object
+      properties:
+        fundRequestUuid:
+          type: string
+          description: This is a unique identifier of the fund request.
+          examples:
+          - 11e082c2-993d-4026-82c4-1234ec464796
+        transactionId:
+          $ref: '#/components/schemas/TransactionIdParameter'
+        transactionDate:
+          type: string
+          format: date-time
+          description: The date on which the transaction was carried out.
+          examples:
+          - '2025-02-28 13:31:00'
+        amount:
+          type: number
+          format: decimal
+          description: The fund amount.
+          examples:
+          - '6.95'
+        fundRequestType:
+          type: string
+          description: The type for fund request.
+          enum:
+          - LOAD
+          - UNLOAD
+          examples:
+          - LOAD
+        fundRequestCategory:
+          type: string
+          description: The category for fund request.
+          enum:
+          - RAISE_FUNDING
+          - FUND_TRANSFER
+          - CARD_LOAD
+          - CARD_UNLOAD
+          examples:
+          - RAISE_FUNDING
+        previousBalance:
+          type: number
+          format: decimal
+          description: The balance on the account before this transaction.
+          examples:
+          - '6.95'
+        currentBalance:
+          type: number
+          format: decimal
+          description: The current balance on the account.
+          examples:
+          - '6.95'
+        maskPan:
+          type: string
+          description: The mask pan of the transaction.
+          examples:
+          - '************2737'
+        userName:
+          type: string
+          description: The username of the user of this transaction.
+          examples:
+          - john.smith@simplifipay.com
+        userFullName:
+          type: string
+          description: The full name of the user of this transaction.
+          examples:
+          - John Smith
+        userUuid:
+          type: string
+          description: The UUID of the user of this transaction.
+          examples:
+          - 1b2dbfc7-3432-4eb8-9367-fb123dcf2ba0
+        srcCurrency:
+          type: string
+          description: Source currency
+          examples:
+          - USD
+        destCurrency:
+          type: string
+          description: Destination currency
+          examples:
+          - USD
+      required:
+      - fundRequestUuid
+      - transactionId
+      - transactionDate
+      - amount
+      - fundRequestCategory
+      - previousBalance
+      - currentBalance
+    TransactionTypeParameter:
+      type: array
+      description: 'This field defines the Transaction types. Allowed values are
+
+        `Auth` - for Authorized transactions
+
+        `Reversal` - for Reversed transactions
+
+        `Settlement` - for Settled transactions
+
+        `Refund` - for Refund transactions
+
+        `Load` - for Card Load transactions
+
+        `Unload` - for Card Unload transactions
+
+        `Fees` - for Fee transactions'
+      items:
+        type: string
+        enum:
+        - Auth
+        - Reversal
+        - Settlement
+        - Refund
+        - Load
+        - Unload
+        - Fees
+    TransactionRequestModel:
+      type: object
+      properties:
+        cardProgramUuids:
+          type: array
+          description: These are unique identifiers of the card programs.
+          items:
+            type: string
+        page:
+          description: This field contains the page number currently being displayed for transactions.
+          type: integer
+        size:
+          description: This field contains the number of the transaction records to be displayed on this page.
+          type: integer
+        startDate:
+          description: This is the start date of transactions.
+          type: string
+          format: date-time
+          examples:
+          - '2025-02-28 13:31:00'
+        endDate:
+          description: This is the end date of transactions.
+          type: string
+          format: date-time
+          examples:
+          - '2025-02-28 13:31:00'
+        cardUuid:
+          description: This is a unique identifier of the card.
+          type: string
+        userUuid:
+          description: This is a unique identifier of the user.
+          type: string
+        billAmount:
+          description: This field contains the billed amount.
+          type: number
+        billCurrency:
+          description: This field contains the currency in which the amount has been billed.
+          type: string
+        classificationType:
+          description: This field contains the classification type of the transaction.
+          type: string
+        sortBy:
+          type: string
+          enum:
+          - transactionDate
+          - transactionAmount
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        transactionType:
+          $ref: '#/components/schemas/TransactionTypeParameter'
+    MaskedPanParameter:
+      type: string
+      description: 'This field contains the partially hidden Primary Account Number
+
+        i.e. all digits are masked, except for the last four ones.'
+      examples:
+      - '**********1234'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token from POST /v1/auth/login/{companyName}, sent as Authorization: Bearer <token>.'

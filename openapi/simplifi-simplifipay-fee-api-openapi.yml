@@ -1,0 +1,621 @@
+openapi: 3.0.1
+info:
+  title: SimpliFi Cards Auth Fee API
+  version: 1.0.0
+  description: 'SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.'
+  contact:
+    name: SimpliFi Support
+    email: info@simplifipay.com
+    url: https://apidoc.simplifipay.com/
+servers:
+- url: https://{env}-lb.simplifipay.com
+  description: Load-balanced API host; {env} is the environment token issued during onboarding
+  variables:
+    env:
+      default: uat
+      description: Environment token issued by SimpliFi
+security:
+- bearerAuth: []
+tags:
+- name: Fee
+paths:
+  /v2/fees:
+    post:
+      summary: Add fee configuration
+      deprecated: false
+      description: 'Configure fee based on transaction types and apply them to a card program template.
+
+        Following are the properties of this endpoint.'
+      tags:
+      - Fee
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeesSetupRequestModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeesSetupResponseModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: addFeeConfiguration
+  /v2/fees/{uuid}:
+    get:
+      summary: Fetch fee config
+      deprecated: false
+      description: This endpoint fetches the fee config
+      tags:
+      - Fee
+      parameters:
+      - name: uuid
+        in: path
+        description: This is the unique identifier of the fee configuration.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeeConfigurationResponseModel'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: fetchFeeConfig
+  /v1/fees/{uuid}:
+    patch:
+      summary: Change the status of fee config
+      deprecated: false
+      description: This endpoint changes the status of the fee config
+      tags:
+      - Fee
+      parameters:
+      - name: uuid
+        in: path
+        description: This is the unique identifier of the fee configuration.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeesStatusUpdateModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeeConfigurationModel'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: changeTheStatusOfFeeConfig
+  /v1/fees/application/card/{cardUuid}:
+    post:
+      summary: Add Fee event against card uuid in queue
+      deprecated: false
+      description: ''
+      tags:
+      - Fee
+      parameters:
+      - name: cardUuid
+        in: path
+        description: This is the unique identifier of the card.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeesApplicationCardRequest'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeeApplicationEventResponse'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: addFeeEventAgainstCardUuidInQueue
+  /v1/fees/application/card/{cardUuid}/apply:
+    post:
+      summary: Apply fee against card uuid present in queue
+      deprecated: false
+      description: ''
+      tags:
+      - Fee
+      parameters:
+      - name: cardUuid
+        in: path
+        description: This is the unique identifier of the card.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplyFeesOnCardRequest'
+      responses:
+        '201':
+          description: Fee configuration added
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: applyFeeAgainstCardUuidPresentInQueue
+components:
+  schemas:
+    FeesSetupRequestModel:
+      allOf:
+      - $ref: '#/components/schemas/FeesSetupBaseModel'
+      - type: object
+        properties:
+          fees:
+            type: array
+            description: This array of objects contains fees setup configuration with respect to fee operation type
+            items:
+              $ref: '#/components/schemas/FeeConfigurationRequestModel'
+        required:
+        - fees
+    FeeConfigurationResponseModel:
+      allOf:
+      - $ref: '#/components/schemas/FeeConfigurationBaseModel'
+      - type: object
+        properties:
+          feesUuid:
+            type: string
+            description: This is a system-generated unique identifier of the fee configuration.
+            examples:
+            - e00507d5-f5a0-4951-9037-2b15ab852c88
+          feeAmounts:
+            type: array
+            items:
+              $ref: '#/components/schemas/FeeAmountConfigResponseModel'
+        required:
+        - feesUuid
+        - feeAmounts
+    FeeAmountConfigResponseModel:
+      allOf:
+      - $ref: '#/components/schemas/FeeConfigurationBaseModel'
+      - type: object
+        properties:
+          feeAmountUuid:
+            type: string
+            description: This is a system-generated unique identifier of the fee amount configuration.
+            examples:
+            - 1c173742-98d2-4e26-97df-6ac5acae5fc3
+        required:
+        - feeAmountUuid
+    FeeApplicationEventResponse:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This field contains the unique uuid of the fee application event.
+          examples:
+          - bf4b513a-283d-4405-ae7b-2051e0be1bc0
+      required:
+      - uuid
+    FeesApplicationCardRequest:
+      type: object
+      properties:
+        feeConfigUuid:
+          type: string
+          description: This field contains the unique uuid of fees configuration.
+          examples:
+          - b767416b-e6d6-4e09-b741-daa211b4c60c
+      required:
+      - feeConfigUuid
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
+    ApplyFeesOnCardRequest:
+      type: object
+      properties:
+        feeApplicationUuids:
+          type: array
+          description: This field contains the unique uuid of fee application event.
+          items:
+            type: string
+      required:
+      - feeApplicationUuids
+    FeeConfigurationRequestModel:
+      allOf:
+      - $ref: '#/components/schemas/FeeConfigurationBaseModel'
+      - type: object
+        properties:
+          feeAmounts:
+            type: array
+            items:
+              $ref: '#/components/schemas/FeeAmountConfigRequestModel'
+        required:
+        - feeAmounts
+    FeesSetupResponseModel:
+      allOf:
+      - $ref: '#/components/schemas/FeesSetupBaseModel'
+      - type: object
+        properties:
+          fees:
+            type: array
+            items:
+              $ref: '#/components/schemas/FeeConfigurationResponseModel'
+    FeeAmountConfigRequestModel:
+      type: object
+      properties:
+        feesDetectType:
+          type: string
+          description: This field contains fees Detect Type
+          enum:
+          - FIXED
+          - MULTIPLIER
+          examples:
+          - FIXED
+        feeAmount:
+          type: number
+          format: decimal
+          description: This field indicates the amount to charge
+          examples:
+          - '5.10'
+        feeStatusType:
+          type: string
+          description: This field contains the status of the fee configuration
+          enum:
+          - ACTIVE
+          - INACTIVE
+          examples:
+          - ACTIVE
+        notes:
+          type: string
+          description: Additional notes regarding the amount being configured
+      required:
+      - feesDetectType
+      - feeAmount
+    FeesSetupBaseModel:
+      type: object
+      properties:
+        entityType:
+          type: string
+          description: This field contains the entity type for which we want to setup fees
+          enum:
+          - CARD_PROGRAM_TEMPLATE
+          - CARD_PROGRAM
+          - CARD
+          examples:
+          - CARD_PROGRAM_TEMPLATE
+        entityUuid:
+          type: string
+          description: This is the entity uuid for which we want to charge fees for specific operations
+          examples:
+          - 6afa4246-9ecd-4dd0-9c7e-240b04ae8929
+      required:
+      - entityType
+      - entityUuid
+    FeesStatusUpdateModel:
+      type: object
+      properties:
+        status:
+          type: string
+          description: This field contains the status of the fee configuration
+          enum:
+          - ACTIVE
+          - INACTIVE
+          examples:
+          - ACTIVE
+      required:
+      - status
+    FeeConfigurationBaseModel:
+      type: object
+      properties:
+        feeOperationType:
+          type: string
+          description: This field contains the operation type for which we want to setup fees
+          enum:
+          - PRIMARY_VIRTUAL_CARD_ISSUANCE
+          - PRIMARY_VIRTUAL_CARD_RENEWAL
+          - SECONDARY_CARD_ISSUANCE
+          - SECONDARY_CARD_RENEWAL
+          - PHYSICAL_CARD_ISSUANCE
+          - PHYSICAL_CARD_RENEWAL
+          - ATM_WITHDRAWAL
+          - SUBSCRIPTION_FEE
+          - DELIVERY_CHARGE
+          examples:
+          - ATM_WITHDRAWAL
+        feeStatusType:
+          type: string
+          description: This field contains the status of the fee configuration
+          enum:
+          - ACTIVE
+          - INACTIVE
+          examples:
+          - ACTIVE
+        capAmount:
+          type: number
+          format: decimal
+          description: Maximum amount to charge
+          examples:
+          - '75.0'
+        currency:
+          type: string
+          description: This field tells the currency of on which fees will be detected
+          examples:
+          - USD
+        description:
+          type: string
+          description: This field contains the description of the fee
+          examples:
+          - ATM Withdrawal Fee
+      required:
+      - feeOperationType
+      - currency
+    FeeConfigurationModel:
+      type: object
+      properties:
+        feeOperationType:
+          type: string
+          description: This field contains the operation type for which we want to setup fees
+          enum:
+          - PRIMARY_VIRTUAL_CARD_ISSUANCE
+          - PRIMARY_VIRTUAL_CARD_RENEWAL
+          - SECONDARY_CARD_ISSUANCE
+          - SECONDARY_CARD_RENEWAL
+          - PHYSICAL_CARD_ISSUANCE
+          - PHYSICAL_CARD_RENEWAL
+          - ATM_WITHDRAWAL
+          - SUBSCRIPTION_FEE
+          - DELIVERY_CHARGE
+          examples:
+          - ATM_WITHDRAWAL
+        feeStatusType:
+          type: string
+          description: This field contains the status of the fee configuration
+          enum:
+          - ACTIVE
+          - INACTIVE
+          examples:
+          - ACTIVE
+        feeAmount:
+          type: number
+          format: decimal
+          description: This field indicates the amount to charge
+          examples:
+          - '5.10'
+        currency:
+          type: string
+          description: This field tells the currency of on which fees will be detected
+          examples:
+          - USD
+        description:
+          type: string
+          description: This field contains the description of the fee
+          examples:
+          - ATM Withdrawal Fee
+        feesDetectType:
+          type: string
+          description: This field contains fees Detect Type
+          enum:
+          - FIXED
+          - MULTIPLIER
+          examples:
+          - FIXED
+        feesUuid:
+          type: string
+          description: This is a system-generated unique identifier of the fee configuration.
+          examples:
+          - e00507d5-f5a0-4951-9037-2b15ab852c88
+      required:
+      - feeOperationType
+      - feeAmount
+      - currency
+      - feesDetectType
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token from POST /v1/auth/login/{companyName}, sent as Authorization: Bearer <token>.'

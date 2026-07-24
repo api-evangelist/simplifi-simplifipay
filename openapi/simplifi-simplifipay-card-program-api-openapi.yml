@@ -1,0 +1,1218 @@
+openapi: 3.0.1
+info:
+  title: SimpliFi Cards Auth Card Program API
+  version: 1.0.0
+  description: 'SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.'
+  contact:
+    name: SimpliFi Support
+    email: info@simplifipay.com
+    url: https://apidoc.simplifipay.com/
+servers:
+- url: https://{env}-lb.simplifipay.com
+  description: Load-balanced API host; {env} is the environment token issued during onboarding
+  variables:
+    env:
+      default: uat
+      description: Environment token issued by SimpliFi
+security:
+- bearerAuth: []
+tags:
+- name: Card Program
+paths:
+  /v1/card-program:
+    post:
+      summary: Create Card Program
+      deprecated: false
+      description: 'The Create Card Program endpoint allows API users to create a new card program
+
+        to be associated with cards of the SimpliFi platform.'
+      tags:
+      - Card Program
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardProgramRequestModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardProgramRequestModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: createCardProgram
+  /v1/card-program/{uuid}:
+    get:
+      summary: Get Card Program
+      deprecated: false
+      description: 'The Get Card Program endpoint retrieves details about a card program.
+
+        Following are the properties of this endpoint.'
+      tags:
+      - Card Program
+      parameters:
+      - name: uuid
+        in: path
+        description: This is a unique identifier for the program that was created using the Create Card Program API.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardProgramResponseModel'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: getCardProgram
+  /v1/card-program/{uuid}/status:
+    patch:
+      summary: Change Card Program Status
+      deprecated: false
+      description: 'The Change Card Program Status endpoint changes the status of a card program. This endpoint is helpful
+
+        when a card program is to be suspended or activated as per the business needs. Following are the
+
+        properties of this endpoint.'
+      tags:
+      - Card Program
+      parameters:
+      - name: uuid
+        in: path
+        description: This is a unique identifier for the program that was created using the Create Card Program API.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardProgramStatusChangeRequestModel'
+      responses:
+        '200':
+          description: OK
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: changeCardProgramStatus
+  /v2/card-program/{uuid}/funding-source:
+    post:
+      summary: Link Funding Source to Card Program
+      deprecated: false
+      description: 'The Link Funding Source to Card Program endpoint links a funding source to a card program.
+
+        The funding source works as an account that would be used to fund all its cards under this
+
+        Card Program. Following are the properties of this endpoint.'
+      tags:
+      - Card Program
+      parameters:
+      - name: uuid
+        in: path
+        description: This is a unique identifier for the program that was created using the Create Card Program API.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FundingSourceRequestModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FundingSourceResponseModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: linkFundingSourceToCardProgram
+  /v1/card-program/{uuid}/funding-source-balance:
+    get:
+      summary: Get Balance of Funding Source
+      deprecated: false
+      description: 'The Get Balance of Funding Source endpoint retrieves the remaining balance of a funding source.
+
+        Following are the properties of this endpoint.'
+      tags:
+      - Card Program
+      parameters:
+      - name: uuid
+        in: path
+        description: This is a unique identifier for the program that was created using the Create Card Program API.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FundingSourceBalanceModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: getBalanceOfFundingSource
+  /v1/card-program/transfer-fund:
+    post:
+      summary: Transfer funds from one Card Program to other
+      deprecated: false
+      description: 'The Transfer Fund endpoint allows API users to transfer funds from a one
+
+        Card Program to other Card Program. Following are the properties of this endpoint.'
+      tags:
+      - Card Program
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardProgramTransferFundsModel'
+      responses:
+        '200':
+          description: OK
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: transferFundsFromOneCardProgramToOther
+  /v1/document/upload:
+    post:
+      summary: Raise Funding Document Upload
+      deprecated: false
+      description: 'This API should be called before calling Raise Funding API to attach `Proof of funds / Confirmation of
+
+        funds transfer from the Bank` document (PNG, JPEG, PDF are allowed formats) and the string value returned
+
+        in the `documentUploadUuid` field of the response should be used in Raise Funding API''s document parameter.
+
+
+        Note: After the funds are transferred from the whitelisted Bank account to the Issuer/Processor Bank
+
+        account, the confirmation of transfer of funds screenshot/image/PDF should be used as an attachment.'
+      tags:
+      - Card Program
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  example: ''
+                cardProgramUuid:
+                  type: string
+                  description: 'This field contains the system generated unique identifier for the program
+
+                    that was created using the Create Card Program API.'
+                  examples:
+                  - 22b52244-fb76-4ae7-be85-ecafba89e5ca
+                  example: 22b52244-fb76-4ae7-be85-ecafba89e5ca
+                amount:
+                  type: number
+                  description: This field contains the amount that has been requested for fund transfer.
+                  examples:
+                  - '10000.00'
+                  example: 10000
+                fundRequestType:
+                  type: string
+                  description: This field contains the type for fund request.
+                  enum:
+                  - LOAD
+                  - UNLOAD
+                  examples:
+                  - LOAD
+                  example: LOAD
+              required:
+              - file
+              - cardProgramUuid
+              - amount
+              - fundRequestType
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUploadModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: raiseFundingDocumentUpload
+  /v1/card-program/raise-funding:
+    post:
+      summary: Raise Funding
+      deprecated: false
+      description: 'The Raise Funding endpoint helps in adding or removing funds from a funding source. This API doesn''t
+
+        actually move the money between accounts but should be used so that the proof of funds is shared with
+
+        the Issuer/Processor Bank. After the proof of funds attachment is verified by the Issuer/Processor
+
+        funds would reflect in the respective funding source. Following are the properties of this endpoint.'
+      tags:
+      - Card Program
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RaiseFundingRequestModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaiseFundingResponseModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: raiseFunding
+  /v1/statement:
+    get:
+      summary: Funding Source Statement
+      deprecated: false
+      description: Get funding source statement based on date range.
+      tags:
+      - Card Program
+      parameters:
+      - name: accountId
+        in: query
+        description: The account ID of the processor mapping (wallet).
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: start date of date-range
+        required: false
+        schema:
+          type: string
+          format: date
+          examples:
+          - '2025-02-28'
+      - name: endDate
+        in: query
+        description: end date date of date-range
+        required: false
+        schema:
+          type: string
+          format: date
+          examples:
+          - '2025-02-28'
+      - name: sortBy
+        in: query
+        description: sort statement column value
+        required: false
+        schema:
+          type: string
+      - name: sortDir
+        in: query
+        description: sort direction
+        required: false
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementResponse'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: fundingSourceStatement
+components:
+  schemas:
+    CardProgramStatusChangeRequestModel:
+      type: object
+      properties:
+        cardProgramStatus:
+          type: string
+          description: This field specifies the status (ACTIVE, SUSPENDED, INACTIVE) of the Card Program.
+          enum:
+          - ACTIVE
+          - SUSPENDED
+          - INACTIVE
+          examples:
+          - SUSPENDED
+      required:
+      - cardProgramStatus
+    CardPoi:
+      type: object
+      description: 'This object is a collection of Point of Interest configuration fields showing where the card
+
+        issued under this card program can be used. It contains sub-fields explained in the rows below.'
+      properties:
+        ecommerce:
+          type: boolean
+          description: 'This field, if enabled, allows online transactions.
+
+            The allowed values are `true` and `false`.'
+          examples:
+          - 'true'
+        atm:
+          type: boolean
+          description: 'This field, if enabled, allows Automated Teller Machine (ATM) transactions.
+
+            The allowed values are `true` and `false`.'
+          examples:
+          - 'true'
+        pos:
+          type: boolean
+          description: 'This field, if enabled, allows Point of Sale (POS) transactions.
+
+            The allowed values are `true` and `false`.
+
+            <span class="simplifi-note-nam"><span class="simplifi-note">Note:</span> Not available in all markets</span>'
+          examples:
+          - 'true'
+        international:
+          type: boolean
+          description: 'This field, if enabled, allows International transactions.
+
+            The allowed values are `true` and `false`.'
+          examples:
+          - 'true'
+    CardProgramRequestModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This is a system-generated unique identifier for the card program that was created by this endpoint.
+          examples:
+          - 68de4d4a-20ed-48c6-8594-dc74e1730cb7
+        name:
+          type: string
+          description: 'This is a custom name for the card program. We recommend choosing a unique name to identify the
+
+            card programs that are created under your company.'
+          examples:
+          - Marketing Budget
+        cardProgramTemplateUuid:
+          type: string
+          description: 'This is a unique identifier that represents a specific card program template. A Card Program
+
+            Template contains all the features applicable on a card that would be issued under a card program.
+
+            This information is shared by SimpliFi separately. If you don’t have them already, click
+
+            on [this link](https://simplifipay.com/).'
+          examples:
+          - 36fad307-416e-4333-920a-b07fba57a658
+        feesOperationEnabled:
+          type: boolean
+          default: false
+          description: This field checks if fee operation is enabled or not.
+          examples:
+          - 'true'
+        config:
+          $ref: '#/components/schemas/CardConfigModel'
+      required:
+      - name
+      - cardProgramTemplateUuid
+    CardConfigModel:
+      type: object
+      description: 'This object is a collection of configuration fields including both Point of Interest and Velocity
+
+        Control fields. It contains sub-fields explained in the rows below.'
+      properties:
+        poi:
+          $ref: '#/components/schemas/CardPoi'
+      required:
+      - poi
+    RaiseFundingResponseModel:
+      type: object
+      properties:
+        cardProgramUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the program
+
+            that was created using the Create Card Program API.'
+          examples:
+          - c83d26ed-f093-4e43-b81b-35884f068d4b
+        amount:
+          type: number
+          format: decimal
+          description: This field contains the amount that has been requested for fund transfer.
+          examples:
+          - '10000.00'
+        transactionType:
+          type: string
+          description: This field contains the type of the transaction either `CREDIT` or `DEBIT`.
+          enum:
+          - CREDIT
+          - DEBIT
+          examples:
+          - CREDIT
+        status:
+          type: string
+          description: This field contains the status of the Raise Funding
+          enum:
+          - PENDING
+          - ACKNOWLEDGED
+          - APPROVED
+          - NOT_APPROVED
+          - REJECTED
+          examples:
+          - PENDING
+      required:
+      - cardProgramUuid
+      - amount
+      - transactionType
+      - status
+    CardProgramResponseModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This is the unique identifier for the card program to which the card program belongs.
+          examples:
+          - 2143c065-a8af-4fd7-a839-17371f760e03
+        name:
+          type: string
+          description: This is the name of the card program.
+          examples:
+          - Marketing Budget
+        companyUuid:
+          type: string
+          description: This is the unique identifier for the company to which the card program belongs.
+          examples:
+          - 306182e4-c3e9-41d6-9184-de5bfec1fad1
+        parentAccountId:
+          type: string
+          description: Account ID associated with funding source
+          examples:
+          - '1234567'
+        productId:
+          type: string
+          description: Product ID associated with processor mapping
+          examples:
+          - '0031'
+        fundingSourceUuid:
+          type: string
+          description: This is a unique identifier of the funding source linked to this card program.
+          examples:
+          - 86bada5e-d67f-4efb-975f-4a20b86a5b13
+        cardProgramStatus:
+          type: string
+          description: This field specifies the status of the card program.
+          enum:
+          - CREATED
+          - ACTIVE
+          - INACTIVE
+          - SUSPENDED
+          - DEFAULT
+          examples:
+          - ACTIVE
+        config:
+          $ref: '#/components/schemas/CardConfigModel'
+        cardProgramTemplateUuid:
+          type: string
+          description: This field contains the unique identifier of the card program template of this card program.
+          examples:
+          - b13dc7ac-163b-49d1-b9e9-98ed7b73cccf
+        walletThreshold:
+          type: number
+          format: decimal
+          description: load threshold
+          examples:
+          - '100'
+        autoLoadAmount:
+          type: number
+          format: decimal
+          description: auto load amount
+          examples:
+          - '100'
+        currency:
+          type: string
+          description: This field contains the currency of the card program.
+          examples:
+          - AED
+        feesOperationEnabled:
+          type: boolean
+          description: This field checks if fee operation is enabled or not.
+          default: false
+          examples:
+          - 'true'
+      required:
+      - uuid
+      - name
+      - companyUuid
+      - cardProgramStatus
+      - cardProgramTemplateUuid
+    StatementResponse:
+      type: object
+      properties:
+        companyName:
+          type: string
+          description: Name of the company.
+          examples:
+          - SimpliFi
+        statementDate:
+          type: string
+          format: date
+          description: The date on which the statement is created.
+          examples:
+          - '2025-02-28'
+        accountId:
+          type: string
+          description: The account ID of wallet.
+          examples:
+          - '885180123'
+        currency:
+          type: string
+          description: The currency in which the amounts are transacted.
+          examples:
+          - USD
+        startDate:
+          type: string
+          format: date-time
+          description: The start date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        endDate:
+          type: string
+          format: date-time
+          description: The end date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        openingBalance:
+          type: number
+          format: decimal
+          description: The opening balance on the account from the start date of the date range.
+          examples:
+          - '6.95'
+        closingBalance:
+          type: number
+          format: decimal
+          description: The closing balance on the account till the end date of the date range.
+          examples:
+          - '6.95'
+        transactions:
+          type: array
+          description: The array of transactions.
+          items:
+            $ref: '#/components/schemas/StatementResponseDetails'
+      required:
+      - companyName
+      - statementDate
+      - accountId
+      - currency
+      - startDate
+      - endDate
+      - openingBalance
+      - closingBalance
+      - transactions
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
+    TransactionIdParameter:
+      type: string
+      description: This is an identifier of the transaction.
+      examples:
+      - '6712309'
+    RaiseFundingRequestModel:
+      type: object
+      properties:
+        cardProgramUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the program
+
+            that was created using the Create Card Program API.'
+          examples:
+          - c83d26ed-f093-4e43-b81b-35884f068d4b
+        amount:
+          type: number
+          format: decimal
+          description: This field contains the amount that has been requested for fund transfer.
+          examples:
+          - '10000.00'
+        transactionType:
+          type: string
+          description: This field contains the type of the transaction either `CREDIT` or `DEBIT`.
+          enum:
+          - CREDIT
+          - DEBIT
+          examples:
+          - CREDIT
+        documentUploadUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the document
+
+            that was uploaded'
+          examples:
+          - e95a7a97-5889-4001-8c40-ed79a8ab6ae9
+      required:
+      - cardProgramUuid
+      - amount
+      - transactionType
+      - documentUploadUuid
+    FundingSourceRequestModel:
+      type: object
+      properties:
+        fundingSource:
+          type: string
+          description: 'This field contains a token that identifies the funding source that is to be linked with
+
+            the card program. This information will be shared separately. If you don’t have them
+
+            already, click on [this link](https://simplifipay.com/).'
+          examples:
+          - '1234567'
+      required:
+      - fundingSource
+    StatementResponseDetails:
+      type: object
+      properties:
+        fundRequestUuid:
+          type: string
+          description: This is a unique identifier of the fund request.
+          examples:
+          - 11e082c2-993d-4026-82c4-1234ec464796
+        transactionId:
+          $ref: '#/components/schemas/TransactionIdParameter'
+        transactionDate:
+          type: string
+          format: date-time
+          description: The date on which the transaction was carried out.
+          examples:
+          - '2025-02-28 13:31:00'
+        amount:
+          type: number
+          format: decimal
+          description: The fund amount.
+          examples:
+          - '6.95'
+        fundRequestType:
+          type: string
+          description: The type for fund request.
+          enum:
+          - LOAD
+          - UNLOAD
+          examples:
+          - LOAD
+        fundRequestCategory:
+          type: string
+          description: The category for fund request.
+          enum:
+          - RAISE_FUNDING
+          - FUND_TRANSFER
+          - CARD_LOAD
+          - CARD_UNLOAD
+          examples:
+          - RAISE_FUNDING
+        previousBalance:
+          type: number
+          format: decimal
+          description: The balance on the account before this transaction.
+          examples:
+          - '6.95'
+        currentBalance:
+          type: number
+          format: decimal
+          description: The current balance on the account.
+          examples:
+          - '6.95'
+        maskPan:
+          type: string
+          description: The mask pan of the transaction.
+          examples:
+          - '************2737'
+        userName:
+          type: string
+          description: The username of the user of this transaction.
+          examples:
+          - john.smith@simplifipay.com
+        userFullName:
+          type: string
+          description: The full name of the user of this transaction.
+          examples:
+          - John Smith
+        userUuid:
+          type: string
+          description: The UUID of the user of this transaction.
+          examples:
+          - 1b2dbfc7-3432-4eb8-9367-fb123dcf2ba0
+        srcCurrency:
+          type: string
+          description: Source currency
+          examples:
+          - USD
+        destCurrency:
+          type: string
+          description: Destination currency
+          examples:
+          - USD
+      required:
+      - fundRequestUuid
+      - transactionId
+      - transactionDate
+      - amount
+      - fundRequestCategory
+      - previousBalance
+      - currentBalance
+    FundingSourceResponseModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This is a system-generated unique identifier for the funding source that was created.
+          examples:
+          - 84caba0c-275a-474c-b6f6-567a6a76b636
+        cardProgramUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the program
+
+            that was created using the Create Card Program API.'
+          examples:
+          - e283c96c-01e6-4afb-9b38-b4d2622e0a57
+        fundingSource:
+          type: string
+          description: This field contains a token that identifies the funding source that is to be linked with the card program.
+          examples:
+          - '1234567'
+        currency:
+          type: string
+          description: Currency of card program.
+          examples:
+          - USD
+      required:
+      - uuid
+      - cardProgramUuid
+      - fundingSource
+      - currency
+    FundingSourceBalanceModel:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: decimal
+          description: Amount to be transferred.
+          examples:
+          - '100.50'
+        currency:
+          type: string
+          description: This field contains the balance amount of the funding source.
+          examples:
+          - AED
+      required:
+      - amount
+      - currency
+    CardProgramTransferFundsModel:
+      type: object
+      properties:
+        sourceCardProgramUuid:
+          type: string
+          description: Source Card program UUID from where funds is being transferred from.
+          examples:
+          - 381ad98a-16bd-4de1-9fe3-b30683ece550
+        destCardProgramUuid:
+          type: string
+          description: Destination Card program UUID from where funds is being transferred to.
+          examples:
+          - b9166cc8-cb84-4dd4-a728-56e2860ddf1a
+        amount:
+          type: number
+          format: decimal
+          description: Amount to be transferred.
+          examples:
+          - '100.50'
+      required:
+      - sourceCardProgramUuid
+      - destCardProgramUuid
+      - amount
+    FileUploadModel:
+      type: object
+      properties:
+        cardProgramUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the program
+
+            that was created using the Create Card Program API.'
+          examples:
+          - 22b52244-fb76-4ae7-be85-ecafba89e5ca
+        amount:
+          type: number
+          description: This field contains the amount that has been requested for fund transfer.
+          examples:
+          - '10000.00'
+        fundRequestType:
+          type: string
+          description: This field contains the type for fund request.
+          enum:
+          - LOAD
+          - UNLOAD
+          examples:
+          - LOAD
+        documentUploadUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the document
+
+            that was uploaded'
+          examples:
+          - e95a7a97-5889-4001-8c40-ed79a8ab6ae9
+      required:
+      - cardProgramUuid
+      - amount
+      - fundRequestType
+      - documentUploadUuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token from POST /v1/auth/login/{companyName}, sent as Authorization: Bearer <token>.'

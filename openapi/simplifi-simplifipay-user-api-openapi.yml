@@ -1,0 +1,855 @@
+openapi: 3.0.1
+info:
+  title: SimpliFi Cards Auth User API
+  version: 1.0.0
+  description: 'SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.'
+  contact:
+    name: SimpliFi Support
+    email: info@simplifipay.com
+    url: https://apidoc.simplifipay.com/
+servers:
+- url: https://{env}-lb.simplifipay.com
+  description: Load-balanced API host; {env} is the environment token issued during onboarding
+  variables:
+    env:
+      default: uat
+      description: Environment token issued by SimpliFi
+security:
+- bearerAuth: []
+tags:
+- name: User
+paths:
+  /v1/user:
+    get:
+      summary: List all Users
+      deprecated: false
+      description: 'The List all Users endpoint retrieves all the existing users, grouped under a company.
+
+        Following are the properties of this endpoint.'
+      tags:
+      - User
+      parameters:
+      - name: startDate
+        in: query
+        description: 'Represents the start date of the user''s registration with the SimpliFi system. Note All the
+
+          dates in the SimpliFi system are stored and displayed in the following format `yyyy-mm-dd hh:mm:ss`'
+        required: false
+        schema:
+          type: string
+          format: date
+          examples:
+          - '2025-02-28'
+      - name: endDate
+        in: query
+        description: 'Represents the end date of the user''s registration with the SimpliFi system. Note All the
+
+          dates in the SimpliFi system are stored and displayed in the following format `yyyy-mm-dd hh:mm:ss`'
+        required: false
+        schema:
+          type: string
+          format: date
+          examples:
+          - '2025-02-28'
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: listAllUsers
+    post:
+      summary: Create a User
+      deprecated: false
+      description: 'The Create a User endpoint creates a new user. In the SimpliFi platform, it is mandatory
+
+        for the user to be a part of a card program instead of being a standalone entity.
+
+        Following are the properties of this endpoint.'
+      tags:
+      - User
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequestModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRequestModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: createAUser
+  /v1/document:
+    post:
+      summary: Upload Document
+      deprecated: false
+      description: 'The Upload Document endpoint uploads the user documents to the SimpliFi system which are required
+
+        as part of the sanctions screening or KYC process. The documents can be uploaded in one of the
+
+        following formats (.jpg, .jpeg, .png, .pdf)'
+      tags:
+      - User
+      parameters:
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  example: ''
+                userUuid:
+                  type: string
+                  description: 'This is a system-generated unique identifier of the user that was
+
+                    created using the Create User API.'
+                  examples:
+                  - 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
+                  example: 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
+                documentType:
+                  type: string
+                  description: This field contains the type of the document attached by the cardholder.
+                  enum:
+                  - ID_CARD
+                  - PASSPORT
+                  examples:
+                  - PASSPORT
+                  example: PASSPORT
+                documentContext:
+                  type: string
+                  description: This field contains the orientation of the document to be uploaded.
+                  enum:
+                  - DOCUMENT_FRONT
+                  - DOCUMENT_BACK
+                  - FACE
+                  examples:
+                  - DOCUMENT_FRONT
+                  example: DOCUMENT_FRONT
+              required:
+              - file
+              - userUuid
+              - documentType
+              - documentContext
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentModel'
+          headers: {}
+        '400':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: uploadDocument
+  /v1/user/{uuid}:
+    get:
+      summary: Retrieve a User
+      deprecated: false
+      description: 'The Retrieve a User endpoint retrieves details about an existing user.
+
+        Following are the properties of this endpoint.'
+      tags:
+      - User
+      parameters:
+      - name: uuid
+        in: path
+        description: This field contains a unique identifier of the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserModel'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: retrieveAUser
+    put:
+      summary: Update a User
+      deprecated: false
+      description: 'The Update a User endpoint updates the details of an existing user.
+
+        Following are the properties of this endpoint.'
+      tags:
+      - User
+      parameters:
+      - name: uuid
+        in: path
+        description: This field contains a unique identifier of the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequestModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRequestModel'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: updateAUser
+    delete:
+      summary: Delete a User
+      deprecated: false
+      description: 'The Delete a User endpoint deletes an existing user. Deleting a user does not erase data from the
+
+        system but only deactivates the user and its associated cards.
+
+        Following are the properties of this endpoint.'
+      tags:
+      - User
+      parameters:
+      - name: uuid
+        in: path
+        description: This field contains a unique identifier of the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      responses:
+        '200':
+          description: OK
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+      operationId: deleteAUser
+  /v1/user/{uuid}/address/{type}:
+    post:
+      summary: Add update address of user
+      deprecated: false
+      description: One can either add or update an address of the user. Address type can be either `PRIMARY` or `DELIVERY`
+      operationId: addUpdateAddressOfUser
+      tags:
+      - User
+      parameters:
+      - name: uuid
+        in: path
+        description: This field contains a unique identifier of the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: type
+        in: path
+        description: This field contains the Address Type, either `PRIMARY` or `DELIVERY`
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: This field contains the JWT token that is used to authenticate the user.
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+      - name: requestUuid
+        in: header
+        description: 'A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your
+
+          system. This would help us in debugging in case of a discrepancy in the expected behavior of the API.'
+        required: true
+        example: ''
+        schema:
+          type: string
+          allowEmptyValue: false
+          minLength: 20
+          maxLength: 40
+          examples:
+          - 00d366f2-a6e9-4714-b172-02c4e58c29d8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressRequestModel'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressModel'
+          headers: {}
+        '400':
+          description: Entity not found with the specified UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          headers: {}
+        '401':
+          description: Access token is missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+      security:
+      - bearerAuth: []
+components:
+  schemas:
+    UserRequestModel:
+      type: object
+      properties:
+        username:
+          type: string
+          description: This is a unique identifier of the user in the system. We recommend providing a unique name here.
+          examples:
+          - john.smith
+        firstName:
+          type: string
+          description: This is the first name of the user.
+          examples:
+          - John
+        middleName:
+          type: string
+          description: This is the middle name of the user.
+          examples:
+          - M
+        lastName:
+          type: string
+          description: This is the last name of the user.
+          examples:
+          - Smith
+        gender:
+          type: string
+          description: This is the gender of the user.
+          enum:
+          - MALE
+          - FEMALE
+          examples:
+          - MALE
+        userDetail:
+          $ref: '#/components/schemas/UserDetailModel'
+        address:
+          $ref: '#/components/schemas/AddressModel'
+        contacts:
+          type: array
+          description: 'This array of objects is a collection of contact fields,
+
+            possessing sub-fields explained in the rows below.'
+          items:
+            $ref: '#/components/schemas/ContactModel'
+      required:
+      - username
+      - firstName
+      - lastName
+      - gender
+      - userDetail
+      - address
+      - contacts
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
+    UserModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This is a system-generated unique identifier of the user.
+          examples:
+          - f242acc1-bcbf-11eb-8529-c070bc3a2323
+        username:
+          type: string
+          description: This is a unique identifier of the user in the system.
+          examples:
+          - johnsmith
+        firstName:
+          type: string
+          description: This is the first name of the user.
+          examples:
+          - John
+        middleName:
+          type: string
+          description: This is the middle name of the user.
+          examples:
+          - M
+        lastName:
+          type: string
+          description: This is the last name of the user.
+          examples:
+          - Smith
+        gender:
+          type: string
+          description: This is the gender of the user.
+          enum:
+          - MALE
+          - FEMALE
+          examples:
+          - MALE
+        userStatus:
+          type: string
+          description: This is the current status of the user within the SimpliFi system
+          enum:
+          - ACTIVE
+          - INACTIVE
+          examples:
+          - ACTIVE
+        kycStatus:
+          type: string
+          description: This is the current status of the KYC of this user.
+          enum:
+          - NOT_SUBMITTED
+          - READY_FOR_KYC
+          - APPROVED
+          - REJECTED
+          examples:
+          - READY_FOR_KYC
+        createdAt:
+          type: string
+          format: date-time
+          description: This field contains the date and time when the user was created in the SimpliFi system.
+          examples:
+          - '2025-02-28 13:31:00'
+        createdBy:
+          type: string
+          description: This field contains the UUID of the user who created this user in the SimpliFi system.
+          examples:
+          - a49d6f6e-c98b-47db-9d6f-6ec98b77dbf9
+        userDetail:
+          $ref: '#/components/schemas/UserDetailModel'
+        address:
+          $ref: '#/components/schemas/AddressModel'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactModel'
+      required:
+      - uuid
+      - username
+      - firstName
+      - lastName
+      - gender
+      - userStatus
+      - createdAt
+      - userDetail
+      - address
+      - contacts
+    ContactModel:
+      type: object
+      properties:
+        contactType:
+          type: string
+          description: This field contains the contact type
+          enum:
+          - PHONE
+          - WHATSAPP
+          - EMAIL
+          examples:
+          - EMAIL
+        contactValue:
+          type: string
+          description: This field contains the contact value of the user.
+          examples:
+          - +971123456789, john.smit@simplifipay.com
+      required:
+      - contactType
+      - contactValue
+    AddressRequestModel:
+      type: object
+      properties:
+        streetAddress:
+          type: string
+          description: This field contains the street address of the user.
+          examples:
+          - Dubai
+        address2:
+          type: string
+          description: This field contains the second line of address of the user.
+        cityCode:
+          type: string
+          description: This field contains the city name of the user.
+          examples:
+          - Dubai
+        stateCode:
+          type: string
+          description: This field contains the state name of the user.
+          examples:
+          - DXB
+        countryCode:
+          type: string
+          description: This field contains the country code of the user.
+          examples:
+          - UAE
+        postalCode:
+          type: string
+          description: This field contains the postal code of the user.
+          examples:
+          - 0
+      required:
+      - streetAddress
+      - cityCode
+      - stateCode
+      - countryCode
+    AddressModel:
+      type: object
+      properties:
+        addressType:
+          type: string
+          description: This field contains the address type. `PRIMARY` address is set during user creation.
+          enum:
+          - PRIMARY
+          - DELIVERY
+          examples:
+          - PRIMARY
+        streetAddress:
+          type: string
+          description: This field contains the street address of the user.
+        address2:
+          type: string
+          description: This field contains the second line of address of the user.
+        cityCode:
+          type: string
+          description: This field contains the city name of the user.
+        stateCode:
+          type: string
+          description: This field contains the state name of the user.
+        countryCode:
+          type: string
+          description: This field contains the country code of the user.
+        postalCode:
+          type: string
+          description: This field contains the postal code of the user.
+      required:
+      - addressType
+      - countryCode
+    DocumentModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This is a system-generated unique identifier of the document
+          examples:
+          - e2a60b44-88ef-4102-a1ac-fb0f00a3fd3e
+        userUuid:
+          type: string
+          description: 'This is a system-generated unique identifier of the user that was
+
+            created using the Create User API.'
+          examples:
+          - 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
+        documentType:
+          type: string
+          description: This field contains the type of the document attached by the cardholder.
+          enum:
+          - ID_CARD
+          - PASSPORT
+          examples:
+          - PASSPORT
+        documentContext:
+          type: string
+          description: This field contains the orientation of the document to be uploaded.
+          enum:
+          - DOCUMENT_FRONT
+          - DOCUMENT_BACK
+          - FACE
+          examples:
+          - DOCUMENT_FRONT
+      required:
+      - userUuid
+      - documentType
+      - documentContext
+    UserDetailModel:
+      type: object
+      properties:
+        cardProgramUuid:
+          type: string
+          description: This field contains a unique identifier of the card program.
+          examples:
+          - a0f07d6c-d6e8-4bda-9dcc-f64fb3a720f6
+        dob:
+          type: string
+          format: date-time
+          description: This field contains the Date of Birth of the user.
+          examples:
+          - '2025-02-28 13:31:00'
+        roleName:
+          type: string
+          description: This field contains a unique identifier showing the role of the user such as `CUSTOMER`
+          enum:
+          - CUSTOMER
+          - CLIENT_ADMIN
+          - SUPPORT_SPECIALIST
+          - OPS_MANAGER
+          examples:
+          - CUSTOMER
+        position:
+          type: string
+          description: This field contains the position (designation) of the user such as `Employee`
+          examples:
+          - Employee
+      required:
+      - cardProgramUuid
+      - dob
+      - roleName
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token from POST /v1/auth/login/{companyName}, sent as Authorization: Bearer <token>.'
