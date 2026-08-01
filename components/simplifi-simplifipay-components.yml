@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://apidoc.simplifipay.com/simplifi-virtual-card-sdk-integration-guide-2082501m0
+families:
+- name: Virtual Card SDK
+  kind: hosted-iframe/webview
+  loader: https://{env}-virtualcard.simplifipay.com/simplifi-sdk/
+  description: PCI-DSS-compliant embedded surface rendering PAN/CVV and managing PINs from SimpliFi servers
+    inside an iframe/WebView; host<->SDK via postMessage.
+  auth: SDK_ADMIN bearer token from POST /v1/auth/sdk/{companyName}
+  config_fields:
+  - token
+  - cardID
+  - userID
+  - action
+  actions:
+  - view_card_detail
+  - set_pin
+  - activate_card
+  handshake:
+  - SIMPLIFI_SDK_READY
+  - SIMPLIFI_SDK_CONFIG
+  - SIMPLIFI_SDK_CONFIG_ACK
+  - SIMPLIFI_SDK_CONFIG_ERROR
+  - SDK_FLOW_RESULT

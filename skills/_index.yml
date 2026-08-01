@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/simplifi-simplifipay-openapi.yml
+skills:
+- file: simplifi-simplifipay-issue-and-activate-card.md
+  name: Issue and activate a SimpliFi card
+  api: openapi/simplifi-simplifipay-openapi.yml
+  operations:
+  - loginToGenerateJwtToken
+  - createAUser
+  - createACard
+  - activateACard
+  - getCardDetails
+- file: simplifi-simplifipay-fund-card-program.md
+  name: Create and fund a SimpliFi card program
+  api: openapi/simplifi-simplifipay-openapi.yml
+  operations:
+  - loginToGenerateJwtToken
+  - createCardProgram
+  - linkFundingSourceToCardProgram
+  - raiseFundingDocumentUpload
+  - raiseFunding
+  - getBalanceOfFundingSource
+  - loadACard
+- file: simplifi-simplifipay-apply-card-controls.md
+  name: Apply spend controls to a SimpliFi card
+  api: openapi/simplifi-simplifipay-openapi.yml
+  operations:
+  - loginToGenerateJwtToken
+  - createRuleGroupOnCard
+  - getRuleGroupsOnCard
+  - applyRuleGroupOnCard
+  - removeRuleGroupOnCard

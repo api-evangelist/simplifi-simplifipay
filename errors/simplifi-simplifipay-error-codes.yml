@@ -1,0 +1,243 @@
+generated: '2026-07-21'
+method: searched
+source: https://apidoc.simplifipay.com/llms.txt
+format: custom
+envelope:
+  description: Errors are returned as a JSON object with a numeric errorCode and a human-readable errorMessage.
+  fields:
+    errorCode: integer (5-7 digit)
+    errorMessage: string
+note: Async operation failures are also surfaced through webhooks carrying the same errorCode/errorMessage
+  in the event payload.
+count: 87
+errors:
+- code: 10001
+  message: 'Invalid Input detected: startDate, endDate'
+- code: 10003
+  message: Required Field Missing
+- code: 10035
+  message: Amount cannot be negative
+- code: 15015
+  message: Card program has cards with ISSUED/ACTIVE status.
+- code: 15016
+  message: Card program has active users.
+- code: 15017
+  message: Card program is already ACTIVE.
+- code: 20001
+  message: Please enter a valid first name and try again.
+- code: 20002
+  message: 'First name contains special characters and/or numbers.
+
+    Please enter a valid first name and try again.'
+- code: 20004
+  message: 'Middle name contains special characters and/or numbers.
+
+    Please enter a valid middle name and try again.'
+- code: 20005
+  message: Please enter a valid last name and try again.
+- code: 20006
+  message: 'Last name contains special characters and/or numbers.
+
+    Please enter a valid last name and try again.'
+- code: 20008
+  message: DOB null or empty
+- code: 20011
+  message: Please enter a valid email and try again.
+- code: 20015
+  message: 'Invalid mobile number.
+
+    Please enter a valid number and try again.'
+- code: 20017
+  message: Username not found. Please enter a valid username and try again.
+- code: 20018
+  message: 'Username contains special characters.
+
+    Please enter a valid username and try again.'
+- code: 20019
+  message: 'Username already exists. Please choose a
+
+    different username and try again.'
+- code: 20032
+  message: Please enter a valid user role and try again.
+- code: 20038
+  message: Please enter a valid mobile number and try again.
+- code: 20039
+  message: 'Contacts are null or empty. Please enter a valid
+
+    email & phone number and try again.'
+- code: 20046
+  message: User not found
+- code: 20050
+  message: Please provide a valid document and try again
+- code: 20070
+  message: 'The card program used for issuing the card is
+
+    temporarily suspended. Please activate the same
+
+    or try with a different card program.'
+- code: 20074
+  message: 'Unable to parse the given phone number.
+
+    Please try with a valid Phone number'
+- code: 20076
+  message: 'Failed to change user status as cards are
+
+    not in ‘DISABLED’ or ‘REJECTED’ status'
+- code: 20086
+  message: Please enter a valid position and try again.
+- code: 20087
+  message: 'User status is not found in ACTIVE state.
+
+    You can only issue a card for a user which is in ACTIVE status.'
+- code: 20089
+  message: Invalid Action! Cannot delete the user with which you are logged in.
+- code: 20127
+  message: 'You can only have one contact for
+
+    contact type(s): [PHONE, WHATSAPP, EMAIL]'
+- code: 20132
+  message: Gender is null or empty
+- code: 20133
+  message: User detail is missing in request model
+- code: 20161
+  message: User cannot change their own role.
+- code: 20162
+  message: Only CLIENT_ADMIN is allowed to change user role.
+- code: 21090
+  message: 'This phone number is already registered.
+
+    Please use a different phone number'
+- code: 30001
+  message: Card Already Activated
+- code: 30003
+  message: 'Card program used for issuing the card is not found.
+
+    Please enter a valid card program and try again.'
+- code: 30004
+  message: Card Not Found
+- code: 30006
+  message: This card is not in ISSUED state.
+- code: 30010
+  message: Only the cards having Locked status can be changed to Active
+- code: 30012
+  message: 'No card program is linked. Please specify the
+
+    card program and try again.'
+- code: 30013
+  message: User Uuid is Null or Empty
+- code: 30022
+  message: 'No linked funding source found for the card program used to issue the card.
+
+    Please ensure you are passing a valid card program or contact SimpliFi team.'
+- code: 30023
+  message: Date Range is Invalid
+- code: 30024
+  message: Card is already in the required status
+- code: 30025
+  message: Only ISSUED/ACTIVATED cards can be changed to DISABLED status
+- code: 30028
+  message: 'No linked funding source found for the card program
+
+    used to issue the card. Please ensure you are passing
+
+    a valid card program or contact SimpliFi team.'
+- code: 30044
+  message: Only virtual card can be ACTIVATED via this api
+- code: 30047
+  message: Card Status Change to EXPIRED not allowed
+- code: 30048
+  message: Card has Expired operation not allowed
+- code: 30049
+  message: 'Funding Source Token is invalid. Please ensure that
+
+    the token contains only alphanumeric characters or dashes.'
+- code: 35004
+  message: Date null or empty
+- code: 35005
+  message: 'Invalid date or date range. Please check
+
+    the format or date range, and try again'
+- code: 35006
+  message: Start date invalid
+- code: 35007
+  message: End date invalid
+- code: 35009
+  message: Page size invalid, it should be less than 500
+- code: 35024
+  message: Invalid card status.
+- code: 35043
+  message: Only ACTIVATED cards can be changed to LOCKED status
+- code: 40006
+  message: Card Program UUID Missing
+- code: 40007
+  message: Please provide a valid Card Program Template Uuid and try again
+- code: 40010
+  message: Please provide a valid Card Program Uuid and try again
+- code: 40053
+  message: Funding Source Exists
+- code: 40054
+  message: 'This card program is not in active state.
+
+    Please activate the card program and try again.'
+- code: 40056
+  message: Card Program Template Not Found
+- code: 40065
+  message: 'Card Program name already exists. Please use a different
+
+    Card Program name and try again'
+- code: 40067
+  message: Invalid Amount
+- code: 40069
+  message: Transaction Type Missing
+- code: 40080
+  message: Processor mapping not found, please contact SimpliFi team
+- code: 40081
+  message: Card Program status can not be changed
+- code: 40089
+  message: Name is invalid
+- code: 40113
+  message: 'Either card program uuid or processor mapping uuid is mandatory.
+
+    Both cannot be null'
+- code: 40128
+  message: Rule group name is null or empty.
+- code: 40136
+  message: Rule group description is null or empty.
+- code: 50004
+  message: 'The file uploaded is empty.
+
+    Please upload a valid file and try again.'
+- code: 50008
+  message: 'Uploaded file is greater than allowed size.
+
+    Please upload a file less than or equal to 10 MB.'
+- code: 50010
+  message: File name should be less than 40 characters
+- code: 50011
+  message: 'Uploaded file type is invalid. Please upload one of the following
+
+    allowed types i.e. .jpg, .jpeg, .png, .pdf'
+- code: 60001
+  message: Given event type is not a valid event
+- code: 60002
+  message: Required field url must not be null or empty
+- code: 60003
+  message: Invalid url
+- code: 60004
+  message: Required field name must not be null or empty
+- code: 60005
+  message: Invalid name
+- code: 60009
+  message: Webhook not found
+- code: 60012
+  message: Webhook already exists
+- code: 60021
+  message: Invalid key specified in extra
+- code: 81040
+  message: Request is null or empty
+- code: 82028
+  message: 'Card Issuance limit for this user,
+
+    card type and currency exceeds'
+- code: 99997
+  message: General Error

@@ -1,0 +1,165 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/simplifi-simplifipay-openapi.yml
+note: Candidate tool list derived from OpenAPI operations; no official SimpliFi MCP server found.
+server:
+  name: simplifi
+  transport: http
+tools:
+- name: loginToGenerateJwtToken
+  description: Login to generate JWT token
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#loginToGenerateJwtToken
+- name: loginToGenerateSdkAdminJwtToken
+  description: Login to generate SDK Admin JWT token
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#loginToGenerateSdkAdminJwtToken
+- name: createCardProgram
+  description: Create Card Program
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#createCardProgram
+- name: getCardProgram
+  description: Get Card Program
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#getCardProgram
+- name: changeCardProgramStatus
+  description: Change Card Program Status
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#changeCardProgramStatus
+- name: linkFundingSourceToCardProgram
+  description: Link Funding Source to Card Program
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#linkFundingSourceToCardProgram
+- name: getBalanceOfFundingSource
+  description: Get Balance of Funding Source
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#getBalanceOfFundingSource
+- name: transferFundsFromOneCardProgramToOther
+  description: Transfer funds from one Card Program to other
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#transferFundsFromOneCardProgramToOther
+- name: raiseFundingDocumentUpload
+  description: Raise Funding Document Upload
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#raiseFundingDocumentUpload
+- name: raiseFunding
+  description: Raise Funding
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#raiseFunding
+- name: fundingSourceStatement
+  description: Funding Source Statement
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#fundingSourceStatement
+- name: createRuleGroupOnFundingAccount
+  description: Create Rule Group on Funding Account
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#createRuleGroupOnFundingAccount
+- name: updateRuleGroupOnFundingAccount
+  description: Update Rule Group on Funding Account
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#updateRuleGroupOnFundingAccount
+- name: deleteRuleGroupOnFundingAccount
+  description: Delete Rule Group on Funding Account
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#deleteRuleGroupOnFundingAccount
+- name: getRuleGroupsOnFundingAccount
+  description: Get Rule Groups on Funding Account
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#getRuleGroupsOnFundingAccount
+- name: appplyRuleGroupOnFundingAccount
+  description: Appply Rule Group on Funding Account
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#appplyRuleGroupOnFundingAccount
+- name: removeRuleGroupOnFundingAccount
+  description: Remove Rule Group on Funding Account
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#removeRuleGroupOnFundingAccount
+- name: listAllCards
+  description: List all Cards
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#listAllCards
+- name: createACard
+  description: Create a Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#createACard
+- name: getCardDetails
+  description: Get Card Details
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#getCardDetails
+- name: retrieveBalanceOnTheCard
+  description: Retrieve Balance on the Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#retrieveBalanceOnTheCard
+- name: activateACard
+  description: Activate a Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#activateACard
+- name: manageCardStatus
+  description: Manage Card Status
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#manageCardStatus
+- name: loadACard
+  description: Load a Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#loadACard
+- name: unloadACard
+  description: Unload a Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#unloadACard
+- name: renewalOfTheCard
+  description: Renewal of the Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#renewalOfTheCard
+- name: requestAPhysicalCard
+  description: Request a Physical Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#requestAPhysicalCard
+- name: getCardStatement
+  description: Get Card Statement
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#getCardStatement
+- name: getRuleGroupsOnCard
+  description: Get Rule Groups on Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#getRuleGroupsOnCard
+- name: createRuleGroupOnCard
+  description: Create Rule Group on Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#createRuleGroupOnCard
+- name: updateRuleGroupOnCard
+  description: Update Rule Group on Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#updateRuleGroupOnCard
+- name: deleteRuleGroupOnCard
+  description: Delete Rule Group on Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#deleteRuleGroupOnCard
+- name: applyRuleGroupOnCard
+  description: Apply Rule Group on Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#applyRuleGroupOnCard
+- name: removeRuleGroupOnCard
+  description: Remove Rule Group on Card
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#removeRuleGroupOnCard
+- name: listAllUsers
+  description: List all Users
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#listAllUsers
+- name: createAUser
+  description: Create a User
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#createAUser
+- name: uploadDocument
+  description: Upload Document
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#uploadDocument
+- name: retrieveAUser
+  description: Retrieve a User
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#retrieveAUser
+- name: updateAUser
+  description: Update a User
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#updateAUser
+- name: deleteAUser
+  description: Delete a User
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#deleteAUser
+- name: addUpdateAddressOfUser
+  description: Add update address of user
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#addUpdateAddressOfUser
+- name: listAllTransactions
+  description: List All Transactions
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#listAllTransactions
+- name: addFeeConfiguration
+  description: Add fee configuration
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#addFeeConfiguration
+- name: fetchFeeConfig
+  description: Fetch fee config
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#fetchFeeConfig
+- name: changeTheStatusOfFeeConfig
+  description: Change the status of fee config
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#changeTheStatusOfFeeConfig
+- name: addFeeEventAgainstCardUuidInQueue
+  description: Add Fee event against card uuid in queue
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#addFeeEventAgainstCardUuidInQueue
+- name: applyFeeAgainstCardUuidPresentInQueue
+  description: Apply fee against card uuid present in queue
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#applyFeeAgainstCardUuidPresentInQueue
+- name: getAllEvents
+  description: Get all events
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#getAllEvents
+- name: createAWebhook
+  description: Create a webhook
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#createAWebhook
+- name: updateAWebhook
+  description: Update a Webhook
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#updateAWebhook
+- name: deleteAWebhook
+  description: Delete a Webhook
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#deleteAWebhook
+- name: updatesTheStatusOfWebhook
+  description: Updates the status of Webhook
+  source_operation: openapi/simplifi-simplifipay-openapi.yml#updatesTheStatusOfWebhook

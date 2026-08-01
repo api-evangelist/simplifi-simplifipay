@@ -1,0 +1,283 @@
+# SimpliFi
+
+## Docs
+- [Introduction](https://apidoc.simplifipay.com/introduction-1207172m0.md): 
+- [SimpliFi Architecture](https://apidoc.simplifipay.com/simplifi-architecture-1214485m0.md): 
+- [Webhooks](https://apidoc.simplifipay.com/webhooks-1214521m0.md): 
+- [Webhook Signature](https://apidoc.simplifipay.com/webhook-signature-2148684m0.md): 
+- [SimpliFi Virtual Card SDK Integration Guide](https://apidoc.simplifipay.com/simplifi-virtual-card-sdk-integration-guide-2082501m0.md): 
+- [Auth](https://apidoc.simplifipay.com/auth.md): 
+- [Card Program](https://apidoc.simplifipay.com/card-program.md): 
+- [Funding Source](https://apidoc.simplifipay.com/funding-source-4149100f0.md): 
+- [Card](https://apidoc.simplifipay.com/card.md): 
+- [User](https://apidoc.simplifipay.com/user.md): 
+- [Transaction](https://apidoc.simplifipay.com/transaction.md): 
+- [Fee](https://apidoc.simplifipay.com/fee.md): 
+- [Webhook](https://apidoc.simplifipay.com/webhook-4136197f0.md): 
+
+## API Docs
+- Auth [Login to generate JWT token](https://apidoc.simplifipay.com/login-to-generate-jwt-token-18185532e0.md): The Login endpoint allows you to login to the SimpliFi platform using the provided
+- Auth [Login to generate SDK Admin JWT token](https://apidoc.simplifipay.com/login-to-generate-sdk-admin-jwt-token-35554915e0.md): This Login endpoint allows you to generate an `SDK_ADMIN` token used in the SDK.
+- Card Program [Create Card Program](https://apidoc.simplifipay.com/create-card-program-18185503e0.md): The Create Card Program endpoint allows API users to create a new card program
+- Card Program [Get Card Program](https://apidoc.simplifipay.com/get-card-program-18185501e0.md): The Get Card Program endpoint retrieves details about a card program.
+- Card Program [Change Card Program Status](https://apidoc.simplifipay.com/change-card-program-status-18185504e0.md): The Change Card Program Status endpoint changes the status of a card program. This endpoint is helpful
+- Card Program [Link Funding Source to Card Program](https://apidoc.simplifipay.com/link-funding-source-to-card-program-18247331e0.md): The Link Funding Source to Card Program endpoint links a funding source to a card program.
+- Card Program [Get Balance of Funding Source](https://apidoc.simplifipay.com/get-balance-of-funding-source-18185500e0.md): The Get Balance of Funding Source endpoint retrieves the remaining balance of a funding source.
+- Card Program [Transfer funds from one Card Program to other](https://apidoc.simplifipay.com/transfer-funds-from-one-card-program-to-other-18185498e0.md): The Transfer Fund endpoint allows API users to transfer funds from a one
+- Card Program [Raise Funding Document Upload](https://apidoc.simplifipay.com/raise-funding-document-upload-18185511e0.md): This API should be called before calling Raise Funding API to attach `Proof of funds / Confirmation of
+- Card Program [Raise Funding](https://apidoc.simplifipay.com/raise-funding-18185499e0.md): The Raise Funding endpoint helps in adding or removing funds from a funding source. This API doesn't
+- Card Program [Funding Source Statement](https://apidoc.simplifipay.com/funding-source-statement-18247332e0.md): Get funding source statement based on date range.
+- Funding Source [Create Rule Group on Funding Account](https://apidoc.simplifipay.com/create-rule-group-on-funding-account-18503600e0.md): The 'Create Rule Group' endpoint creates new rule group on the Funding Account.
+- Funding Source [Update Rule Group on Funding Account](https://apidoc.simplifipay.com/update-rule-group-on-funding-account-18503601e0.md): The 'Update Rule Group' endpoint updates an existing group on the Funding Account.
+- Funding Source [Delete Rule Group on Funding Account](https://apidoc.simplifipay.com/delete-rule-group-on-funding-account-18503602e0.md): The 'Delete Rule Group' endpoint deletes an existing group on the Funding Account.
+- Funding Source [Get Rule Groups on Funding Account](https://apidoc.simplifipay.com/get-rule-groups-on-funding-account-18503603e0.md): The 'Get Rule Group' endpoint fetches all existing groups on the Funding Account.
+- Funding Source [Appply Rule Group on Funding Account](https://apidoc.simplifipay.com/appply-rule-group-on-funding-account-18503604e0.md): The 'Apply Rule Group' endpoint applies an existing rule group on the Funding Account.
+- Funding Source [Remove Rule Group on Funding Account](https://apidoc.simplifipay.com/remove-rule-group-on-funding-account-18503605e0.md): The 'Remove Rule Group' endpoint removes an existing rule group on the Funding Account.
+- Card [List all Cards](https://apidoc.simplifipay.com/list-all-cards-18334148e0.md): The List all Cards endpoint retrieves all the existing cards, grouped under a company.
+- Card [Create a Card](https://apidoc.simplifipay.com/create-a-card-18185524e0.md): The Create a Card endpoint creates/issues a card to a user under a Card Program. The card issued
+- Card [Get Card Details](https://apidoc.simplifipay.com/get-card-details-18185528e0.md): The Get Card Details endpoint retrieves all the details of a specific card.
+- Card [Retrieve Balance on the Card](https://apidoc.simplifipay.com/retrieve-balance-on-the-card-18185527e0.md): The Retrieve Balance on the Card endpoint retrieves the remaining balance of a card.
+- Card [Activate a Card](https://apidoc.simplifipay.com/activate-a-card-18185523e0.md): The Activate a Card endpoint activates an issued/created card.
+- Card [Manage Card Status](https://apidoc.simplifipay.com/manage-card-status-18185515e0.md): The Manage Card Status endpoint manages the status of a card. This endpoint is helpful as
+- Card [Load a Card](https://apidoc.simplifipay.com/load-a-card-18185519e0.md): The Load a Card endpoint adds funds to an active card.
+- Card [Unload a Card](https://apidoc.simplifipay.com/unload-a-card-18185514e0.md): The Unload a Card endpoint removes funds from an active card and moves them back to the Funding
+- Card [Renewal of the Card](https://apidoc.simplifipay.com/renewal-of-the-card-18185516e0.md): The Renewal of the Card endpoint renews an expired, lost, or stolen card. In this case, a new
+- Card [Request a Physical Card](https://apidoc.simplifipay.com/request-a-physical-card-18268206e0.md): The Request a Physical Card endpoint issues a Physical card against the Card UUID of the activated
+- Card [Get Card Statement](https://apidoc.simplifipay.com/get-card-statement-18185525e0.md): Get card statement based on date range.
+- Card [Get Rule Groups on Card](https://apidoc.simplifipay.com/get-rule-groups-on-card-24149860e0.md): This endpoint retrieves all the rule groups on a Card.
+- Card [Create Rule Group on Card](https://apidoc.simplifipay.com/create-rule-group-on-card-24149861e0.md): This endpoint creates a new rule group on a Card.
+- Card [Update Rule Group on Card](https://apidoc.simplifipay.com/update-rule-group-on-card-24149862e0.md): This endpoint updates an existing rule group on a Card.
+- Card [Delete Rule Group on Card](https://apidoc.simplifipay.com/delete-rule-group-on-card-24149863e0.md): This endpoint deletes an existing rule group on a Card.
+- Card [Apply Rule Group on Card](https://apidoc.simplifipay.com/apply-rule-group-on-card-18503598e0.md): This endpoint applies an existing Rule Group on a Card.
+- Card [Remove Rule Group on Card](https://apidoc.simplifipay.com/remove-rule-group-on-card-18503599e0.md): This endpoint removes an existing Rule Group from a Card.
+- User [List all Users](https://apidoc.simplifipay.com/list-all-users-18185493e0.md): The List all Users endpoint retrieves all the existing users, grouped under a company.
+- User [Create a User](https://apidoc.simplifipay.com/create-a-user-18185494e0.md): The Create a User endpoint creates a new user. In the SimpliFi platform, it is mandatory
+- User [Upload Document](https://apidoc.simplifipay.com/upload-document-18185512e0.md): The Upload Document endpoint uploads the user documents to the SimpliFi system which are required
+- User [Retrieve a User](https://apidoc.simplifipay.com/retrieve-a-user-18185489e0.md): The Retrieve a User endpoint retrieves details about an existing user.
+- User [Update a User](https://apidoc.simplifipay.com/update-a-user-18185490e0.md): The Update a User endpoint updates the details of an existing user.
+- User [Delete a User](https://apidoc.simplifipay.com/delete-a-user-18185491e0.md): The Delete a User endpoint deletes an existing user. Deleting a user does not erase data from the
+- User [Add update address of user](https://apidoc.simplifipay.com/add-update-address-of-user-30855890e0.md): One can either add or update an address of the user. Address type can be either `PRIMARY` or `DELIVERY`
+- Transaction [List All Transactions](https://apidoc.simplifipay.com/list-all-transactions-18185509e0.md): The List All Transactions endpoint retrieves a paginated array of all the transactions carried
+- Fee [Add fee configuration](https://apidoc.simplifipay.com/add-fee-configuration-33367449e0.md): Configure fee based on transaction types and apply them to a card program template.
+- Fee [Fetch fee config](https://apidoc.simplifipay.com/fetch-fee-config-33367450e0.md): This endpoint fetches the fee config
+- Fee [Change the status of fee config](https://apidoc.simplifipay.com/change-the-status-of-fee-config-18350425e0.md): This endpoint changes the status of the fee config
+- Fee [Add Fee event against card uuid in queue](https://apidoc.simplifipay.com/add-fee-event-against-card-uuid-in-queue-18334150e0.md): 
+- Fee [Apply fee against card uuid present in queue](https://apidoc.simplifipay.com/apply-fee-against-card-uuid-present-in-queue-18334151e0.md): 
+- Webhook [Get all events](https://apidoc.simplifipay.com/get-all-events-18462020e0.md): This endpoint fetches all available events for webhooks
+- Webhook [Create a webhook](https://apidoc.simplifipay.com/create-a-webhook-18462021e0.md): This endpoint allows you to create a webhook, where events will be posted
+- Webhook [Update a Webhook](https://apidoc.simplifipay.com/update-a-webhook-18462022e0.md): This endpoint allows you to update an existing webhook
+- Webhook [Delete a Webhook](https://apidoc.simplifipay.com/delete-a-webhook-18462023e0.md): This endpoint allows you to delete an existing webhook
+- Webhook [Updates the status of Webhook](https://apidoc.simplifipay.com/updates-the-status-of-webhook-18462024e0.md): This endpoint allows you to update the status of an existing webhook
+- Webhook [Card Activation webhook](https://apidoc.simplifipay.com/card-activation-webhook-20809609e0.md): 
+- Webhook [Card Issuance webhook](https://apidoc.simplifipay.com/card-issuance-webhook-20809610e0.md): 
+- Webhook [Card PIN Setup webhook](https://apidoc.simplifipay.com/card-pin-setup-webhook-20809611e0.md): 
+- Webhook [Card Renewed webhook](https://apidoc.simplifipay.com/card-renewed-webhook-20809612e0.md): 
+- Webhook [Card Status Change webhook](https://apidoc.simplifipay.com/card-status-change-webhook-20809613e0.md): 
+- Webhook [Card Type Change webhook](https://apidoc.simplifipay.com/card-type-change-webhook-20809614e0.md): 
+- Webhook [Card Load webhook](https://apidoc.simplifipay.com/card-load-webhook-20809615e0.md): 
+- Webhook [Card Unload webhook](https://apidoc.simplifipay.com/card-unload-webhook-20809616e0.md): 
+- Webhook [Card -to- Card Transfer webhook](https://apidoc.simplifipay.com/card-to-card-transfer-webhook-20809617e0.md): 
+- Webhook [User create webhook](https://apidoc.simplifipay.com/user-create-webhook-20809618e0.md): 
+- Webhook [User update webhook](https://apidoc.simplifipay.com/user-update-webhook-20809619e0.md): 
+- Webhook [User delete webhook](https://apidoc.simplifipay.com/user-delete-webhook-20809620e0.md): 
+- Webhook [Card Program Create webhook](https://apidoc.simplifipay.com/card-program-create-webhook-20809621e0.md): 
+- Webhook [Funds transfer webhook](https://apidoc.simplifipay.com/funds-transfer-webhook-20809622e0.md): 
+- Webhook [Raise funding webhook](https://apidoc.simplifipay.com/raise-funding-webhook-20809623e0.md): 
+- Webhook [Transaction webhook](https://apidoc.simplifipay.com/transaction-webhook-20809624e0.md): 
+- Webhook [Transaction Enrichment webhook](https://apidoc.simplifipay.com/transaction-enrichment-webhook-20809625e0.md): 
+- Webhook [Fee apply webhook](https://apidoc.simplifipay.com/fee-apply-webhook-20809626e0.md): 
+- Webhook [Rule group create webhook](https://apidoc.simplifipay.com/rule-group-create-webhook-20809627e0.md): 
+- Webhook [Rule group update webhook](https://apidoc.simplifipay.com/rule-group-update-webhook-20809628e0.md): 
+- Webhook [Rule group delete webhook](https://apidoc.simplifipay.com/rule-group-delete-webhook-20809629e0.md): 
+- Webhook [Wallet rule group create webhook](https://apidoc.simplifipay.com/wallet-rule-group-create-webhook-20809630e0.md): 
+- Webhook [Wallet rule group delete webhook](https://apidoc.simplifipay.com/wallet-rule-group-delete-webhook-20809631e0.md): 
+- Webhook [Card rule group create webhook](https://apidoc.simplifipay.com/card-rule-group-create-webhook-20809632e0.md): 
+- Webhook [Card rule group delete webhook](https://apidoc.simplifipay.com/card-rule-group-delete-webhook-20809633e0.md): 
+
+## Schemas
+- [ErrorModel](https://apidoc.simplifipay.com/errormodel-7530573d0.md): 
+- [AuthRequestModel](https://apidoc.simplifipay.com/authrequestmodel-7499934d0.md): 
+- [SdkAuthRequestModel](https://apidoc.simplifipay.com/sdkauthrequestmodel-14947096d0.md): 
+- [AuthResponseModel](https://apidoc.simplifipay.com/authresponsemodel-7499935d0.md): 
+- [CardProgramRequestModel](https://apidoc.simplifipay.com/cardprogramrequestmodel-7483229d0.md): 
+- [CardConfigModel](https://apidoc.simplifipay.com/cardconfigmodel-7483227d0.md): 
+- [CardPoi](https://apidoc.simplifipay.com/cardpoi-7483228d0.md): 
+- [CardProgramResponseModel](https://apidoc.simplifipay.com/cardprogramresponsemodel-7483270d0.md): 
+- [FundingSourceBalanceModel](https://apidoc.simplifipay.com/fundingsourcebalancemodel-7483266d0.md): 
+- [CardProgramTransferFundsModel](https://apidoc.simplifipay.com/cardprogramtransferfundsmodel-7483251d0.md): 
+- [FundingSourceRequestModel](https://apidoc.simplifipay.com/fundingsourcerequestmodel-7483226d0.md): 
+- [FundingSourceResponseModel](https://apidoc.simplifipay.com/fundingsourceresponsemodel-7483225d0.md): 
+- [CardProgramStatusChangeRequestModel](https://apidoc.simplifipay.com/cardprogramstatuschangerequestmodel-7483258d0.md): 
+- [RaiseFundingRequestModel](https://apidoc.simplifipay.com/raisefundingrequestmodel-7483252d0.md): 
+- [RaiseFundingResponseModel](https://apidoc.simplifipay.com/raisefundingresponsemodel-13242245d0.md): 
+- [StatementResponse](https://apidoc.simplifipay.com/statementresponse-7517699d0.md): 
+- [CardStatementResponse](https://apidoc.simplifipay.com/cardstatementresponse-7483256d0.md): 
+- [StatementResponseDetails](https://apidoc.simplifipay.com/statementresponsedetails-7517700d0.md): 
+- [TransactionRequestModel](https://apidoc.simplifipay.com/transactionrequestmodel-7483241d0.md): 
+- [TransactionResponse](https://apidoc.simplifipay.com/transactionresponse-7483239d0.md): 
+- [TransactionResponseDetails](https://apidoc.simplifipay.com/transactionresponsedetails-7483240d0.md): 
+- [RuleGroupResponseModel](https://apidoc.simplifipay.com/rulegroupresponsemodel-7643413d0.md): 
+- [RuleGroupModel](https://apidoc.simplifipay.com/rulegroupmodel-7643414d0.md): 
+- [RuleGroupTransactionRestrictions](https://apidoc.simplifipay.com/rulegrouptransactionrestrictions-7643415d0.md): 
+- [RuleGroupMerchantRules](https://apidoc.simplifipay.com/rulegroupmerchantrules-7643416d0.md): 
+- [RuleGroupLoadRestrictions](https://apidoc.simplifipay.com/rulegrouploadrestrictions-7643417d0.md): 
+- [RuleGroupSpendRestrictions](https://apidoc.simplifipay.com/rulegroupspendrestrictions-7643418d0.md): 
+- [RaiseFundingDocumentModel](https://apidoc.simplifipay.com/raisefundingdocumentmodel-7530574d0.md): 
+- [FileUploadModel](https://apidoc.simplifipay.com/fileuploadmodel-7483242d0.md): 
+- [DocumentUploadModel](https://apidoc.simplifipay.com/documentuploadmodel-7517698d0.md): 
+- [DocumentModel](https://apidoc.simplifipay.com/documentmodel-7483243d0.md): 
+- [UserRequestModel](https://apidoc.simplifipay.com/userrequestmodel-7483218d0.md): 
+- [UserDetailModel](https://apidoc.simplifipay.com/userdetailmodel-7483221d0.md): 
+- [AddressModel](https://apidoc.simplifipay.com/addressmodel-7483219d0.md): 
+- [AddressRequestModel](https://apidoc.simplifipay.com/addressrequestmodel-13549912d0.md): 
+- [ContactModel](https://apidoc.simplifipay.com/contactmodel-7483220d0.md): 
+- [UserModel](https://apidoc.simplifipay.com/usermodel-7483222d0.md): 
+- [CardRequestModel](https://apidoc.simplifipay.com/cardrequestmodel-7483254d0.md): 
+- [CardResponseModel](https://apidoc.simplifipay.com/cardresponsemodel-7483255d0.md): 
+- [CardRenewalModel](https://apidoc.simplifipay.com/cardrenewalmodel-7483247d0.md): 
+- [InstrumentType](https://apidoc.simplifipay.com/instrumenttype-7530572d0.md): 
+- [AmountModel](https://apidoc.simplifipay.com/amountmodel-7483261d0.md): 
+- [CardStatusModel](https://apidoc.simplifipay.com/cardstatusmodel-7483246d0.md): 
+- [CardAmountModel](https://apidoc.simplifipay.com/cardamountmodel-7530575d0.md): 
+- [FeesSetupModel](https://apidoc.simplifipay.com/feessetupmodel-7559519d0.md): 
+- [FeeConfigurationModel](https://apidoc.simplifipay.com/feeconfigurationmodel-7559520d0.md): 
+- [FeesSetupBaseModel](https://apidoc.simplifipay.com/feessetupbasemodel-14256715d0.md): 
+- [FeesSetupRequestModel](https://apidoc.simplifipay.com/feessetuprequestmodel-14256716d0.md): 
+- [FeeConfigurationBaseModel](https://apidoc.simplifipay.com/feeconfigurationbasemodel-14256717d0.md): 
+- [FeeConfigurationRequestModel](https://apidoc.simplifipay.com/feeconfigurationrequestmodel-14256718d0.md): 
+- [FeeAmountConfigRequestModel](https://apidoc.simplifipay.com/feeamountconfigrequestmodel-14256719d0.md): 
+- [FeesSetupResponseModel](https://apidoc.simplifipay.com/feessetupresponsemodel-14256720d0.md): 
+- [FeeConfigurationResponseModel](https://apidoc.simplifipay.com/feeconfigurationresponsemodel-14256721d0.md): 
+- [FeeAmountConfigResponseModel](https://apidoc.simplifipay.com/feeamountconfigresponsemodel-14256722d0.md): 
+- [FeesStatusUpdateModel](https://apidoc.simplifipay.com/feesstatusupdatemodel-7567497d0.md): 
+- [FeesApplicationCardRequest](https://apidoc.simplifipay.com/feesapplicationcardrequest-7559516d0.md): 
+- [FeeApplicationEventResponse](https://apidoc.simplifipay.com/feeapplicationeventresponse-7559517d0.md): 
+- [ApplyFeesOnCardRequest](https://apidoc.simplifipay.com/applyfeesoncardrequest-7559518d0.md): 
+- [WebhookEventType](https://apidoc.simplifipay.com/webhookeventtype-7622179d0.md): 
+- [WebhookEventModel](https://apidoc.simplifipay.com/webhookeventmodel-7622180d0.md): 
+- [WebhookRequestModel](https://apidoc.simplifipay.com/webhookrequestmodel-7622181d0.md): 
+- [WebhookResponseModel](https://apidoc.simplifipay.com/webhookresponsemodel-7622182d0.md): 
+- [Webhook](https://apidoc.simplifipay.com/webhook-7567498d0.md): 
+- [CompanyUuidParameter](https://apidoc.simplifipay.com/companyuuidparameter-7624369d0.md): 
+- [RequestUuidParameter](https://apidoc.simplifipay.com/requestuuidparameter-7624370d0.md): 
+- [UserUuidParameter](https://apidoc.simplifipay.com/useruuidparameter-7624371d0.md): 
+- [CardUuidParameter](https://apidoc.simplifipay.com/carduuidparameter-7624372d0.md): 
+- [MaskedPanParameter](https://apidoc.simplifipay.com/maskedpanparameter-7624373d0.md): 
+- [CardStatusParameter](https://apidoc.simplifipay.com/cardstatusparameter-7624374d0.md): 
+- [TransactionIdParameter](https://apidoc.simplifipay.com/transactionidparameter-7624676d0.md): 
+- [TransactionUuidParameter](https://apidoc.simplifipay.com/transactionuuidparameter-7624677d0.md): 
+- [TransactionTypeParameter](https://apidoc.simplifipay.com/transactiontypeparameter-7624678d0.md): 
+- [CardActivationWebhook](https://apidoc.simplifipay.com/cardactivationwebhook-7622183d0.md): 
+- [CardIssuanceWebhook](https://apidoc.simplifipay.com/cardissuancewebhook-7622184d0.md): 
+- [CardPinSetupWebhook](https://apidoc.simplifipay.com/cardpinsetupwebhook-7622185d0.md): 
+- [CardRenewedWebhook](https://apidoc.simplifipay.com/cardrenewedwebhook-7622186d0.md): 
+- [CardStatusChangeWebhook](https://apidoc.simplifipay.com/cardstatuschangewebhook-7622187d0.md): 
+- [CardTypeChangeWebhook](https://apidoc.simplifipay.com/cardtypechangewebhook-7622188d0.md): 
+- [CardLoadWebhook](https://apidoc.simplifipay.com/cardloadwebhook-7622189d0.md): 
+- [CardUnloadWebhook](https://apidoc.simplifipay.com/cardunloadwebhook-7622190d0.md): 
+- [CardToCardTransferWebhook](https://apidoc.simplifipay.com/cardtocardtransferwebhook-7622191d0.md): 
+- [UserWebhook](https://apidoc.simplifipay.com/userwebhook-7624679d0.md): 
+- [CardHolderCreationWebhook](https://apidoc.simplifipay.com/cardholdercreationwebhook-7624375d0.md): 
+- [CardHolderUpdationWebhook](https://apidoc.simplifipay.com/cardholderupdationwebhook-7624376d0.md): 
+- [CardHolderDeletionWebhook](https://apidoc.simplifipay.com/cardholderdeletionwebhook-7624377d0.md): 
+- [CardProgramCreationWebhook](https://apidoc.simplifipay.com/cardprogramcreationwebhook-7567499d0.md): 
+- [FundTransferWebhook](https://apidoc.simplifipay.com/fundtransferwebhook-7622195d0.md): 
+- [RaiseFundingWebhook](https://apidoc.simplifipay.com/raisefundingwebhook-7622196d0.md): 
+- [TransactionWebhook](https://apidoc.simplifipay.com/transactionwebhook-7622197d0.md): 
+- [TransactionEnrichmentWebhook](https://apidoc.simplifipay.com/transactionenrichmentwebhook-7622198d0.md): 
+- [FeesApplyWebhook](https://apidoc.simplifipay.com/feesapplywebhook-7622199d0.md): 
+- [RuleGroupCreationWebhook](https://apidoc.simplifipay.com/rulegroupcreationwebhook-7643419d0.md): 
+- [RuleGroupUpdationWebhook](https://apidoc.simplifipay.com/rulegroupupdationwebhook-7643420d0.md): 
+- [RuleGroupDeletionWebhook](https://apidoc.simplifipay.com/rulegroupdeletionwebhook-7643421d0.md): 
+- [WalletRuleGroupCreationWebhook](https://apidoc.simplifipay.com/walletrulegroupcreationwebhook-7643422d0.md): 
+- [WalletRuleGroupDeletionWebhook](https://apidoc.simplifipay.com/walletrulegroupdeletionwebhook-7643423d0.md): 
+- [CardRuleGroupCreationWebhook](https://apidoc.simplifipay.com/cardrulegroupcreationwebhook-7643424d0.md): 
+- [CardRuleGroupDeletionWebhook](https://apidoc.simplifipay.com/cardrulegroupdeletionwebhook-7643425d0.md): 
+- [Error99997](https://apidoc.simplifipay.com/error99997-14256723d0.md): 
+- [Error40089](https://apidoc.simplifipay.com/error40089-14256724d0.md): 
+- [Error40065](https://apidoc.simplifipay.com/error40065-14256725d0.md): 
+- [Error40007](https://apidoc.simplifipay.com/error40007-14256726d0.md): 
+- [Error40056](https://apidoc.simplifipay.com/error40056-14256727d0.md): 
+- [Error30003](https://apidoc.simplifipay.com/error30003-14256728d0.md): 
+- [Error15017](https://apidoc.simplifipay.com/error15017-14256729d0.md): 
+- [Error40081](https://apidoc.simplifipay.com/error40081-14256730d0.md): 
+- [Error30022](https://apidoc.simplifipay.com/error30022-14256731d0.md): 
+- [Error15015](https://apidoc.simplifipay.com/error15015-14256732d0.md): 
+- [Error15016](https://apidoc.simplifipay.com/error15016-14256733d0.md): 
+- [Error30049](https://apidoc.simplifipay.com/error30049-14256734d0.md): 
+- [Error40006](https://apidoc.simplifipay.com/error40006-14256735d0.md): 
+- [Error40010](https://apidoc.simplifipay.com/error40010-14256736d0.md): 
+- [Error40080](https://apidoc.simplifipay.com/error40080-14256737d0.md): 
+- [Error40053](https://apidoc.simplifipay.com/error40053-14256738d0.md): 
+- [Error40113](https://apidoc.simplifipay.com/error40113-14256739d0.md): 
+- [Error40067](https://apidoc.simplifipay.com/error40067-14256740d0.md): 
+- [Error40069](https://apidoc.simplifipay.com/error40069-14256741d0.md): 
+- [Error50010](https://apidoc.simplifipay.com/error50010-14256742d0.md): 
+- [Error50011](https://apidoc.simplifipay.com/error50011-14256743d0.md): 
+- [Error50008](https://apidoc.simplifipay.com/error50008-14256744d0.md): 
+- [Error50004](https://apidoc.simplifipay.com/error50004-14256745d0.md): 
+- [Error10003](https://apidoc.simplifipay.com/error10003-14256746d0.md): 
+- [Error20046](https://apidoc.simplifipay.com/error20046-14256747d0.md): 
+- [Error35004](https://apidoc.simplifipay.com/error35004-14256748d0.md): 
+- [Error35005](https://apidoc.simplifipay.com/error35005-14256749d0.md): 
+- [Error35006](https://apidoc.simplifipay.com/error35006-14256750d0.md): 
+- [Error35007](https://apidoc.simplifipay.com/error35007-14256751d0.md): 
+- [Error35009](https://apidoc.simplifipay.com/error35009-14256752d0.md): 
+- [Error10001](https://apidoc.simplifipay.com/error10001-14256753d0.md): 
+- [Error20133](https://apidoc.simplifipay.com/error20133-14256754d0.md): 
+- [Error20017](https://apidoc.simplifipay.com/error20017-14256755d0.md): 
+- [Error20001](https://apidoc.simplifipay.com/error20001-14256756d0.md): 
+- [Error20005](https://apidoc.simplifipay.com/error20005-14256757d0.md): 
+- [Error20039](https://apidoc.simplifipay.com/error20039-14256758d0.md): 
+- [Error20011](https://apidoc.simplifipay.com/error20011-14256759d0.md): 
+- [Error20038](https://apidoc.simplifipay.com/error20038-14256760d0.md): 
+- [Error20127](https://apidoc.simplifipay.com/error20127-14256761d0.md): 
+- [Error20018](https://apidoc.simplifipay.com/error20018-14256762d0.md): 
+- [Error20002](https://apidoc.simplifipay.com/error20002-14256763d0.md): 
+- [Error20004](https://apidoc.simplifipay.com/error20004-14256764d0.md): 
+- [Error20006](https://apidoc.simplifipay.com/error20006-14256765d0.md): 
+- [Error20032](https://apidoc.simplifipay.com/error20032-14256766d0.md): 
+- [Error30012](https://apidoc.simplifipay.com/error30012-14256767d0.md): 
+- [Error20086](https://apidoc.simplifipay.com/error20086-14256768d0.md): 
+- [Error20019](https://apidoc.simplifipay.com/error20019-14256769d0.md): 
+- [Error20132](https://apidoc.simplifipay.com/error20132-14256770d0.md): 
+- [Error20008](https://apidoc.simplifipay.com/error20008-14256771d0.md): 
+- [Error40054](https://apidoc.simplifipay.com/error40054-14256772d0.md): 
+- [Error20015](https://apidoc.simplifipay.com/error20015-14256773d0.md): 
+- [Error20074](https://apidoc.simplifipay.com/error20074-14256774d0.md): 
+- [Error21090](https://apidoc.simplifipay.com/error21090-14256775d0.md): 
+- [Error20161](https://apidoc.simplifipay.com/error20161-14256776d0.md): 
+- [Error20162](https://apidoc.simplifipay.com/error20162-14256777d0.md): 
+- [Error20089](https://apidoc.simplifipay.com/error20089-14256778d0.md): 
+- [Error20076](https://apidoc.simplifipay.com/error20076-14256779d0.md): 
+- [Error30023](https://apidoc.simplifipay.com/error30023-14256780d0.md): 
+- [Error30013](https://apidoc.simplifipay.com/error30013-14256781d0.md): 
+- [Error20087](https://apidoc.simplifipay.com/error20087-14256782d0.md): 
+- [Error30028](https://apidoc.simplifipay.com/error30028-14256783d0.md): 
+- [Error20070](https://apidoc.simplifipay.com/error20070-14256784d0.md): 
+- [Error20050](https://apidoc.simplifipay.com/error20050-14256785d0.md): 
+- [Error82028](https://apidoc.simplifipay.com/error82028-14256786d0.md): 
+- [Error30004](https://apidoc.simplifipay.com/error30004-14256787d0.md): 
+- [Error30044](https://apidoc.simplifipay.com/error30044-14256788d0.md): 
+- [Error30001](https://apidoc.simplifipay.com/error30001-14256789d0.md): 
+- [Error30006](https://apidoc.simplifipay.com/error30006-14256790d0.md): 
+- [Error30048](https://apidoc.simplifipay.com/error30048-14256791d0.md): 
+- [Error30024](https://apidoc.simplifipay.com/error30024-14256792d0.md): 
+- [Error35043](https://apidoc.simplifipay.com/error35043-14256793d0.md): 
+- [Error30025](https://apidoc.simplifipay.com/error30025-14256794d0.md): 
+- [Error30010](https://apidoc.simplifipay.com/error30010-14256795d0.md): 
+- [Error30047](https://apidoc.simplifipay.com/error30047-14256796d0.md): 
+- [ErrorReason99997](https://apidoc.simplifipay.com/errorreason99997-14256797d0.md): 
+- [Error81040](https://apidoc.simplifipay.com/error81040-14256798d0.md): 
+- [Error40128](https://apidoc.simplifipay.com/error40128-14256799d0.md): 
+- [Error40136](https://apidoc.simplifipay.com/error40136-14256800d0.md): 
+- [Error10035](https://apidoc.simplifipay.com/error10035-14256801d0.md): 
+- [Error35024](https://apidoc.simplifipay.com/error35024-14256802d0.md): 
+- [Error60001](https://apidoc.simplifipay.com/error60001-14256803d0.md): 
+- [Error60002](https://apidoc.simplifipay.com/error60002-14256804d0.md): 
+- [Error60003](https://apidoc.simplifipay.com/error60003-14256805d0.md): 
+- [Error60004](https://apidoc.simplifipay.com/error60004-14256806d0.md): 
+- [Error60005](https://apidoc.simplifipay.com/error60005-14256807d0.md): 
+- [Error60021](https://apidoc.simplifipay.com/error60021-14256808d0.md): 
+- [Error60012](https://apidoc.simplifipay.com/error60012-14256809d0.md): 
+- [Error60009](https://apidoc.simplifipay.com/error60009-14256810d0.md): 

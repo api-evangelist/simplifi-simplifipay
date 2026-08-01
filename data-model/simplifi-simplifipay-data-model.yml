@@ -1,0 +1,67 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/simplifi-simplifipay-openapi.yml
+note: Entity graph derived from OpenAPI schema *Uuid reference fields. All identifiers are 36-char UUIDs
+  (no type prefixes).
+entities:
+- name: Card
+  id: uuid (36-char)
+- name: CardProgram
+  id: uuid (36-char)
+- name: FundingSource
+  id: uuid (36-char)
+- name: User
+  id: uuid (36-char)
+- name: Transaction
+  id: uuid (36-char)
+- name: Fee
+  id: uuid (36-char)
+- name: Webhook
+  id: uuid (36-char)
+- name: RuleGroup
+  id: uuid (36-char)
+relationships:
+- from: Card
+  to: Company
+  type: belongs_to
+  via: companyUuid
+- from: FundingSource
+  to: CardProgram
+  type: belongs_to
+  via: cardProgramUuid
+- from: Card
+  to: User
+  type: belongs_to
+  via: userUuid
+- from: Card
+  to: CardProgram
+  type: belongs_to
+  via: cardProgramUuid
+- from: Card
+  to: Card
+  type: belongs_to
+  via: physicalCardUuid
+- from: Card
+  to: Card
+  type: belongs_to
+  via: linkedVirtualCardUuid
+- from: Transaction
+  to: Card
+  type: belongs_to
+  via: cardUuid
+- from: User
+  to: CardProgram
+  type: belongs_to
+  via: cardProgramUuid
+- from: Transaction
+  to: User
+  type: belongs_to
+  via: userUuid
+- from: Webhook
+  to: Company
+  type: belongs_to
+  via: companyUuid
+- from: User
+  to: User
+  type: belongs_to
+  via: userUuid

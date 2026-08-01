@@ -1,0 +1,1033 @@
+# generated: '2026-07-21'
+# method: derived
+# source: https://apidoc.simplifipay.com/webhooks-1214521m0
+asyncapi: 3.0.0
+info:
+  title: SimpliFi Webhooks
+  version: 1.0.0
+  description: 'Outbound webhook events SimpliFi delivers to a client-configured HTTPS endpoint. Async
+    model: an API call returns 2xx/202 on receipt; the outcome arrives here. Each delivery carries X-SimpliFi-Webhook-Timestamp
+    and X-SimpliFi-Webhook-Signature (Base64(HmacSHA256(timestamp+payload, preshared-key))); body is application/text
+    and must not be reformatted before verifying.'
+  contact:
+    name: SimpliFi
+    email: info@simplifipay.com
+    url: https://apidoc.simplifipay.com/webhooks-1214521m0
+defaultContentType: application/json
+channels:
+  webhooks:
+    address: '{clientConfiguredEndpoint}'
+    title: Client webhook endpoint
+    parameters:
+      clientConfiguredEndpoint:
+        description: Your registered receiving URL.
+    messages:
+      CARD_ACTIVATION:
+        $ref: '#/components/messages/CARD_ACTIVATION'
+      CARD_ISSUANCE:
+        $ref: '#/components/messages/CARD_ISSUANCE'
+      CARD_PIN_SETUP:
+        $ref: '#/components/messages/CARD_PIN_SETUP'
+      CARD_RENEWED:
+        $ref: '#/components/messages/CARD_RENEWED'
+      CARD_STATUS_CHANGE:
+        $ref: '#/components/messages/CARD_STATUS_CHANGE'
+      CARD_TYPE_CHANGE:
+        $ref: '#/components/messages/CARD_TYPE_CHANGE'
+      CARD_RULE_GROUP_CREATION:
+        $ref: '#/components/messages/CARD_RULE_GROUP_CREATION'
+      CARD_RULE_GROUP_DELETION:
+        $ref: '#/components/messages/CARD_RULE_GROUP_DELETION'
+      CARD_LOAD:
+        $ref: '#/components/messages/CARD_LOAD'
+      CARD_UNLOAD:
+        $ref: '#/components/messages/CARD_UNLOAD'
+      CARD_TO_CARD_TRANSFER:
+        $ref: '#/components/messages/CARD_TO_CARD_TRANSFER'
+      CARD_HOLDER_CREATION:
+        $ref: '#/components/messages/CARD_HOLDER_CREATION'
+      CARD_HOLDER_UPDATION:
+        $ref: '#/components/messages/CARD_HOLDER_UPDATION'
+      CARD_HOLDER_DELETION:
+        $ref: '#/components/messages/CARD_HOLDER_DELETION'
+      CARD_PROGRAM_CREATION:
+        $ref: '#/components/messages/CARD_PROGRAM_CREATION'
+      WALLET_RULE_GROUP_CREATION:
+        $ref: '#/components/messages/WALLET_RULE_GROUP_CREATION'
+      WALLET_RULE_GROUP_DELETION:
+        $ref: '#/components/messages/WALLET_RULE_GROUP_DELETION'
+      FUNDS_TRANSFER:
+        $ref: '#/components/messages/FUNDS_TRANSFER'
+      RAISE_FUNDING_SOURCE:
+        $ref: '#/components/messages/RAISE_FUNDING_SOURCE'
+      RULE_GROUP_CREATION:
+        $ref: '#/components/messages/RULE_GROUP_CREATION'
+      RULE_GROUP_UPDATION:
+        $ref: '#/components/messages/RULE_GROUP_UPDATION'
+      RULE_GROUP_DELETION:
+        $ref: '#/components/messages/RULE_GROUP_DELETION'
+      TRANSACTION:
+        $ref: '#/components/messages/TRANSACTION'
+      TRANSACTION_ENRICHMENT:
+        $ref: '#/components/messages/TRANSACTION_ENRICHMENT'
+      FEES_APPLY:
+        $ref: '#/components/messages/FEES_APPLY'
+operations:
+  receiveWebhook:
+    action: receive
+    channel:
+      $ref: '#/channels/webhooks'
+    summary: Receive a SimpliFi webhook event.
+    messages:
+    - $ref: '#/channels/webhooks/messages/CARD_ACTIVATION'
+    - $ref: '#/channels/webhooks/messages/CARD_ISSUANCE'
+    - $ref: '#/channels/webhooks/messages/CARD_PIN_SETUP'
+    - $ref: '#/channels/webhooks/messages/CARD_RENEWED'
+    - $ref: '#/channels/webhooks/messages/CARD_STATUS_CHANGE'
+    - $ref: '#/channels/webhooks/messages/CARD_TYPE_CHANGE'
+    - $ref: '#/channels/webhooks/messages/CARD_RULE_GROUP_CREATION'
+    - $ref: '#/channels/webhooks/messages/CARD_RULE_GROUP_DELETION'
+    - $ref: '#/channels/webhooks/messages/CARD_LOAD'
+    - $ref: '#/channels/webhooks/messages/CARD_UNLOAD'
+    - $ref: '#/channels/webhooks/messages/CARD_TO_CARD_TRANSFER'
+    - $ref: '#/channels/webhooks/messages/CARD_HOLDER_CREATION'
+    - $ref: '#/channels/webhooks/messages/CARD_HOLDER_UPDATION'
+    - $ref: '#/channels/webhooks/messages/CARD_HOLDER_DELETION'
+    - $ref: '#/channels/webhooks/messages/CARD_PROGRAM_CREATION'
+    - $ref: '#/channels/webhooks/messages/WALLET_RULE_GROUP_CREATION'
+    - $ref: '#/channels/webhooks/messages/WALLET_RULE_GROUP_DELETION'
+    - $ref: '#/channels/webhooks/messages/FUNDS_TRANSFER'
+    - $ref: '#/channels/webhooks/messages/RAISE_FUNDING_SOURCE'
+    - $ref: '#/channels/webhooks/messages/RULE_GROUP_CREATION'
+    - $ref: '#/channels/webhooks/messages/RULE_GROUP_UPDATION'
+    - $ref: '#/channels/webhooks/messages/RULE_GROUP_DELETION'
+    - $ref: '#/channels/webhooks/messages/TRANSACTION'
+    - $ref: '#/channels/webhooks/messages/TRANSACTION_ENRICHMENT'
+    - $ref: '#/channels/webhooks/messages/FEES_APPLY'
+components:
+  messages:
+    CARD_ACTIVATION:
+      name: CARD_ACTIVATION
+      title: Card Activation
+      summary: Delivered when a Card Activation operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_ACTIVATION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_ISSUANCE:
+      name: CARD_ISSUANCE
+      title: Card Issuance
+      summary: Delivered when a Card Issuance operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_ISSUANCE
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_PIN_SETUP:
+      name: CARD_PIN_SETUP
+      title: Card Pin Setup
+      summary: Delivered when a Card Pin Setup operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_PIN_SETUP
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_RENEWED:
+      name: CARD_RENEWED
+      title: Card Renewed
+      summary: Delivered when a Card Renewed operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_RENEWED
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_STATUS_CHANGE:
+      name: CARD_STATUS_CHANGE
+      title: Card Status Change
+      summary: Delivered when a Card Status Change operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_STATUS_CHANGE
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_TYPE_CHANGE:
+      name: CARD_TYPE_CHANGE
+      title: Card Type Change
+      summary: Delivered when a Card Type Change operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_TYPE_CHANGE
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_RULE_GROUP_CREATION:
+      name: CARD_RULE_GROUP_CREATION
+      title: Card Rule Group Creation
+      summary: Delivered when a Card Rule Group Creation operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_RULE_GROUP_CREATION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_RULE_GROUP_DELETION:
+      name: CARD_RULE_GROUP_DELETION
+      title: Card Rule Group Deletion
+      summary: Delivered when a Card Rule Group Deletion operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_RULE_GROUP_DELETION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_LOAD:
+      name: CARD_LOAD
+      title: Card Load
+      summary: Delivered when a Card Load operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_LOAD
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_UNLOAD:
+      name: CARD_UNLOAD
+      title: Card Unload
+      summary: Delivered when a Card Unload operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_UNLOAD
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_TO_CARD_TRANSFER:
+      name: CARD_TO_CARD_TRANSFER
+      title: Card To Card Transfer
+      summary: Delivered when a Card To Card Transfer operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_TO_CARD_TRANSFER
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_HOLDER_CREATION:
+      name: CARD_HOLDER_CREATION
+      title: Card Holder Creation
+      summary: Delivered when a Card Holder Creation operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_HOLDER_CREATION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_HOLDER_UPDATION:
+      name: CARD_HOLDER_UPDATION
+      title: Card Holder Updation
+      summary: Delivered when a Card Holder Updation operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_HOLDER_UPDATION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_HOLDER_DELETION:
+      name: CARD_HOLDER_DELETION
+      title: Card Holder Deletion
+      summary: Delivered when a Card Holder Deletion operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_HOLDER_DELETION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    CARD_PROGRAM_CREATION:
+      name: CARD_PROGRAM_CREATION
+      title: Card Program Creation
+      summary: Delivered when a Card Program Creation operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: CARD_PROGRAM_CREATION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    WALLET_RULE_GROUP_CREATION:
+      name: WALLET_RULE_GROUP_CREATION
+      title: Wallet Rule Group Creation
+      summary: Delivered when a Wallet Rule Group Creation operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: WALLET_RULE_GROUP_CREATION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    WALLET_RULE_GROUP_DELETION:
+      name: WALLET_RULE_GROUP_DELETION
+      title: Wallet Rule Group Deletion
+      summary: Delivered when a Wallet Rule Group Deletion operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: WALLET_RULE_GROUP_DELETION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    FUNDS_TRANSFER:
+      name: FUNDS_TRANSFER
+      title: Funds Transfer
+      summary: Delivered when a Funds Transfer operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: FUNDS_TRANSFER
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    RAISE_FUNDING_SOURCE:
+      name: RAISE_FUNDING_SOURCE
+      title: Raise Funding Source
+      summary: Delivered when a Raise Funding Source operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: RAISE_FUNDING_SOURCE
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    RULE_GROUP_CREATION:
+      name: RULE_GROUP_CREATION
+      title: Rule Group Creation
+      summary: Delivered when a Rule Group Creation operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: RULE_GROUP_CREATION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    RULE_GROUP_UPDATION:
+      name: RULE_GROUP_UPDATION
+      title: Rule Group Updation
+      summary: Delivered when a Rule Group Updation operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: RULE_GROUP_UPDATION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    RULE_GROUP_DELETION:
+      name: RULE_GROUP_DELETION
+      title: Rule Group Deletion
+      summary: Delivered when a Rule Group Deletion operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: RULE_GROUP_DELETION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    TRANSACTION:
+      name: TRANSACTION
+      title: Transaction
+      summary: Delivered when a Transaction operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: TRANSACTION
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    TRANSACTION_ENRICHMENT:
+      name: TRANSACTION_ENRICHMENT
+      title: Transaction Enrichment
+      summary: Delivered when a Transaction Enrichment operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: TRANSACTION_ENRICHMENT
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object
+    FEES_APPLY:
+      name: FEES_APPLY
+      title: Fees Apply
+      summary: Delivered when a Fees Apply operation completes (SUCCESS or FAILURE).
+      payload:
+        type: object
+        required:
+        - eventType
+        - requestUuid
+        - requestStatus
+        properties:
+          eventType:
+            type: string
+            const: FEES_APPLY
+          uuid:
+            type: string
+          requestUuid:
+            type: string
+          companyUuid:
+            type: string
+          requesterUuid:
+            type: string
+          requestStatus:
+            type: string
+            enum:
+            - SUCCESS
+            - FAILURE
+          errorCode:
+            type: string
+          errorMessage:
+            type: string
+          sourceErrorCode:
+            type: string
+          sourceErrorMessage:
+            type: string
+          eventPayload:
+            type: object

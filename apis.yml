@@ -1,26 +1,198 @@
 aid: simplifi-simplifipay
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/simplifi-simplifipay.png
 name: Simplifi/Simplifipay
-description: Simplifi/Simplifipay is a company surfaced as a portfolio company of 500-global and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
+description: SimpliFi (simplifipay.com) is a Cards-as-a-Service platform powering virtual and physical
+  card programs for fintechs, startups, and enterprises across the GCC (UAE, Saudi Arabia, Kuwait, Bahrain,
+  Oman, Qatar). Regulated by the Dubai Financial Services Authority (DFSA), SimpliFi offers off-the-shelf
+  and fully customizable card programs with multi-currency support (50+ currencies), digital-wallet enablement
+  (Apple/Google/Samsung Pay), programmable authorization, velocity, and merchant controls, and real-time
+  transaction and fraud monitoring. Its developer platform exposes a JWT-authenticated REST API (card
+  programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management) on
+  an asynchronous, webhook-driven architecture, plus a PCI-DSS-compliant Virtual Card SDK for securely
+  displaying card data. Surfaced as a 500 Global portfolio company and enriched by the API Evangelist
   pipeline.
 url: https://raw.githubusercontent.com/api-evangelist/simplifi-simplifipay/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Cards
+- Card Issuing
+- Virtual Cards
+- Fintech
+- Payments
+- Banking as a Service
+- Embedded Finance
+- GCC
+- Webhooks
+apis:
+- aid: simplifi-simplifipay:simplifi-simplifipay-auth-api
+  name: Simplifi/Simplifipay Auth API
+  description: The Auth API from Simplifi/Simplifipay — 2 operation(s) for auth.
+  humanURL: https://apidoc.simplifipay.com/
+  baseURL: https://uat-lb.simplifipay.com
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/simplifi-simplifipay-auth-api-openapi.yml
+- aid: simplifi-simplifipay:simplifi-simplifipay-card-api
+  name: Simplifi/Simplifipay Card API
+  description: The Card API from Simplifi/Simplifipay — 12 operation(s) for card.
+  humanURL: https://apidoc.simplifipay.com/
+  baseURL: https://uat-lb.simplifipay.com
+  tags:
+  - Card
+  properties:
+  - type: OpenAPI
+    url: openapi/simplifi-simplifipay-card-api-openapi.yml
+- aid: simplifi-simplifipay:simplifi-simplifipay-card-program-api
+  name: Simplifi/Simplifipay Card Program API
+  description: The Card Program API from Simplifi/Simplifipay — 9 operation(s) for card program.
+  humanURL: https://apidoc.simplifipay.com/
+  baseURL: https://uat-lb.simplifipay.com
+  tags:
+  - Card Program
+  properties:
+  - type: OpenAPI
+    url: openapi/simplifi-simplifipay-card-program-api-openapi.yml
+- aid: simplifi-simplifipay:simplifi-simplifipay-document-api
+  name: Simplifi/Simplifipay Document API
+  description: The Document API from Simplifi/Simplifipay — 2 operation(s) for document.
+  humanURL: https://apidoc.simplifipay.com/
+  baseURL: https://uat-lb.simplifipay.com
+  tags:
+  - Document
+  properties:
+  - type: OpenAPI
+    url: openapi/simplifi-simplifipay-document-api-openapi.yml
+- aid: simplifi-simplifipay:simplifi-simplifipay-fee-api
+  name: Simplifi/Simplifipay Fee API
+  description: The Fee API from Simplifi/Simplifipay — 5 operation(s) for fee.
+  humanURL: https://apidoc.simplifipay.com/
+  baseURL: https://uat-lb.simplifipay.com
+  tags:
+  - Fee
+  properties:
+  - type: OpenAPI
+    url: openapi/simplifi-simplifipay-fee-api-openapi.yml
+- aid: simplifi-simplifipay:simplifi-simplifipay-funding-source-api
+  name: Simplifi/Simplifipay Funding Source API
+  description: The Funding Source API from Simplifi/Simplifipay — 6 operation(s) for funding source.
+  humanURL: https://apidoc.simplifipay.com/
+  baseURL: https://uat-lb.simplifipay.com
+  tags:
+  - Funding Source
+  properties:
+  - type: OpenAPI
+    url: openapi/simplifi-simplifipay-funding-source-api-openapi.yml
+- aid: simplifi-simplifipay:simplifi-simplifipay-transaction-api
+  name: Simplifi/Simplifipay Transaction API
+  description: The Transaction API from Simplifi/Simplifipay — 3 operation(s) for transaction.
+  humanURL: https://apidoc.simplifipay.com/
+  baseURL: https://uat-lb.simplifipay.com
+  tags:
+  - Transaction
+  properties:
+  - type: OpenAPI
+    url: openapi/simplifi-simplifipay-transaction-api-openapi.yml
+- aid: simplifi-simplifipay:simplifi-simplifipay-user-api
+  name: Simplifi/Simplifipay User API
+  description: The User API from Simplifi/Simplifipay — 4 operation(s) for user.
+  humanURL: https://apidoc.simplifipay.com/
+  baseURL: https://uat-lb.simplifipay.com
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/simplifi-simplifipay-user-api-openapi.yml
+- aid: simplifi-simplifipay:simplifi-simplifipay-webhook-api
+  name: Simplifi/Simplifipay Webhook API
+  description: The Webhook API from Simplifi/Simplifipay — 4 operation(s) for webhook.
+  humanURL: https://apidoc.simplifipay.com/
+  baseURL: https://uat-lb.simplifipay.com
+  tags:
+  - Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/simplifi-simplifipay-webhook-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://apidoc.simplifipay.com/
+- type: Documentation
+  url: https://apidoc.simplifipay.com/
+- type: APIReference
+  url: https://apidoc.simplifipay.com/
+- type: GettingStarted
+  url: https://apidoc.simplifipay.com/introduction-1207172m0
+- type: SignUp
+  url: https://simplifipay.com/contact-us/
+- type: Login
+  url: https://prod-portal.simplifipay.com/simplifi-webapp/
+- type: Support
+  url: mailto:info@simplifipay.com
+- type: TermsOfService
+  url: https://simplifipay.com/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://simplifipay.com/privacy-policy
+- type: Authentication
+  url: authentication/simplifi-simplifipay-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/simplifi-simplifipay-agentic-access.yml
+- type: DomainSecurity
+  url: security/simplifi-simplifipay-domain-security.yml
+- type: LLMsTxt
+  url: llms/simplifi-simplifipay-llms.txt
+- type: ErrorCatalog
+  url: errors/simplifi-simplifipay-error-codes.yml
+- type: AsyncAPI
+  url: asyncapi/simplifi-simplifipay-webhooks-asyncapi.yml
+- type: Webhooks
+  url: asyncapi/simplifi-simplifipay-webhooks-asyncapi.yml
+- type: Conventions
+  url: conventions/simplifi-simplifipay-conventions.yml
+- type: Sandbox
+  url: sandbox/simplifi-simplifipay-sandbox.yml
+- type: Components
+  url: components/simplifi-simplifipay-components.yml
+- type: MCPServer
+  url: mcp/simplifi-simplifipay-mcp.yml
+- type: DataModel
+  url: data-model/simplifi-simplifipay-data-model.yml
+- type: Lifecycle
+  url: lifecycle/simplifi-simplifipay-lifecycle.yml
+- type: Conformance
+  url: conformance/simplifi-simplifipay-conformance.yml
+- type: Compliance
+  url: conformance/simplifi-simplifipay-conformance.yml
+- type: AgentSkill
+  url: skills/_index.yml
 - type: Website
   url: https://simplifipay.com
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1

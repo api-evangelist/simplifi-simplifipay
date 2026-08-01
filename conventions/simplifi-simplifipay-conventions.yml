@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: searched
+source: https://apidoc.simplifipay.com/
+authentication:
+  style: JWT bearer
+  detail: 'Authorization: Bearer <jwt> from POST /v1/auth/login/{companyName}'
+  ref: authentication/simplifi-simplifipay-authentication.yml
+async_model:
+  description: Requests ack with 2xx (often 202 Accepted); final result via webhooks.
+  ref: asyncapi/simplifi-simplifipay-webhooks-asyncapi.yml
+request_tracing:
+  header: requestUuid
+  required: true
+  length: 20-40 chars
+  description: Caller-supplied unique id on every request; echoed in the webhook for correlation.
+idempotency:
+  supported: false
+  note: No documented idempotency-key header; requestUuid is a trace id, not an idempotency key.
+pagination:
+  style: page-number
+  params:
+  - page
+  - size
+  applies_to:
+  - GET /v1/card
+  note: GET /v1/user filters by startDate/endDate.
+versioning:
+  scheme: uri-path
+  versions:
+  - v1
+  - v2
+error_envelope:
+  fields:
+    errorCode: integer 5-7 digit
+    errorMessage: string
+  ref: errors/simplifi-simplifipay-error-codes.yml
+webhook_security:
+  headers:
+  - X-SimpliFi-Webhook-Timestamp
+  - X-SimpliFi-Webhook-Signature
+  algorithm: HmacSHA256(timestamp+payload) Base64, pre-shared key
+  body_content_type: application/text

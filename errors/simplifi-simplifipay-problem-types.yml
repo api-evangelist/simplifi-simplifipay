@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/simplifi-simplifipay-openapi.yml
+format: http-status
+note: SimpliFi does not use RFC 9457 problem+json; HTTP failures return the errorCode/errorMessage envelope
+  catalogued in simplifi-simplifipay-error-codes.yml.
+problems:
+- status: 400
+  description: Access token is missing or invalid
+  examples:
+  - POST /v1/card-program
+  - GET /v1/card-program/{uuid}
+  - PATCH /v1/card-program/{uuid}/status
+- status: 401
+  description: Access token is missing or invalid
+  examples:
+  - POST /v1/card-program
+  - GET /v1/card-program/{uuid}
+  - PATCH /v1/card-program/{uuid}/status

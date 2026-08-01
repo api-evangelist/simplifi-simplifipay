@@ -1,0 +1,30 @@
+{
+  "provider": "simplifi-simplifipay",
+  "sources": [
+    "simplifi-simplifipay-auth-api-openapi.yml",
+    "simplifi-simplifipay-card-api-openapi.yml",
+    "simplifi-simplifipay-card-program-api-openapi.yml",
+    "simplifi-simplifipay-document-api-openapi.yml",
+    "simplifi-simplifipay-fee-api-openapi.yml",
+    "simplifi-simplifipay-funding-source-api-openapi.yml",
+    "simplifi-simplifipay-transaction-api-openapi.yml",
+    "simplifi-simplifipay-user-api-openapi.yml",
+    "simplifi-simplifipay-webhook-api-openapi.yml"
+  ],
+  "outputs": [
+    "simplifi-simplifipay-auth-api-openapi.yml",
+    "simplifi-simplifipay-card-api-openapi.yml",
+    "simplifi-simplifipay-card-program-api-openapi.yml",
+    "simplifi-simplifipay-document-api-openapi.yml",
+    "simplifi-simplifipay-fee-api-openapi.yml",
+    "simplifi-simplifipay-funding-source-api-openapi.yml",
+    "simplifi-simplifipay-transaction-api-openapi.yml",
+    "simplifi-simplifipay-user-api-openapi.yml",
+    "simplifi-simplifipay-webhook-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

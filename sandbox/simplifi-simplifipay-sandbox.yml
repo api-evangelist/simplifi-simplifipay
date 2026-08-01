@@ -1,0 +1,15 @@
+generated: '2026-07-21'
+method: searched
+source: https://apidoc.simplifipay.com/introduction-1207172m0
+environments:
+  scheme: host-token
+  pattern: https://{env}-lb.simplifipay.com
+  note: The {env} host token selects sandbox/UAT vs production. Issued during onboarding.
+access:
+  how: Register at https://simplifipay.com/contact-us/ for the no-code Portal plus client_id/client_secret
+    and companyName for sandbox testing.
+  portal: https://prod-portal.simplifipay.com/simplifi-webapp/
+test_values:
+  published: false
+  note: Card issuer (not acquirer); no public magic test cards. Test cards/funding provisioned per sandbox
+    account.

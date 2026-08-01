@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for SimpliFi Cards API
+  version: 1.0.0
+extends: openapi/simplifi-simplifipay-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-apievangelist-source: https://apidoc.simplifipay.com/llms.txt
+    x-apievangelist-notes: Spec reconstructed from SimpliFi per-operation Apidog fragments; operationIds
+      added deterministically from summaries.
+- target: $.info
+  update:
+    x-webhooks: asyncapi/simplifi-simplifipay-webhooks-asyncapi.yml
+    x-error-catalog: errors/simplifi-simplifipay-error-codes.yml

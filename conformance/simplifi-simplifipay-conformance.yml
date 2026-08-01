@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: https://apidoc.simplifipay.com/ , https://simplifipay.com/
+standards:
+- id: oauth2-client-credentials
+  conforms: false
+  evidence: Custom form-login returning a JWT rather than a standard OAuth2 token endpoint.
+- id: jwt-bearer
+  conforms: true
+  evidence: 'Authorization: Bearer <JWT> on protected operations.'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Custom {errorCode,errorMessage} envelope.
+- id: webhook-hmac-signature
+  conforms: true
+  evidence: X-SimpliFi-Webhook-Signature Base64(HmacSHA256(timestamp+payload)).
+- id: pci-dss
+  conforms: true
+  evidence: Virtual Card SDK renders PAN/CVV from SimpliFi servers for PCI-DSS compliance.
+- id: dfsa-regulated
+  conforms: true
+  evidence: Regulated by the Dubai Financial Services Authority (DFSA).
