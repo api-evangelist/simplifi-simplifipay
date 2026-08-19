@@ -1,0 +1,1400 @@
+{
+  "item": [
+    {
+      "id": "00363a45-1dcb-45ad-94fb-9f66564bb9f7",
+      "name": "Webhook",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "90ca87d2-76ba-47cc-8d8c-f623448254e9",
+          "name": "Get all events",
+          "request": {
+            "name": "Get all events",
+            "description": {
+              "content": "This endpoint fetches all available events for webhooks",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "webhook",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "da622525-2019-40ea-b62b-f90ad68c3490",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhook",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"eventType\": \"CARD_STATUS_CHANGE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f966bff3-3a69-4850-9304-8a4983fb0f7b",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhook",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "660e2376-c27f-46bb-b176-6dc03ff208f7",
+          "name": "Create a webhook",
+          "request": {
+            "name": "Create a webhook",
+            "description": {
+              "content": "This endpoint allows you to create a webhook, where events will be posted",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "webhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"endpointUrl\": \"<string>\",\n  \"extra\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02b48760-61aa-4f3e-b70d-3e2b52460e4f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"endpointUrl\": \"<string>\",\n  \"extra\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"name\": \"string\",\n  \"eventType\": \"<string>\",\n  \"status\": \"ENABLED\",\n  \"endpointUrl\": \"string\",\n  \"creationDate\": \"1990-04-30T14:18:07.749Z\",\n  \"lastModified\": \"2024-08-24T12:31:46.125Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36f50d85-ac8d-4252-9ef2-bb5f7e7ef2b1",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"endpointUrl\": \"<string>\",\n  \"extra\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50378671-a458-4c47-ac8d-110deaeae1dd",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"endpointUrl\": \"<string>\",\n  \"extra\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "404d3620-2ce7-4e4d-83a9-2beed8c75015",
+          "name": "Update a Webhook",
+          "request": {
+            "name": "Update a Webhook",
+            "description": {
+              "content": "This endpoint allows you to update an existing webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhook",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This is the unique identifier of the webhook."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"endpointUrl\": \"<string>\",\n  \"extra\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21e62ea0-ee09-4efd-ac04-3067cef70491",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the webhook."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"endpointUrl\": \"<string>\",\n  \"extra\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"name\": \"string\",\n  \"eventType\": \"<string>\",\n  \"status\": \"ENABLED\",\n  \"endpointUrl\": \"string\",\n  \"creationDate\": \"1990-04-30T14:18:07.749Z\",\n  \"lastModified\": \"2024-08-24T12:31:46.125Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bea21aa3-89fa-46be-a99f-a0978c9d2f91",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the webhook."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"endpointUrl\": \"<string>\",\n  \"extra\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 2726,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44b6fb24-11bd-4fc7-a626-df7f92b2f911",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the webhook."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"eventType\": \"<string>\",\n  \"endpointUrl\": \"<string>\",\n  \"extra\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4840f76-9c1b-4417-bb7c-cb9a4f6e4b33",
+          "name": "Delete a Webhook",
+          "request": {
+            "name": "Delete a Webhook",
+            "description": {
+              "content": "This endpoint allows you to delete an existing webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhook",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This is the unique identifier of the webhook."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5cb1f4bc-c128-4d9a-b40f-f54d5e8e126c",
+              "name": "Webhook Deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the webhook."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f9ffbf2-89ba-45e3-9453-8370eea21c7c",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the webhook."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 2726,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7f0b40d-f27d-4c24-97c8-a9830e508701",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the webhook."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "533cd6b9-6c6f-4736-a219-754ad6927ed5",
+          "name": "Updates the status of Webhook",
+          "request": {
+            "name": "Updates the status of Webhook",
+            "description": {
+              "content": "This endpoint allows you to update the status of an existing webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhook",
+                ":uuid",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "enable",
+                  "value": "<boolean>",
+                  "description": "(Required) Webhook Status"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This is the unique identifier of the webhook."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7ee9734d-49d9-4613-863a-6e95bf0804ad",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    ":uuid",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the webhook."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"name\": \"string\",\n  \"eventType\": \"<string>\",\n  \"status\": \"ENABLED\",\n  \"endpointUrl\": \"string\",\n  \"creationDate\": \"1990-04-30T14:18:07.749Z\",\n  \"lastModified\": \"2024-08-24T12:31:46.125Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b5b45f8-80de-42bf-8253-3bf58ecf034a",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    ":uuid",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the webhook."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 2726,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df2ee18c-150c-4940-b2c7-a4ad19648b37",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook",
+                    ":uuid",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the webhook."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Environment token issued by SimpliFi",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "uat",
+      "key": "env"
+    },
+    {
+      "type": "string",
+      "value": "https://{{env}}-lb.simplifipay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "393254de-c221-4857-a737-70e32d31028a",
+    "name": "SimpliFi Cards Auth Webhook API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.\n\nContact Support:\n Name: SimpliFi Support\n Email: info@simplifipay.com",
+      "type": "text/plain"
+    }
+  }
+}

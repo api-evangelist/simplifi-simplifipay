@@ -1,0 +1,398 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SimpliFi Cards Auth Funding Source API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Funding Source",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Link Funding Source to Card Program",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v2/card-program/:uuid/funding-source",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the program that was created using the Create Card Program API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Link Funding Source to Card Program endpoint links a funding source to a card program.\nThe funding source works as an account that would be used to fund all its cards under this\nCard Program. Following are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Balance of Funding Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/card-program/:uuid/funding-source-balance",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the program that was created using the Create Card Program API."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Get Balance of Funding Source endpoint retrieves the remaining balance of a funding source.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Raise Funding",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card-program/raise-funding",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Raise Funding endpoint helps in adding or removing funds from a funding source. This API doesn't\nactually move the money between accounts but should be used so that the proof of funds is shared with\nthe Issuer/Processor Bank. After the proof of funds attachment is verified by the Issuer/Processor\nfunds would reflect in the respective funding source. Following are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Funding Source Statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/statement",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "The account ID of the processor mapping (wallet)."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "start date of date-range"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "end date date of date-range"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "sort statement column value"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "sort direction"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get funding source statement based on date range."
+        },
+        {
+          "info": {
+            "name": "Get Rule Groups on Funding Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/funding-source/:thirdPartyId/rule-group",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "thirdPartyId",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Account ID of funding source (wallet)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The 'Get Rule Group' endpoint fetches all existing groups on the Funding Account."
+        },
+        {
+          "info": {
+            "name": "Create Rule Group on Funding Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/funding-source/:thirdPartyId/rule-group",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "thirdPartyId",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Account ID of funding source (wallet)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The 'Create Rule Group' endpoint creates new rule group on the Funding Account."
+        },
+        {
+          "info": {
+            "name": "Update Rule Group on Funding Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{env}-lb.simplifipay.com/v1/funding-source/:thirdPartyId/rule-group",
+            "headers": [
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "thirdPartyId",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Account ID of funding source (wallet)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The 'Update Rule Group' endpoint updates an existing group on the Funding Account."
+        },
+        {
+          "info": {
+            "name": "Delete Rule Group on Funding Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{env}-lb.simplifipay.com/v1/funding-source/:thirdPartyId/rule-group",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "thirdPartyId",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Account ID of funding source (wallet)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The 'Delete Rule Group' endpoint deletes an existing group on the Funding Account."
+        },
+        {
+          "info": {
+            "name": "Appply Rule Group on Funding Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/funding-source/:thirdPartyId/rule-group/:ruleGroupUuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "thirdPartyId",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Account ID of funding source (wallet)"
+              },
+              {
+                "name": "ruleGroupUuid",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Rule Group"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The 'Apply Rule Group' endpoint applies an existing rule group on the Funding Account."
+        },
+        {
+          "info": {
+            "name": "Remove Rule Group on Funding Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{env}-lb.simplifipay.com/v1/funding-source/:thirdPartyId/rule-group/:ruleGroupUuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "thirdPartyId",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Account ID of funding source (wallet)"
+              },
+              {
+                "name": "ruleGroupUuid",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Rule Group"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The 'Remove Rule Group' endpoint removes an existing rule group on the Funding Account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

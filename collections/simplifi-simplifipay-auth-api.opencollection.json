@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SimpliFi Cards Auth API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Login to generate JWT token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/auth/login/:companyName",
+            "headers": [
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "companyName",
+                "value": "",
+                "type": "path",
+                "description": "This is an internal identifier of your company in the SimpliFi platform. We will\ngenerate the company name for you and share it. If you don't have it already,\nyou can request it through [this link](https://simplifipay.com/)."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "grant_type",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Login endpoint allows you to login to the SimpliFi platform using the provided\ncredentials. If you don't have the credentials already, you can request them through\n[this link](https://simplifipay.com/). The endpoint returns an access token to be\nused in making further API calls. Following are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Login to generate SDK Admin JWT token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/auth/sdk/:companyName",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "companyName",
+                "value": "",
+                "type": "path",
+                "description": "This is an internal identifier of your company in the SimpliFi platform. We will\ngenerate the company name for you and share it. If you don't have it already,\nyou can request it through [this link](https://simplifipay.com/)."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "userUuid",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This Login endpoint allows you to generate an `SDK_ADMIN` token used in the SDK.\nIf you don't have the credentials already, you can request them through\n[this link](https://simplifipay.com/). The endpoint returns an access token to be\nused in making further SDK related API calls. Following are the properties of this endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

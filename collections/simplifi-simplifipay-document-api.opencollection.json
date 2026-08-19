@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SimpliFi Cards Auth Document API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Document",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Raise Funding Document Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/document/upload",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "cardProgramUuid",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "amount",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "fundRequestType",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This API should be called before calling Raise Funding API to attach `Proof of funds / Confirmation of\nfunds transfer from the Bank` document (PNG, JPEG, PDF are allowed formats) and the string value returned\nin the `documentUploadUuid` field of the response should be used in Raise Funding API's document parameter.\n\nNote: After the funds are transferred from the whitelisted Bank account to the Issuer/Processor Bank\naccount, the confirmation of transfer of funds screenshot/image/PDF should be use"
+        },
+        {
+          "info": {
+            "name": "Upload Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/document",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "userUuid",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "documentType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "documentContext",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Upload Document endpoint uploads the user documents to the SimpliFi system which are required\nas part of the sanctions screening or KYC process. The documents can be uploaded in one of the\nfollowing formats (.jpg, .jpeg, .png, .pdf)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

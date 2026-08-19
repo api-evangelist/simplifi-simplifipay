@@ -1,0 +1,187 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SimpliFi Cards Auth Webhook API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/webhook/events",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint fetches all available events for webhooks"
+        },
+        {
+          "info": {
+            "name": "Create a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/webhook",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint allows you to create a webhook, where events will be posted"
+        },
+        {
+          "info": {
+            "name": "Update a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{env}-lb.simplifipay.com/webhook/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This is the unique identifier of the webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint allows you to update an existing webhook"
+        },
+        {
+          "info": {
+            "name": "Delete a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{env}-lb.simplifipay.com/webhook/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This is the unique identifier of the webhook."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint allows you to delete an existing webhook"
+        },
+        {
+          "info": {
+            "name": "Updates the status of Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{env}-lb.simplifipay.com/webhook/:uuid/status",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This is the unique identifier of the webhook."
+              },
+              {
+                "name": "enable",
+                "value": "",
+                "type": "query",
+                "description": "Webhook Status"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint allows you to update the status of an existing webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

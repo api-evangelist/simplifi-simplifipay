@@ -1,0 +1,2683 @@
+{
+  "item": [
+    {
+      "id": "ed82d271-8813-46a6-93bf-b0f93eba7069",
+      "name": "Card Program",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5acb80c1-1c0d-4584-a068-01be6f3a8be7",
+          "name": "Create Card Program",
+          "request": {
+            "name": "Create Card Program",
+            "description": {
+              "content": "The Create Card Program endpoint allows API users to create a new card program\nto be associated with cards of the SimpliFi platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-program"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"cardProgramTemplateUuid\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"feesOperationEnabled\": false,\n  \"config\": {\n    \"poi\": {\n      \"ecommerce\": \"<boolean>\",\n      \"atm\": \"<boolean>\",\n      \"pos\": \"<boolean>\",\n      \"international\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1486c4b4-bc19-43ec-b6ee-a4325db23154",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"cardProgramTemplateUuid\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"feesOperationEnabled\": false,\n  \"config\": {\n    \"poi\": {\n      \"ecommerce\": \"<boolean>\",\n      \"atm\": \"<boolean>\",\n      \"pos\": \"<boolean>\",\n      \"international\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"cardProgramTemplateUuid\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"feesOperationEnabled\": false,\n  \"config\": {\n    \"poi\": {\n      \"ecommerce\": \"<boolean>\",\n      \"atm\": \"<boolean>\",\n      \"pos\": \"<boolean>\",\n      \"international\": \"<boolean>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb2bb325-4cad-4f1b-a675-87b7d76ee72c",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"cardProgramTemplateUuid\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"feesOperationEnabled\": false,\n  \"config\": {\n    \"poi\": {\n      \"ecommerce\": \"<boolean>\",\n      \"atm\": \"<boolean>\",\n      \"pos\": \"<boolean>\",\n      \"international\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5066bc00-3993-4d5e-a809-da4a78e7bc49",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"cardProgramTemplateUuid\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"feesOperationEnabled\": false,\n  \"config\": {\n    \"poi\": {\n      \"ecommerce\": \"<boolean>\",\n      \"atm\": \"<boolean>\",\n      \"pos\": \"<boolean>\",\n      \"international\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "837f55f9-8cab-4a6b-8b24-7dc2be4e8aef",
+          "name": "Get Card Program",
+          "request": {
+            "name": "Get Card Program",
+            "description": {
+              "content": "The Get Card Program endpoint retrieves details about a card program.\nFollowing are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-program",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7424a25b-07af-4139-b523-4c754076aba5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"name\": \"string\",\n  \"companyUuid\": \"string\",\n  \"cardProgramStatus\": \"SUSPENDED\",\n  \"cardProgramTemplateUuid\": \"string\",\n  \"parentAccountId\": \"string\",\n  \"productId\": \"string\",\n  \"fundingSourceUuid\": \"string\",\n  \"config\": {\n    \"poi\": {\n      \"ecommerce\": \"<boolean>\",\n      \"atm\": \"<boolean>\",\n      \"pos\": \"<boolean>\",\n      \"international\": \"<boolean>\"\n    }\n  },\n  \"walletThreshold\": 8583.945062486908,\n  \"autoLoadAmount\": 9008.985222328756,\n  \"currency\": \"string\",\n  \"feesOperationEnabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e3a6c37-b571-48b2-97f8-dce21b909817",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 1535,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "016a170d-fdb1-46fd-9bf7-d3d379c97781",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93ded4fd-59b8-4d0a-965d-63d866d9c42f",
+          "name": "Change Card Program Status",
+          "request": {
+            "name": "Change Card Program Status",
+            "description": {
+              "content": "The Change Card Program Status endpoint changes the status of a card program. This endpoint is helpful\nwhen a card program is to be suspended or activated as per the business needs. Following are the\nproperties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-program",
+                ":uuid",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardProgramStatus\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "feaf8e8f-c15f-4c65-ae0c-1201a73620a3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    ":uuid",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cardProgramStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5024ffef-b899-4ae6-8547-902dc1acf56b",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    ":uuid",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cardProgramStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fcc4244-7cb1-47e1-b026-8c477b68d7d9",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    ":uuid",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cardProgramStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ae71514-06ee-403d-927e-0293984d7bf1",
+          "name": "Link Funding Source to Card Program",
+          "request": {
+            "name": "Link Funding Source to Card Program",
+            "description": {
+              "content": "The Link Funding Source to Card Program endpoint links a funding source to a card program.\nThe funding source works as an account that would be used to fund all its cards under this\nCard Program. Following are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "card-program",
+                ":uuid",
+                "funding-source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fundingSource\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b76719d-7b3c-4b23-b633-a7b7dd4d5632",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "card-program",
+                    ":uuid",
+                    "funding-source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fundingSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"cardProgramUuid\": \"string\",\n  \"fundingSource\": \"string\",\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3b5f8e3-ff53-447d-aafd-e6342e5ceb58",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "card-program",
+                    ":uuid",
+                    "funding-source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fundingSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c47173ca-58d1-4ee0-9597-cc405416e372",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "card-program",
+                    ":uuid",
+                    "funding-source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fundingSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3235ca4b-a666-4fec-bf8d-168cbc67f4be",
+          "name": "Get Balance of Funding Source",
+          "request": {
+            "name": "Get Balance of Funding Source",
+            "description": {
+              "content": "The Get Balance of Funding Source endpoint retrieves the remaining balance of a funding source.\nFollowing are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-program",
+                ":uuid",
+                "funding-source-balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "19e85caa-6a93-4ed6-86b9-612dc4a84480",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    ":uuid",
+                    "funding-source-balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 198.0607700998549,\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57eb5f80-e5ee-4f0d-bf03-75521f022f4d",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    ":uuid",
+                    "funding-source-balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a511f5f-6fd9-4dc4-a094-837ae2f47d16",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    ":uuid",
+                    "funding-source-balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is a unique identifier for the program that was created using the Create Card Program API."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9930214-2d36-4c94-b14e-5e1c27bdda52",
+          "name": "Transfer funds from one Card Program to other",
+          "request": {
+            "name": "Transfer funds from one Card Program to other",
+            "description": {
+              "content": "The Transfer Fund endpoint allows API users to transfer funds from a one\nCard Program to other Card Program. Following are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-program",
+                "transfer-fund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceCardProgramUuid\": \"<string>\",\n  \"destCardProgramUuid\": \"<string>\",\n  \"amount\": \"<decimal>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e92a4fb-45a4-41cc-8e92-0b0deb737b77",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    "transfer-fund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceCardProgramUuid\": \"<string>\",\n  \"destCardProgramUuid\": \"<string>\",\n  \"amount\": \"<decimal>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "784a6c49-1c7c-4668-8696-273deb5d6224",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    "transfer-fund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceCardProgramUuid\": \"<string>\",\n  \"destCardProgramUuid\": \"<string>\",\n  \"amount\": \"<decimal>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec2dc235-e449-42f0-b47c-2beab24e8909",
+          "name": "Raise Funding Document Upload",
+          "request": {
+            "name": "Raise Funding Document Upload",
+            "description": {
+              "content": "This API should be called before calling Raise Funding API to attach `Proof of funds / Confirmation of\nfunds transfer from the Bank` document (PNG, JPEG, PDF are allowed formats) and the string value returned\nin the `documentUploadUuid` field of the response should be used in Raise Funding API's document parameter.\n\nNote: After the funds are transferred from the whitelisted Bank account to the Issuer/Processor Bank\naccount, the confirmation of transfer of funds screenshot/image/PDF should be used as an attachment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "document",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "cardProgramUuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This field contains the system generated unique identifier for the program\nthat was created using the Create Card Program API."
+                },
+                {
+                  "key": "amount",
+                  "value": "<number>",
+                  "type": "text",
+                  "description": "(Required) This field contains the amount that has been requested for fund transfer."
+                },
+                {
+                  "key": "fundRequestType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This field contains the type for fund request. (This can only be one of LOAD,UNLOAD)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "54dcfd31-b67e-4d18-b543-07c3ad5eb39c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the system generated unique identifier for the program\nthat was created using the Create Card Program API.",
+                        "type": "text/plain"
+                      },
+                      "key": "cardProgramUuid",
+                      "value": "22b52244-fb76-4ae7-be85-ecafba89e5ca",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the amount that has been requested for fund transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "10000",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type for fund request. (This can only be one of LOAD,UNLOAD)",
+                        "type": "text/plain"
+                      },
+                      "key": "fundRequestType",
+                      "value": "LOAD",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardProgramUuid\": \"string\",\n  \"amount\": 9531.604120961129,\n  \"fundRequestType\": \"UNLOAD\",\n  \"documentUploadUuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d2fa497-50ee-47ed-96da-cab1d96e794c",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the system generated unique identifier for the program\nthat was created using the Create Card Program API.",
+                        "type": "text/plain"
+                      },
+                      "key": "cardProgramUuid",
+                      "value": "22b52244-fb76-4ae7-be85-ecafba89e5ca",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the amount that has been requested for fund transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "10000",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type for fund request. (This can only be one of LOAD,UNLOAD)",
+                        "type": "text/plain"
+                      },
+                      "key": "fundRequestType",
+                      "value": "LOAD",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e8dceba-d417-4901-9597-4021ca319017",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the system generated unique identifier for the program\nthat was created using the Create Card Program API.",
+                        "type": "text/plain"
+                      },
+                      "key": "cardProgramUuid",
+                      "value": "22b52244-fb76-4ae7-be85-ecafba89e5ca",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the amount that has been requested for fund transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "10000",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type for fund request. (This can only be one of LOAD,UNLOAD)",
+                        "type": "text/plain"
+                      },
+                      "key": "fundRequestType",
+                      "value": "LOAD",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "875f4873-d839-4aa9-a47e-e3961b8758de",
+          "name": "Raise Funding",
+          "request": {
+            "name": "Raise Funding",
+            "description": {
+              "content": "The Raise Funding endpoint helps in adding or removing funds from a funding source. This API doesn't\nactually move the money between accounts but should be used so that the proof of funds is shared with\nthe Issuer/Processor Bank. After the proof of funds attachment is verified by the Issuer/Processor\nfunds would reflect in the respective funding source. Following are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-program",
+                "raise-funding"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardProgramUuid\": \"<string>\",\n  \"amount\": \"<decimal>\",\n  \"transactionType\": \"<string>\",\n  \"documentUploadUuid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7aca359b-d097-4904-9a33-52baecd7edc5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    "raise-funding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cardProgramUuid\": \"<string>\",\n  \"amount\": \"<decimal>\",\n  \"transactionType\": \"<string>\",\n  \"documentUploadUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardProgramUuid\": \"string\",\n  \"amount\": 6047.721573267604,\n  \"transactionType\": \"CREDIT\",\n  \"status\": \"ACKNOWLEDGED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d2120d8-6cdf-4d89-8a8a-2177cb0008ad",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    "raise-funding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cardProgramUuid\": \"<string>\",\n  \"amount\": \"<decimal>\",\n  \"transactionType\": \"<string>\",\n  \"documentUploadUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ad89006-56b1-4fec-8fc3-29672a485dbf",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-program",
+                    "raise-funding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cardProgramUuid\": \"<string>\",\n  \"amount\": \"<decimal>\",\n  \"transactionType\": \"<string>\",\n  \"documentUploadUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69a48728-97fc-4eeb-ae52-6359e697d239",
+          "name": "Funding Source Statement",
+          "request": {
+            "name": "Funding Source Statement",
+            "description": {
+              "content": "Get funding source statement based on date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "statement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "(Required) The account ID of the processor mapping (wallet)."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "start date of date-range"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "end date date of date-range"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "sort statement column value"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "<string>",
+                  "description": "sort direction"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb86ce82-8de9-427f-b3a3-d66cbc21874f",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"companyName\": \"string\",\n  \"statementDate\": \"1947-02-14\",\n  \"accountId\": \"string\",\n  \"currency\": \"string\",\n  \"startDate\": \"1949-02-11T19:26:36.410Z\",\n  \"endDate\": \"2005-07-09T21:34:00.657Z\",\n  \"openingBalance\": 5957.541011855861,\n  \"closingBalance\": 360.43605552080305,\n  \"transactions\": [\n    {\n      \"fundRequestUuid\": \"string\",\n      \"transactionId\": \"string\",\n      \"transactionDate\": \"1969-01-13T04:21:30.921Z\",\n      \"amount\": 2878.975545345246,\n      \"fundRequestCategory\": \"CARD_UNLOAD\",\n      \"previousBalance\": 4626.302182238117,\n      \"currentBalance\": 7937.158791662896,\n      \"fundRequestType\": \"LOAD\",\n      \"maskPan\": \"string\",\n      \"userName\": \"string\",\n      \"userFullName\": \"string\",\n      \"userUuid\": \"string\",\n      \"srcCurrency\": \"string\",\n      \"destCurrency\": \"string\"\n    },\n    {\n      \"fundRequestUuid\": \"string\",\n      \"transactionId\": \"string\",\n      \"transactionDate\": \"1980-06-24T04:00:40.661Z\",\n      \"amount\": 867.2618802591525,\n      \"fundRequestCategory\": \"CARD_LOAD\",\n      \"previousBalance\": 6801.83116241912,\n      \"currentBalance\": 9926.942693761994,\n      \"fundRequestType\": \"UNLOAD\",\n      \"maskPan\": \"string\",\n      \"userName\": \"string\",\n      \"userFullName\": \"string\",\n      \"userUuid\": \"string\",\n      \"srcCurrency\": \"string\",\n      \"destCurrency\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c91dbee2-6c08-4af1-9667-6717cd52342c",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Environment token issued by SimpliFi",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "uat",
+      "key": "env"
+    },
+    {
+      "type": "string",
+      "value": "https://{{env}}-lb.simplifipay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "12a67ebf-ad1d-43ab-b3ef-c861afa1b99c",
+    "name": "SimpliFi Cards Auth Card Program API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.\n\nContact Support:\n Name: SimpliFi Support\n Email: info@simplifipay.com",
+      "type": "text/plain"
+    }
+  }
+}

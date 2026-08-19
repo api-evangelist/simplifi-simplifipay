@@ -1,0 +1,2235 @@
+{
+  "item": [
+    {
+      "id": "d64c579a-36bf-4a4c-9f01-75977e970ec2",
+      "name": "User",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e2967e7-2711-46d3-a3b3-0e83db0c0d34",
+          "name": "List all Users",
+          "request": {
+            "name": "List all Users",
+            "description": {
+              "content": "The List all Users endpoint retrieves all the existing users, grouped under a company.\nFollowing are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Represents the start date of the user's registration with the SimpliFi system. Note All the\ndates in the SimpliFi system are stored and displayed in the following format `yyyy-mm-dd hh:mm:ss`"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Represents the end date of the user's registration with the SimpliFi system. Note All the\ndates in the SimpliFi system are stored and displayed in the following format `yyyy-mm-dd hh:mm:ss`"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e96fed04-2ee2-417c-8f15-33b0faca0ea9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"string\",\n    \"username\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"gender\": \"FEMALE\",\n    \"userStatus\": \"INACTIVE\",\n    \"createdAt\": \"1982-09-22T17:29:28.875Z\",\n    \"userDetail\": {\n      \"cardProgramUuid\": \"string\",\n      \"dob\": \"2004-06-14T14:49:26.679Z\",\n      \"roleName\": \"OPS_MANAGER\",\n      \"position\": \"string\"\n    },\n    \"address\": {\n      \"addressType\": \"PRIMARY\",\n      \"countryCode\": \"string\",\n      \"streetAddress\": \"string\",\n      \"address2\": \"string\",\n      \"cityCode\": \"string\",\n      \"stateCode\": \"string\",\n      \"postalCode\": \"string\"\n    },\n    \"contacts\": [\n      {\n        \"contactType\": \"PHONE\",\n        \"contactValue\": \"string\"\n      },\n      {\n        \"contactType\": \"PHONE\",\n        \"contactValue\": \"string\"\n      }\n    ],\n    \"middleName\": \"string\",\n    \"kycStatus\": \"REJECTED\",\n    \"createdBy\": \"string\"\n  },\n  {\n    \"uuid\": \"string\",\n    \"username\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"gender\": \"MALE\",\n    \"userStatus\": \"INACTIVE\",\n    \"createdAt\": \"1971-05-07T02:42:56.870Z\",\n    \"userDetail\": {\n      \"cardProgramUuid\": \"string\",\n      \"dob\": \"1955-12-29T23:40:26.837Z\",\n      \"roleName\": \"OPS_MANAGER\",\n      \"position\": \"string\"\n    },\n    \"address\": {\n      \"addressType\": \"DELIVERY\",\n      \"countryCode\": \"string\",\n      \"streetAddress\": \"string\",\n      \"address2\": \"string\",\n      \"cityCode\": \"string\",\n      \"stateCode\": \"string\",\n      \"postalCode\": \"string\"\n    },\n    \"contacts\": [\n      {\n        \"contactType\": \"PHONE\",\n        \"contactValue\": \"string\"\n      },\n      {\n        \"contactType\": \"PHONE\",\n        \"contactValue\": \"string\"\n      }\n    ],\n    \"middleName\": \"string\",\n    \"kycStatus\": \"APPROVED\",\n    \"createdBy\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74f1924c-838d-497f-8bda-7e670a11fb0a",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b087a4c-0198-47ba-8860-8f36dbdc60dc",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22b2b7a2-222d-40a0-bd26-0b2c04853fae",
+          "name": "Create a User",
+          "request": {
+            "name": "Create a User",
+            "description": {
+              "content": "The Create a User endpoint creates a new user. In the SimpliFi platform, it is mandatory\nfor the user to be a part of a card program instead of being a standalone entity.\nFollowing are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c852177-fe9d-4107-b7f1-d2ceb2ad6986",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23401230-29e0-427e-9c5a-ca16439cfeb3",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96de07ce-b66e-40c8-8f40-a105431fa152",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e59a8596-b5ff-4dbe-83f0-0b37e74bdf91",
+          "name": "Upload Document",
+          "request": {
+            "name": "Upload Document",
+            "description": {
+              "content": "The Upload Document endpoint uploads the user documents to the SimpliFi system which are required\nas part of the sanctions screening or KYC process. The documents can be uploaded in one of the\nfollowing formats (.jpg, .jpeg, .png, .pdf)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "userUuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This is a system-generated unique identifier of the user that was\ncreated using the Create User API."
+                },
+                {
+                  "key": "documentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This field contains the type of the document attached by the cardholder. (This can only be one of ID_CARD,PASSPORT)"
+                },
+                {
+                  "key": "documentContext",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This field contains the orientation of the document to be uploaded. (This can only be one of DOCUMENT_FRONT,DOCUMENT_BACK,FACE)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b876a2ba-7896-4f09-94f3-c618e23bced9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This is a system-generated unique identifier of the user that was\ncreated using the Create User API.",
+                        "type": "text/plain"
+                      },
+                      "key": "userUuid",
+                      "value": "96f78ee1-9e0d-47b1-acc8-d4e65d711aaf",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type of the document attached by the cardholder. (This can only be one of ID_CARD,PASSPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentType",
+                      "value": "PASSPORT",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the orientation of the document to be uploaded. (This can only be one of DOCUMENT_FRONT,DOCUMENT_BACK,FACE)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentContext",
+                      "value": "DOCUMENT_FRONT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userUuid\": \"string\",\n  \"documentType\": \"ID_CARD\",\n  \"documentContext\": \"DOCUMENT_FRONT\",\n  \"uuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3eb9d8c9-3ccc-4d32-a65b-152274cf63e0",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This is a system-generated unique identifier of the user that was\ncreated using the Create User API.",
+                        "type": "text/plain"
+                      },
+                      "key": "userUuid",
+                      "value": "96f78ee1-9e0d-47b1-acc8-d4e65d711aaf",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type of the document attached by the cardholder. (This can only be one of ID_CARD,PASSPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentType",
+                      "value": "PASSPORT",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the orientation of the document to be uploaded. (This can only be one of DOCUMENT_FRONT,DOCUMENT_BACK,FACE)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentContext",
+                      "value": "DOCUMENT_FRONT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78ed15a7-2e7e-4e27-ae48-e9533ac1e4b0",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This is a system-generated unique identifier of the user that was\ncreated using the Create User API.",
+                        "type": "text/plain"
+                      },
+                      "key": "userUuid",
+                      "value": "96f78ee1-9e0d-47b1-acc8-d4e65d711aaf",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type of the document attached by the cardholder. (This can only be one of ID_CARD,PASSPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentType",
+                      "value": "PASSPORT",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the orientation of the document to be uploaded. (This can only be one of DOCUMENT_FRONT,DOCUMENT_BACK,FACE)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentContext",
+                      "value": "DOCUMENT_FRONT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf7d036c-4f45-48fc-bcab-93c57dbddd7f",
+          "name": "Retrieve a User",
+          "request": {
+            "name": "Retrieve a User",
+            "description": {
+              "content": "The Retrieve a User endpoint retrieves details about an existing user.\nFollowing are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This field contains a unique identifier of the user."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "de1453c2-0e7a-444d-98d7-65233f793d01",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"username\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"gender\": \"MALE\",\n  \"userStatus\": \"INACTIVE\",\n  \"createdAt\": \"2022-05-10T17:31:56.707Z\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"string\",\n  \"kycStatus\": \"READY_FOR_KYC\",\n  \"createdBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "662c6c07-621b-40a8-8bcb-e0f152553cc9",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 1470,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c8a98e7-eae0-4f32-9c0a-3d6461118dbf",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62447043-4d00-4a78-add1-bd8c9a82efb8",
+          "name": "Update a User",
+          "request": {
+            "name": "Update a User",
+            "description": {
+              "content": "The Update a User endpoint updates the details of an existing user.\nFollowing are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This field contains a unique identifier of the user."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de58bec5-6cd4-4087-bf74-0b6d5780bd74",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75f5c950-0ba1-465b-bbdf-775d5a40f6f0",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 1470,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "358bc9f2-95f0-46a8-99ff-430b44463dc1",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"userDetail\": {\n    \"cardProgramUuid\": \"<string>\",\n    \"dob\": \"<dateTime>\",\n    \"roleName\": \"<string>\",\n    \"position\": \"<string>\"\n  },\n  \"address\": {\n    \"addressType\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"cityCode\": \"<string>\",\n    \"stateCode\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contacts\": [\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    },\n    {\n      \"contactType\": \"<string>\",\n      \"contactValue\": \"<string>\"\n    }\n  ],\n  \"middleName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8262725-e7b8-4ac9-8870-ae4a543c4b0f",
+          "name": "Delete a User",
+          "request": {
+            "name": "Delete a User",
+            "description": {
+              "content": "The Delete a User endpoint deletes an existing user. Deleting a user does not erase data from the\nsystem but only deactivates the user and its associated cards.\nFollowing are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This field contains a unique identifier of the user."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "da7544f4-49aa-479f-ae39-d9757ecf2bab",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "01d0dfaf-3a75-4094-b6bb-c0fe29e4a0f1",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 1470,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55655c7b-a6a0-4509-805f-ec2bcf08e8ba",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52097b13-bb85-41ee-88b9-6e3a2b327f91",
+          "name": "Add update address of user",
+          "request": {
+            "name": "Add update address of user",
+            "description": {
+              "content": "One can either add or update an address of the user. Address type can be either `PRIMARY` or `DELIVERY`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "user",
+                ":uuid",
+                "address",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This field contains a unique identifier of the user."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) This field contains the Address Type, either `PRIMARY` or `DELIVERY`"
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"streetAddress\": \"<string>\",\n  \"cityCode\": \"<string>\",\n  \"stateCode\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"postalCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "571f3f7c-b2d4-4637-bd1b-cc033ca9ae79",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid",
+                    "address",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) This field contains the Address Type, either `PRIMARY` or `DELIVERY`"
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"streetAddress\": \"<string>\",\n  \"cityCode\": \"<string>\",\n  \"stateCode\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"postalCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addressType\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"streetAddress\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"cityCode\": \"<string>\",\n  \"stateCode\": \"<string>\",\n  \"postalCode\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e121a3a-fb6b-4349-803e-973b34c2e854",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid",
+                    "address",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) This field contains the Address Type, either `PRIMARY` or `DELIVERY`"
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"streetAddress\": \"<string>\",\n  \"cityCode\": \"<string>\",\n  \"stateCode\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"postalCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 1470,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "263087f9-129b-478f-bcdd-c4477233cc52",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "user",
+                    ":uuid",
+                    "address",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This field contains a unique identifier of the user."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) This field contains the Address Type, either `PRIMARY` or `DELIVERY`"
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"streetAddress\": \"<string>\",\n  \"cityCode\": \"<string>\",\n  \"stateCode\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"postalCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Environment token issued by SimpliFi",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "uat",
+      "key": "env"
+    },
+    {
+      "type": "string",
+      "value": "https://{{env}}-lb.simplifipay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "39120b69-092f-460c-8b55-ceb8a6a24a02",
+    "name": "SimpliFi Cards Auth User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.\n\nContact Support:\n Name: SimpliFi Support\n Email: info@simplifipay.com",
+      "type": "text/plain"
+    }
+  }
+}

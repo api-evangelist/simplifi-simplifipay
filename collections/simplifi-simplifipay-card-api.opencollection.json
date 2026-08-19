@@ -1,0 +1,653 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SimpliFi Cards Auth Card API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Card",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/card",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cardStatus",
+                "value": "",
+                "type": "query",
+                "description": "This field contains comma separated list of card status to filter the request upon.\nList of Active Cards are 'ACTIVATED,ISSUED,PENDING,LOCKED' and a list of Inactive\nCards are 'REJECTED,DISABLED,REPLACED,EXPIRED'"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "This field contains the page number currently being displayed for cards."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "This field contains the number of the card records to be displayed on this page."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The List all Cards endpoint retrieves all the existing cards, grouped under a company.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Create a Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Create a Card endpoint creates/issues a card to a user under a Card Program. The card issued\nusing this endpoint would inherit the characteristics defined in its card program such as\nauthorization controls, velocity controls etc. Following are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Card Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Get Card Details endpoint retrieves all the details of a specific card.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Retrieve Balance on the Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/balance-inquiry",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Retrieve Balance on the Card endpoint retrieves the remaining balance of a card.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Activate a Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/activate",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Activate a Card endpoint activates an issued/created card.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Manage Card Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/status",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Manage Card Status endpoint manages the status of a card. This endpoint is helpful as\ncards can be locked (temporarily suspended), disabled, reissued depending upon the\nbusiness requirements. Following are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Load a Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/load",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Load a Card endpoint adds funds to an active card.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Unload a Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/unload",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Unload a Card endpoint removes funds from an active card and moves them back to the Funding\nsource (Virtual account that holds the funds in certain currency).\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Renewal of the Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/renew",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Renewal of the Card endpoint renews an expired, lost, or stolen card. In this case, a new\nPrimary Account Number (PAN) would be issued from the prevalent settings of the relevant card program.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Request a Physical Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/card-type",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Request a Physical Card endpoint issues a Physical card against the Card UUID of the activated\nvirtual card. Note (this endpoint is specific to physical cards and cannot be used for virtual cards.\nPhysical cards should be issued only for a virtual card in `ACTIVE` status).\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Card Statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/statement/card/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "start date of date-range"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "end date date of date-range"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "sort statement column value"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "sort direction"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get card statement based on date range."
+        },
+        {
+          "info": {
+            "name": "Get Rule Groups on Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/rule-group",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint retrieves all the rule groups on a Card.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Create Rule Group on Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/rule-group",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint creates a new rule group on a Card.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Update Rule Group on Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/rule-group",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint updates an existing rule group on a Card.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Delete Rule Group on Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/rule-group",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint deletes an existing rule group on a Card.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Apply Rule Group on Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/rule-group/:ruleGroupUuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              },
+              {
+                "name": "ruleGroupUuid",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Rule Group."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint applies an existing Rule Group on a Card.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Remove Rule Group on Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{env}-lb.simplifipay.com/v1/card/:uuid/rule-group/:ruleGroupUuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              },
+              {
+                "name": "ruleGroupUuid",
+                "value": "",
+                "type": "path",
+                "description": "This is a unique identifier for the Rule Group."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint removes an existing Rule Group from a Card.\nFollowing are the properties of this endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

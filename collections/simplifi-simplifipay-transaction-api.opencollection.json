@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SimpliFi Cards Auth Transaction API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Funding Source Statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/statement",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "The account ID of the processor mapping (wallet)."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "start date of date-range"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "end date date of date-range"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "sort statement column value"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "sort direction"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get funding source statement based on date range."
+        },
+        {
+          "info": {
+            "name": "Get Card Statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/statement/card/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the card."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "start date of date-range"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "end date date of date-range"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "sort statement column value"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "sort direction"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get card statement based on date range."
+        },
+        {
+          "info": {
+            "name": "List All Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/transaction",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The List All Transactions endpoint retrieves a paginated array of all the transactions carried\nout in the last 90 days. The results are displayed with a default page size of 10 and the response\nreturns the transaction list with total no. of elements. Following are the properties of this endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

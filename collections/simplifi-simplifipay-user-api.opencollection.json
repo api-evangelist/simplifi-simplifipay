@@ -1,0 +1,288 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SimpliFi Cards Auth User API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/user",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Represents the start date of the user's registration with the SimpliFi system. Note All the\ndates in the SimpliFi system are stored and displayed in the following format `yyyy-mm-dd hh:mm:ss`"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Represents the end date of the user's registration with the SimpliFi system. Note All the\ndates in the SimpliFi system are stored and displayed in the following format `yyyy-mm-dd hh:mm:ss`"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The List all Users endpoint retrieves all the existing users, grouped under a company.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Create a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/user",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Create a User endpoint creates a new user. In the SimpliFi platform, it is mandatory\nfor the user to be a part of a card program instead of being a standalone entity.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Upload Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/document",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "userUuid",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "documentType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "documentContext",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Upload Document endpoint uploads the user documents to the SimpliFi system which are required\nas part of the sanctions screening or KYC process. The documents can be uploaded in one of the\nfollowing formats (.jpg, .jpeg, .png, .pdf)"
+        },
+        {
+          "info": {
+            "name": "Retrieve a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{env}-lb.simplifipay.com/v1/user/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the user."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Retrieve a User endpoint retrieves details about an existing user.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Update a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{env}-lb.simplifipay.com/v1/user/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Update a User endpoint updates the details of an existing user.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Delete a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{env}-lb.simplifipay.com/v1/user/:uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the user."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "The Delete a User endpoint deletes an existing user. Deleting a user does not erase data from the\nsystem but only deactivates the user and its associated cards.\nFollowing are the properties of this endpoint."
+        },
+        {
+          "info": {
+            "name": "Add update address of user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{env}-lb.simplifipay.com/v1/user/:uuid/address/:type",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "requestUuid",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "This field contains a unique identifier of the user."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "This field contains the Address Type, either `PRIMARY` or `DELIVERY`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "One can either add or update an address of the user. Address type can be either `PRIMARY` or `DELIVERY`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

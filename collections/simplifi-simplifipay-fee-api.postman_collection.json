@@ -1,0 +1,1501 @@
+{
+  "item": [
+    {
+      "id": "1c325d30-2a73-4a04-9156-dd3ede4fb5f9",
+      "name": "Fee",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "196e2369-6639-432b-bd08-dc2382588586",
+          "name": "Add fee configuration",
+          "request": {
+            "name": "Add fee configuration",
+            "description": {
+              "content": "Configure fee based on transaction types and apply them to a card program template.\nFollowing are the properties of this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityType\": \"<string>\",\n  \"entityUuid\": \"<string>\",\n  \"fees\": [\n    {\n      \"currency\": \"<string>\",\n      \"feeAmounts\": [\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ],\n      \"feeOperationType\": \"<string>\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"currency\": \"<string>\",\n      \"feeAmounts\": [\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ],\n      \"feeOperationType\": \"<string>\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff65b05f-6a58-476b-b14d-e71cfd47623e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityType\": \"<string>\",\n  \"entityUuid\": \"<string>\",\n  \"fees\": [\n    {\n      \"currency\": \"<string>\",\n      \"feeAmounts\": [\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ],\n      \"feeOperationType\": \"<string>\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"currency\": \"<string>\",\n      \"feeAmounts\": [\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ],\n      \"feeOperationType\": \"<string>\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entityType\": \"<string>\",\n  \"entityUuid\": \"<string>\",\n  \"fees\": [\n    {\n      \"currency\": \"<string>\",\n      \"feeAmounts\": [\n        {\n          \"feeAmountUuid\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"feeAmountUuid\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"feeOperationType\": \"<string>\",\n      \"feesUuid\": \"string\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"currency\": \"<string>\",\n      \"feeAmounts\": [\n        {\n          \"feeAmountUuid\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"feeAmountUuid\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"feeOperationType\": \"<string>\",\n      \"feesUuid\": \"string\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed56d80e-ff90-40f7-a316-2b7a8ca9dd32",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityType\": \"<string>\",\n  \"entityUuid\": \"<string>\",\n  \"fees\": [\n    {\n      \"currency\": \"<string>\",\n      \"feeAmounts\": [\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ],\n      \"feeOperationType\": \"<string>\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"currency\": \"<string>\",\n      \"feeAmounts\": [\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        },\n        {\n          \"feesDetectType\": \"<string>\",\n          \"feeAmount\": \"<decimal>\",\n          \"feeStatusType\": \"<string>\",\n          \"notes\": \"<string>\"\n        }\n      ],\n      \"feeOperationType\": \"<string>\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fbc35f3-2700-4fd1-8be2-f4332d3eb23a",
+          "name": "Fetch fee config",
+          "request": {
+            "name": "Fetch fee config",
+            "description": {
+              "content": "This endpoint fetches the fee config",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "fees",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This is the unique identifier of the fee configuration."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab58bc3c-5544-429b-babf-47f4db3bf1d9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "fees",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the fee configuration."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currency\": \"<string>\",\n  \"feeAmounts\": [\n    {\n      \"currency\": \"<string>\",\n      \"feeAmountUuid\": \"string\",\n      \"feeOperationType\": \"<string>\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"currency\": \"<string>\",\n      \"feeAmountUuid\": \"string\",\n      \"feeOperationType\": \"<string>\",\n      \"feeStatusType\": \"<string>\",\n      \"capAmount\": \"<decimal>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"feeOperationType\": \"<string>\",\n  \"feesUuid\": \"string\",\n  \"feeStatusType\": \"<string>\",\n  \"capAmount\": \"<decimal>\",\n  \"description\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f41c335-4d08-422c-9fdf-435965f2d8ac",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "fees",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the fee configuration."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 2502,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b66fd4f3-0f62-4c69-b3f0-f915193196f6",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "fees",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the fee configuration."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9310dd55-f0e1-4892-9ba7-06f430039f62",
+          "name": "Change the status of fee config",
+          "request": {
+            "name": "Change the status of fee config",
+            "description": {
+              "content": "This endpoint changes the status of the fee config",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fees",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) This is the unique identifier of the fee configuration."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37fa7125-d523-44af-8b29-58a4a174fafc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fees",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the fee configuration."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feeOperationType\": \"SECONDARY_CARD_RENEWAL\",\n  \"feeAmount\": 2210.502615797695,\n  \"currency\": \"string\",\n  \"feesDetectType\": \"FIXED\",\n  \"feeStatusType\": \"INACTIVE\",\n  \"description\": \"string\",\n  \"feesUuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e028f80-33a1-4692-bbf6-13e291203d76",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fees",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the fee configuration."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 2502,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c218be3-9852-48c9-95ec-b49e14439cab",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fees",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) This is the unique identifier of the fee configuration."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ce64d93-7b80-4eb2-86eb-1096827941dd",
+          "name": "Add Fee event against card uuid in queue",
+          "request": {
+            "name": "Add Fee event against card uuid in queue",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fees",
+                "application",
+                "card",
+                ":cardUuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardUuid",
+                  "description": "(Required) This is the unique identifier of the card."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feeConfigUuid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4653d90d-0b3d-4d1b-aa81-c8c72bfaf8ca",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fees",
+                    "application",
+                    "card",
+                    ":cardUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardUuid",
+                      "description": "(Required) This is the unique identifier of the card."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feeConfigUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8fb6bc8-4eb4-46f8-a0ba-bfe7575fadfb",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fees",
+                    "application",
+                    "card",
+                    ":cardUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardUuid",
+                      "description": "(Required) This is the unique identifier of the card."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feeConfigUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 2502,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dae01f51-5067-4452-9106-b0cc6472db29",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fees",
+                    "application",
+                    "card",
+                    ":cardUuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardUuid",
+                      "description": "(Required) This is the unique identifier of the card."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feeConfigUuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62b008e0-71d9-4ccf-9bdb-1d8ceeb32a7b",
+          "name": "Apply fee against card uuid present in queue",
+          "request": {
+            "name": "Apply fee against card uuid present in queue",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fees",
+                "application",
+                "card",
+                ":cardUuid",
+                "apply"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardUuid",
+                  "description": "(Required) This is the unique identifier of the card."
+                },
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feeApplicationUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e6a667e-7eb3-4c09-8a8e-a05e853078a5",
+              "name": "Fee configuration added",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fees",
+                    "application",
+                    "card",
+                    ":cardUuid",
+                    "apply"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardUuid",
+                      "description": "(Required) This is the unique identifier of the card."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feeApplicationUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3073aec1-82e4-4cb3-8f82-350c5ac44d32",
+              "name": "Entity not found with the specified UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fees",
+                    "application",
+                    "card",
+                    ":cardUuid",
+                    "apply"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardUuid",
+                      "description": "(Required) This is the unique identifier of the card."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feeApplicationUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": 2502,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3c8b651-5a72-4794-8fc7-e853a432e042",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fees",
+                    "application",
+                    "card",
+                    ":cardUuid",
+                    "apply"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardUuid",
+                      "description": "(Required) This is the unique identifier of the card."
+                    },
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feeApplicationUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Environment token issued by SimpliFi",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "uat",
+      "key": "env"
+    },
+    {
+      "type": "string",
+      "value": "https://{{env}}-lb.simplifipay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6dca7ff5-99bb-4b71-8df1-65e60b797c19",
+    "name": "SimpliFi Cards Auth Fee API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.\n\nContact Support:\n Name: SimpliFi Support\n Email: info@simplifipay.com",
+      "type": "text/plain"
+    }
+  }
+}

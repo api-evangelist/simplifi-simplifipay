@@ -163,3 +163,9 @@ tools:
 - name: updatesTheStatusOfWebhook
   description: Updates the status of Webhook
   source_operation: openapi/simplifi-simplifipay-openapi.yml#updatesTheStatusOfWebhook
+deployment:
+  mode: none
+  verified: derived
+  tools: 52
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,850 @@
+{
+  "item": [
+    {
+      "id": "ced74856-ebd1-47a8-8ada-089ca1d43335",
+      "name": "Document",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6786e65a-e4f1-41ba-a11e-4bb06429bccf",
+          "name": "Raise Funding Document Upload",
+          "request": {
+            "name": "Raise Funding Document Upload",
+            "description": {
+              "content": "This API should be called before calling Raise Funding API to attach `Proof of funds / Confirmation of\nfunds transfer from the Bank` document (PNG, JPEG, PDF are allowed formats) and the string value returned\nin the `documentUploadUuid` field of the response should be used in Raise Funding API's document parameter.\n\nNote: After the funds are transferred from the whitelisted Bank account to the Issuer/Processor Bank\naccount, the confirmation of transfer of funds screenshot/image/PDF should be used as an attachment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "document",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "cardProgramUuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This field contains the system generated unique identifier for the program\nthat was created using the Create Card Program API."
+                },
+                {
+                  "key": "amount",
+                  "value": "<number>",
+                  "type": "text",
+                  "description": "(Required) This field contains the amount that has been requested for fund transfer."
+                },
+                {
+                  "key": "fundRequestType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This field contains the type for fund request. (This can only be one of LOAD,UNLOAD)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "df2efcf2-6edf-4d60-8cea-7d3bf20a3c7e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the system generated unique identifier for the program\nthat was created using the Create Card Program API.",
+                        "type": "text/plain"
+                      },
+                      "key": "cardProgramUuid",
+                      "value": "22b52244-fb76-4ae7-be85-ecafba89e5ca",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the amount that has been requested for fund transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "10000",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type for fund request. (This can only be one of LOAD,UNLOAD)",
+                        "type": "text/plain"
+                      },
+                      "key": "fundRequestType",
+                      "value": "LOAD",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardProgramUuid\": \"string\",\n  \"amount\": 1145.2461170675576,\n  \"fundRequestType\": \"LOAD\",\n  \"documentUploadUuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0ef2514-09cf-4e67-84fb-e407c7858b0e",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the system generated unique identifier for the program\nthat was created using the Create Card Program API.",
+                        "type": "text/plain"
+                      },
+                      "key": "cardProgramUuid",
+                      "value": "22b52244-fb76-4ae7-be85-ecafba89e5ca",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the amount that has been requested for fund transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "10000",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type for fund request. (This can only be one of LOAD,UNLOAD)",
+                        "type": "text/plain"
+                      },
+                      "key": "fundRequestType",
+                      "value": "LOAD",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05b0fe8c-d67e-4195-b440-4a13437558cd",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the system generated unique identifier for the program\nthat was created using the Create Card Program API.",
+                        "type": "text/plain"
+                      },
+                      "key": "cardProgramUuid",
+                      "value": "22b52244-fb76-4ae7-be85-ecafba89e5ca",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the amount that has been requested for fund transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "10000",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type for fund request. (This can only be one of LOAD,UNLOAD)",
+                        "type": "text/plain"
+                      },
+                      "key": "fundRequestType",
+                      "value": "LOAD",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7c2df36-6c99-4913-9f4f-5d2010703f20",
+          "name": "Upload Document",
+          "request": {
+            "name": "Upload Document",
+            "description": {
+              "content": "The Upload Document endpoint uploads the user documents to the SimpliFi system which are required\nas part of the sanctions screening or KYC process. The documents can be uploaded in one of the\nfollowing formats (.jpg, .jpeg, .png, .pdf)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Environment token issued by SimpliFi",
+                  "type": "any",
+                  "value": "{{env}}",
+                  "key": "env"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                "key": "requestUuid",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "userUuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This is a system-generated unique identifier of the user that was\ncreated using the Create User API."
+                },
+                {
+                  "key": "documentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This field contains the type of the document attached by the cardholder. (This can only be one of ID_CARD,PASSPORT)"
+                },
+                {
+                  "key": "documentContext",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) This field contains the orientation of the document to be uploaded. (This can only be one of DOCUMENT_FRONT,DOCUMENT_BACK,FACE)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "986b6293-b9dc-4c4e-8e20-6135d0c065a0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This is a system-generated unique identifier of the user that was\ncreated using the Create User API.",
+                        "type": "text/plain"
+                      },
+                      "key": "userUuid",
+                      "value": "96f78ee1-9e0d-47b1-acc8-d4e65d711aaf",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type of the document attached by the cardholder. (This can only be one of ID_CARD,PASSPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentType",
+                      "value": "PASSPORT",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the orientation of the document to be uploaded. (This can only be one of DOCUMENT_FRONT,DOCUMENT_BACK,FACE)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentContext",
+                      "value": "DOCUMENT_FRONT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userUuid\": \"string\",\n  \"documentType\": \"ID_CARD\",\n  \"documentContext\": \"DOCUMENT_BACK\",\n  \"uuid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d628c44d-1f97-45e6-9eba-4a373e12da46",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This is a system-generated unique identifier of the user that was\ncreated using the Create User API.",
+                        "type": "text/plain"
+                      },
+                      "key": "userUuid",
+                      "value": "96f78ee1-9e0d-47b1-acc8-d4e65d711aaf",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type of the document attached by the cardholder. (This can only be one of ID_CARD,PASSPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentType",
+                      "value": "PASSPORT",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the orientation of the document to be uploaded. (This can only be one of DOCUMENT_FRONT,DOCUMENT_BACK,FACE)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentContext",
+                      "value": "DOCUMENT_FRONT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e22b0ab1-8ddd-4d49-8d04-494c4bcb4afb",
+              "name": "Access token is missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Environment token issued by SimpliFi",
+                      "type": "any",
+                      "value": "{{env}}",
+                      "key": "env"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) This field contains the JWT token that is used to authenticate the user.",
+                    "key": "Authorization",
+                    "value": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique id is required to be passed as part of the header whenever a SimpliFi API is called from your\nsystem. This would help us in debugging in case of a discrepancy in the expected behavior of the API.",
+                    "key": "requestUuid",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This is a system-generated unique identifier of the user that was\ncreated using the Create User API.",
+                        "type": "text/plain"
+                      },
+                      "key": "userUuid",
+                      "value": "96f78ee1-9e0d-47b1-acc8-d4e65d711aaf",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the type of the document attached by the cardholder. (This can only be one of ID_CARD,PASSPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentType",
+                      "value": "PASSPORT",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) This field contains the orientation of the document to be uploaded. (This can only be one of DOCUMENT_FRONT,DOCUMENT_BACK,FACE)",
+                        "type": "text/plain"
+                      },
+                      "key": "documentContext",
+                      "value": "DOCUMENT_FRONT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Environment token issued by SimpliFi",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "uat",
+      "key": "env"
+    },
+    {
+      "type": "string",
+      "value": "https://{{env}}-lb.simplifipay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "edf348fa-d70d-4659-a8e0-8ce5e07ec247",
+    "name": "SimpliFi Cards Auth Document API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.\n\nContact Support:\n Name: SimpliFi Support\n Email: info@simplifipay.com",
+      "type": "text/plain"
+    }
+  }
+}
