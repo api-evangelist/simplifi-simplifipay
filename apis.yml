@@ -41,6 +41,17 @@ tags:
 - Banking as a Service
 - Embedded Finance
 - GCC
+- Webhook
+tags_raw:
+- Company
+- Cards
+- Card Issuing
+- Virtual Cards
+- Fintech
+- Payments
+- Banking as a Service
+- Embedded Finance
+- GCC
 - Webhooks
 apis:
 - aid: simplifi-simplifipay:simplifi-simplifipay-auth-api
@@ -49,6 +60,8 @@ apis:
   humanURL: https://apidoc.simplifipay.com/
   baseURL: https://uat-lb.simplifipay.com
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
