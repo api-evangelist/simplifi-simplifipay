@@ -164,6 +164,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/simplifi-simplifipay-capability-edges.yml
+  name: Simplifi/Simplifipay Business Capability Map
 - type: Overlay
   url: overlays/simplifi-simplifipay-openapi-overlay.yaml
 - type: DeveloperPortal
