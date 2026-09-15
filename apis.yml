@@ -26,7 +26,7 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/simplifi-simplifipay.png
-name: Simplifi/Simplifipay
+name: Simplifipay
 description: SimpliFi (simplifipay.com) is a Cards-as-a-Service platform powering virtual and physical
   card programs for fintechs, startups, and enterprises across the GCC (UAE, Saudi Arabia, Kuwait, Bahrain,
   Oman, Qatar). Regulated by the Dubai Financial Services Authority (DFSA), SimpliFi offers off-the-shelf
@@ -44,7 +44,7 @@ x-backed-by:
 - 500-global
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-09-15'
 tags:
 - Company
 - Cards
@@ -211,7 +211,10 @@ common:
   url: components/simplifi-simplifipay-components.yml
 - type: X-MCPServerCandidate
   url: mcp/simplifi-simplifipay-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: DataModel
   url: data-model/simplifi-simplifipay-data-model.yml
 - type: Lifecycle
@@ -229,3 +232,5 @@ x-enrichment:
   status: enriched
   artifacts_added: 20
   pass: local-v1
+x-aliases:
+- Simplifi
