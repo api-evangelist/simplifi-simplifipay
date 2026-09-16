@@ -100,16 +100,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/simplifi-simplifipay-card-program-api-openapi.yml
-- aid: simplifi-simplifipay:simplifi-simplifipay-document-api
-  name: Simplifi/Simplifipay Document API
-  description: The Document API from Simplifi/Simplifipay — 2 operation(s) for document.
-  humanURL: https://apidoc.simplifipay.com/
-  baseURL: https://uat-lb.simplifipay.com
-  tags:
-  - Document
-  properties:
-  - type: OpenAPI
-    url: openapi/simplifi-simplifipay-document-api-openapi.yml
 - aid: simplifi-simplifipay:simplifi-simplifipay-fee-api
   name: Simplifi/Simplifipay Fee API
   description: The Fee API from Simplifi/Simplifipay — 5 operation(s) for fee.
