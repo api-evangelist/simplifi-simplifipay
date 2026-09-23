@@ -1,21 +1,12 @@
 {
   "provider": "simplifi-simplifipay",
   "sources": [
-    "simplifi-simplifipay-auth-api-openapi.yml",
-    "simplifi-simplifipay-card-api-openapi.yml",
-    "simplifi-simplifipay-card-program-api-openapi.yml",
-    "simplifi-simplifipay-document-api-openapi.yml",
-    "simplifi-simplifipay-fee-api-openapi.yml",
-    "simplifi-simplifipay-funding-source-api-openapi.yml",
-    "simplifi-simplifipay-transaction-api-openapi.yml",
-    "simplifi-simplifipay-user-api-openapi.yml",
-    "simplifi-simplifipay-webhook-api-openapi.yml"
+    "_original/simplifi-simplifipay-openapi.yml"
   ],
   "outputs": [
     "simplifi-simplifipay-auth-api-openapi.yml",
     "simplifi-simplifipay-card-api-openapi.yml",
     "simplifi-simplifipay-card-program-api-openapi.yml",
-    "simplifi-simplifipay-document-api-openapi.yml",
     "simplifi-simplifipay-fee-api-openapi.yml",
     "simplifi-simplifipay-funding-source-api-openapi.yml",
     "simplifi-simplifipay-transaction-api-openapi.yml",
@@ -25,6 +16,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "simplifi-simplifipay-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "simplifi-simplifipay-openapi.yml: declared missing tag: Document",
+    "simplifi-simplifipay-openapi.yml: multi-axis tagging (9 tags, 8 first tags, 2.15x duplication over 52 operations) \u2014 split on first tag, 52 operations narrowed",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "simplifi-simplifipay-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "simplifi-simplifipay-card-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "simplifi-simplifipay-card-program-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "simplifi-simplifipay-fee-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "simplifi-simplifipay-funding-source-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "simplifi-simplifipay-transaction-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "simplifi-simplifipay-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "simplifi-simplifipay-webhook-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

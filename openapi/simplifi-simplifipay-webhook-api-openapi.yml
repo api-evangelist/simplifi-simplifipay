@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: SimpliFi Cards Auth Webhook API
+  title: SimpliFi Cards Webhook API
   version: 1.0.0
   description: 'SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.'
   contact:
@@ -327,6 +327,66 @@ paths:
       operationId: updatesTheStatusOfWebhook
 components:
   schemas:
+    WebhookEventType:
+      type: string
+      enum:
+      - CARD_ACTIVATION
+      - CARD_ISSUANCE
+      - CARD_PIN_SETUP
+      - CARD_RENEWED
+      - CARD_STATUS_CHANGE
+      - CARD_TYPE_CHANGE
+      - CARD_RULE_GROUP_CREATION
+      - CARD_RULE_GROUP_DELETION
+      - CARD_LOAD
+      - CARD_UNLOAD
+      - CARD_TO_CARD_TRANSFER
+      - CARD_HOLDER_CREATION
+      - CARD_HOLDER_UPDATION
+      - CARD_HOLDER_DELETION
+      - CARD_PROGRAM_CREATION
+      - WALLET_RULE_GROUP_CREATION
+      - WALLET_RULE_GROUP_DELETION
+      - FUNDS_TRANSFER
+      - RAISE_FUNDING_SOURCE
+      - RULE_GROUP_CREATION
+      - RULE_GROUP_UPDATION
+      - RULE_GROUP_DELETION
+      - TRANSACTION
+      - TRANSACTION_ENRICHMENT
+      - FEES_APPLY
+    WebhookRequestModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name to uniquely identify the webhook.
+          examples:
+          - Card Status Change
+        eventType:
+          $ref: '#/components/schemas/WebhookEventType'
+        endpointUrl:
+          type: string
+          description: The endpoint URL hosted by you where webhooks will be sent.
+          examples:
+          - https://webhook.simplifipay.com
+        extra:
+          type: object
+          description: A key-value pair of any extra header to be sent when calling the `endpoitnUrl`.
+          additionalProperties:
+            type: string
+          properties: {}
+      required:
+      - name
+      - eventType
+      - endpointUrl
+    WebhookEventModel:
+      type: object
+      properties:
+        eventType:
+          $ref: '#/components/schemas/WebhookEventType'
+      required:
+      - eventType
     WebhookResponseModel:
       type: object
       properties:
@@ -373,59 +433,6 @@ components:
       - endpointUrl
       - creationDate
       - lastModified
-    WebhookRequestModel:
-      type: object
-      properties:
-        name:
-          type: string
-          description: A name to uniquely identify the webhook.
-          examples:
-          - Card Status Change
-        eventType:
-          $ref: '#/components/schemas/WebhookEventType'
-        endpointUrl:
-          type: string
-          description: The endpoint URL hosted by you where webhooks will be sent.
-          examples:
-          - https://webhook.simplifipay.com
-        extra:
-          type: object
-          description: A key-value pair of any extra header to be sent when calling the `endpoitnUrl`.
-          additionalProperties:
-            type: string
-          properties: {}
-      required:
-      - name
-      - eventType
-      - endpointUrl
-    WebhookEventType:
-      type: string
-      enum:
-      - CARD_ACTIVATION
-      - CARD_ISSUANCE
-      - CARD_PIN_SETUP
-      - CARD_RENEWED
-      - CARD_STATUS_CHANGE
-      - CARD_TYPE_CHANGE
-      - CARD_RULE_GROUP_CREATION
-      - CARD_RULE_GROUP_DELETION
-      - CARD_LOAD
-      - CARD_UNLOAD
-      - CARD_TO_CARD_TRANSFER
-      - CARD_HOLDER_CREATION
-      - CARD_HOLDER_UPDATION
-      - CARD_HOLDER_DELETION
-      - CARD_PROGRAM_CREATION
-      - WALLET_RULE_GROUP_CREATION
-      - WALLET_RULE_GROUP_DELETION
-      - FUNDS_TRANSFER
-      - RAISE_FUNDING_SOURCE
-      - RULE_GROUP_CREATION
-      - RULE_GROUP_UPDATION
-      - RULE_GROUP_DELETION
-      - TRANSACTION
-      - TRANSACTION_ENRICHMENT
-      - FEES_APPLY
     ErrorModel:
       type: object
       properties:
@@ -439,13 +446,6 @@ components:
           description: A brief message defining the error
           examples:
           - General Error
-    WebhookEventModel:
-      type: object
-      properties:
-        eventType:
-          $ref: '#/components/schemas/WebhookEventType'
-      required:
-      - eventType
   securitySchemes:
     bearerAuth:
       type: http

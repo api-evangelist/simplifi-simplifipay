@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: SimpliFi Cards Auth API
   version: 1.0.0
@@ -27,7 +27,7 @@ paths:
 
         credentials. If you don''t have the credentials already, you can request them through
 
-        [this link](https://simplifipay.com/). The endpoint returns an access token to be
+        this link. The endpoint returns an access token to be
 
         used in making further API calls. Following are the properties of this endpoint.'
       tags:
@@ -119,7 +119,7 @@ paths:
 
         If you don''t have the credentials already, you can request them through
 
-        [this link](https://simplifipay.com/). The endpoint returns an access token to be
+        this link. The endpoint returns an access token to be
 
         used in making further SDK related API calls. Following are the properties of this endpoint.'
       tags:

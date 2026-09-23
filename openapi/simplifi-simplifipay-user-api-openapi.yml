@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: SimpliFi Cards Auth User API
+  title: SimpliFi Cards User API
   version: 1.0.0
   description: 'SimpliFi Cards-as-a-Service API for issuing and managing virtual and physical cards across the GCC. Covers authentication (JWT), card programs, funding sources, cards, users, transactions, fees, rule groups, and webhook management. SimpliFi uses an asynchronous architecture: API calls return 2xx on receipt and final outcomes are delivered via webhooks.'
   contact:
@@ -543,69 +543,39 @@ paths:
       - bearerAuth: []
 components:
   schemas:
-    UserRequestModel:
+    UserDetailModel:
       type: object
       properties:
-        username:
+        cardProgramUuid:
           type: string
-          description: This is a unique identifier of the user in the system. We recommend providing a unique name here.
+          description: This field contains a unique identifier of the card program.
           examples:
-          - john.smith
-        firstName:
+          - a0f07d6c-d6e8-4bda-9dcc-f64fb3a720f6
+        dob:
           type: string
-          description: This is the first name of the user.
+          format: date-time
+          description: This field contains the Date of Birth of the user.
           examples:
-          - John
-        middleName:
+          - '2025-02-28 13:31:00'
+        roleName:
           type: string
-          description: This is the middle name of the user.
-          examples:
-          - M
-        lastName:
-          type: string
-          description: This is the last name of the user.
-          examples:
-          - Smith
-        gender:
-          type: string
-          description: This is the gender of the user.
+          description: This field contains a unique identifier showing the role of the user such as `CUSTOMER`
           enum:
-          - MALE
-          - FEMALE
+          - CUSTOMER
+          - CLIENT_ADMIN
+          - SUPPORT_SPECIALIST
+          - OPS_MANAGER
           examples:
-          - MALE
-        userDetail:
-          $ref: '#/components/schemas/UserDetailModel'
-        address:
-          $ref: '#/components/schemas/AddressModel'
-        contacts:
-          type: array
-          description: 'This array of objects is a collection of contact fields,
-
-            possessing sub-fields explained in the rows below.'
-          items:
-            $ref: '#/components/schemas/ContactModel'
-      required:
-      - username
-      - firstName
-      - lastName
-      - gender
-      - userDetail
-      - address
-      - contacts
-    ErrorModel:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: A 5-7 digit number defining the error
-          examples:
-          - '99997'
-        message:
+          - CUSTOMER
+        position:
           type: string
-          description: A brief message defining the error
+          description: This field contains the position (designation) of the user such as `Employee`
           examples:
-          - General Error
+          - Employee
+      required:
+      - cardProgramUuid
+      - dob
+      - roleName
     UserModel:
       type: object
       properties:
@@ -710,6 +680,42 @@ components:
       required:
       - contactType
       - contactValue
+    DocumentModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This is a system-generated unique identifier of the document
+          examples:
+          - e2a60b44-88ef-4102-a1ac-fb0f00a3fd3e
+        userUuid:
+          type: string
+          description: 'This is a system-generated unique identifier of the user that was
+
+            created using the Create User API.'
+          examples:
+          - 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
+        documentType:
+          type: string
+          description: This field contains the type of the document attached by the cardholder.
+          enum:
+          - ID_CARD
+          - PASSPORT
+          examples:
+          - PASSPORT
+        documentContext:
+          type: string
+          description: This field contains the orientation of the document to be uploaded.
+          enum:
+          - DOCUMENT_FRONT
+          - DOCUMENT_BACK
+          - FACE
+          examples:
+          - DOCUMENT_FRONT
+      required:
+      - userUuid
+      - documentType
+      - documentContext
     AddressRequestModel:
       type: object
       properties:
@@ -778,75 +784,69 @@ components:
       required:
       - addressType
       - countryCode
-    DocumentModel:
+    ErrorModel:
       type: object
       properties:
-        uuid:
-          type: string
-          description: This is a system-generated unique identifier of the document
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
           examples:
-          - e2a60b44-88ef-4102-a1ac-fb0f00a3fd3e
-        userUuid:
+          - '99997'
+        message:
           type: string
-          description: 'This is a system-generated unique identifier of the user that was
+          description: A brief message defining the error
+          examples:
+          - General Error
+    UserRequestModel:
+      type: object
+      properties:
+        username:
+          type: string
+          description: This is a unique identifier of the user in the system. We recommend providing a unique name here.
+          examples:
+          - john.smith
+        firstName:
+          type: string
+          description: This is the first name of the user.
+          examples:
+          - John
+        middleName:
+          type: string
+          description: This is the middle name of the user.
+          examples:
+          - M
+        lastName:
+          type: string
+          description: This is the last name of the user.
+          examples:
+          - Smith
+        gender:
+          type: string
+          description: This is the gender of the user.
+          enum:
+          - MALE
+          - FEMALE
+          examples:
+          - MALE
+        userDetail:
+          $ref: '#/components/schemas/UserDetailModel'
+        address:
+          $ref: '#/components/schemas/AddressModel'
+        contacts:
+          type: array
+          description: 'This array of objects is a collection of contact fields,
 
-            created using the Create User API.'
-          examples:
-          - 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
-        documentType:
-          type: string
-          description: This field contains the type of the document attached by the cardholder.
-          enum:
-          - ID_CARD
-          - PASSPORT
-          examples:
-          - PASSPORT
-        documentContext:
-          type: string
-          description: This field contains the orientation of the document to be uploaded.
-          enum:
-          - DOCUMENT_FRONT
-          - DOCUMENT_BACK
-          - FACE
-          examples:
-          - DOCUMENT_FRONT
+            possessing sub-fields explained in the rows below.'
+          items:
+            $ref: '#/components/schemas/ContactModel'
       required:
-      - userUuid
-      - documentType
-      - documentContext
-    UserDetailModel:
-      type: object
-      properties:
-        cardProgramUuid:
-          type: string
-          description: This field contains a unique identifier of the card program.
-          examples:
-          - a0f07d6c-d6e8-4bda-9dcc-f64fb3a720f6
-        dob:
-          type: string
-          format: date-time
-          description: This field contains the Date of Birth of the user.
-          examples:
-          - '2025-02-28 13:31:00'
-        roleName:
-          type: string
-          description: This field contains a unique identifier showing the role of the user such as `CUSTOMER`
-          enum:
-          - CUSTOMER
-          - CLIENT_ADMIN
-          - SUPPORT_SPECIALIST
-          - OPS_MANAGER
-          examples:
-          - CUSTOMER
-        position:
-          type: string
-          description: This field contains the position (designation) of the user such as `Employee`
-          examples:
-          - Employee
-      required:
-      - cardProgramUuid
-      - dob
-      - roleName
+      - username
+      - firstName
+      - lastName
+      - gender
+      - userDetail
+      - address
+      - contacts
   securitySchemes:
     bearerAuth:
       type: http
