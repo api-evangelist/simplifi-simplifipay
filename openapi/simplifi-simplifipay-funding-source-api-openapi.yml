@@ -440,6 +440,38 @@ components:
           $ref: '#/components/schemas/RuleGroupSpendRestrictions'
       required:
       - name
+    RuleGroupMerchantRules:
+      type: object
+      description: Allow or deny merchant category codes.
+      properties:
+        allow:
+          type: boolean
+          examples:
+          - 'true'
+        mcc:
+          type: array
+          items:
+            type: string
+        mccException:
+          type: array
+          items:
+            type: string
+      required:
+      - allow
+      - mcc
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
     RuleGroupSpendRestrictions:
       type: object
       description: Details of card spend-related restrictions.
@@ -479,6 +511,27 @@ components:
           format: int32
           examples:
           - 10
+    RuleGroupResponseModel:
+      type: object
+      properties:
+        ruleGroup:
+          $ref: '#/components/schemas/RuleGroupModel'
+        enabled:
+          type: boolean
+          description: This field tells whether the `ruleGroup` is enabled or not
+          examples:
+          - 'true'
+      required:
+      - ruleGroup
+      - enabled
+    RuleGroupTransactionRestrictions:
+      type: object
+      description: Details of transaction-related restrictions.
+      properties:
+        merchantRules:
+          $ref: '#/components/schemas/RuleGroupMerchantRules'
+      required:
+      - merchantRules
     RuleGroupLoadRestrictions:
       type: object
       description: Details of card load-related restrictions.
@@ -523,59 +576,6 @@ components:
           format: decimal
           examples:
           - 1023.45
-    RuleGroupResponseModel:
-      type: object
-      properties:
-        ruleGroup:
-          $ref: '#/components/schemas/RuleGroupModel'
-        enabled:
-          type: boolean
-          description: This field tells whether the `ruleGroup` is enabled or not
-          examples:
-          - 'true'
-      required:
-      - ruleGroup
-      - enabled
-    ErrorModel:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: A 5-7 digit number defining the error
-          examples:
-          - '99997'
-        message:
-          type: string
-          description: A brief message defining the error
-          examples:
-          - General Error
-    RuleGroupTransactionRestrictions:
-      type: object
-      description: Details of transaction-related restrictions.
-      properties:
-        merchantRules:
-          $ref: '#/components/schemas/RuleGroupMerchantRules'
-      required:
-      - merchantRules
-    RuleGroupMerchantRules:
-      type: object
-      description: Allow or deny merchant category codes.
-      properties:
-        allow:
-          type: boolean
-          examples:
-          - 'true'
-        mcc:
-          type: array
-          items:
-            type: string
-        mccException:
-          type: array
-          items:
-            type: string
-      required:
-      - allow
-      - mcc
   securitySchemes:
     bearerAuth:
       type: http

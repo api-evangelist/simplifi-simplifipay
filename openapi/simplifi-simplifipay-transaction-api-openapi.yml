@@ -87,64 +87,11 @@ paths:
       operationId: listAllTransactions
 components:
   schemas:
-    TransactionUuidParameter:
+    TransactionIdParameter:
       type: string
-      description: This is a unique identifier of the transaction.
+      description: This is an identifier of the transaction.
       examples:
-      - f0888e10-43e3-4686-9c79-256633d79559
-    TransactionRequestModel:
-      type: object
-      properties:
-        cardProgramUuids:
-          type: array
-          description: These are unique identifiers of the card programs.
-          items:
-            type: string
-        page:
-          description: This field contains the page number currently being displayed for transactions.
-          type: integer
-        size:
-          description: This field contains the number of the transaction records to be displayed on this page.
-          type: integer
-        startDate:
-          description: This is the start date of transactions.
-          type: string
-          format: date-time
-          examples:
-          - '2025-02-28 13:31:00'
-        endDate:
-          description: This is the end date of transactions.
-          type: string
-          format: date-time
-          examples:
-          - '2025-02-28 13:31:00'
-        cardUuid:
-          description: This is a unique identifier of the card.
-          type: string
-        userUuid:
-          description: This is a unique identifier of the user.
-          type: string
-        billAmount:
-          description: This field contains the billed amount.
-          type: number
-        billCurrency:
-          description: This field contains the currency in which the amount has been billed.
-          type: string
-        classificationType:
-          description: This field contains the classification type of the transaction.
-          type: string
-        sortBy:
-          type: string
-          enum:
-          - transactionDate
-          - transactionAmount
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        transactionType:
-          $ref: '#/components/schemas/TransactionTypeParameter'
+      - '6712309'
     TransactionResponseDetails:
       type: object
       properties:
@@ -300,11 +247,11 @@ components:
       required:
       - transactions
       - totalElement
-    TransactionIdParameter:
+    TransactionUuidParameter:
       type: string
-      description: This is an identifier of the transaction.
+      description: This is a unique identifier of the transaction.
       examples:
-      - '6712309'
+      - f0888e10-43e3-4686-9c79-256633d79559
     MaskedPanParameter:
       type: string
       description: 'This field contains the partially hidden Primary Account Number
@@ -312,6 +259,59 @@ components:
         i.e. all digits are masked, except for the last four ones.'
       examples:
       - '**********1234'
+    TransactionRequestModel:
+      type: object
+      properties:
+        cardProgramUuids:
+          type: array
+          description: These are unique identifiers of the card programs.
+          items:
+            type: string
+        page:
+          description: This field contains the page number currently being displayed for transactions.
+          type: integer
+        size:
+          description: This field contains the number of the transaction records to be displayed on this page.
+          type: integer
+        startDate:
+          description: This is the start date of transactions.
+          type: string
+          format: date-time
+          examples:
+          - '2025-02-28 13:31:00'
+        endDate:
+          description: This is the end date of transactions.
+          type: string
+          format: date-time
+          examples:
+          - '2025-02-28 13:31:00'
+        cardUuid:
+          description: This is a unique identifier of the card.
+          type: string
+        userUuid:
+          description: This is a unique identifier of the user.
+          type: string
+        billAmount:
+          description: This field contains the billed amount.
+          type: number
+        billCurrency:
+          description: This field contains the currency in which the amount has been billed.
+          type: string
+        classificationType:
+          description: This field contains the classification type of the transaction.
+          type: string
+        sortBy:
+          type: string
+          enum:
+          - transactionDate
+          - transactionAmount
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        transactionType:
+          $ref: '#/components/schemas/TransactionTypeParameter'
     TransactionTypeParameter:
       type: array
       description: 'This field defines the Transaction types. Allowed values are

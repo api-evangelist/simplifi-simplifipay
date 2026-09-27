@@ -1208,6 +1208,41 @@ paths:
       operationId: removeRuleGroupOnCard
 components:
   schemas:
+    InstrumentType:
+      type: string
+      description: This field specifies the type of card that is being issued.
+      enum:
+      - VIRTUAL
+      - PHYSICAL
+      - VIRTUAL_AND_PHYSICAL
+      examples:
+      - VIRTUAL
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
+    RuleGroupResponseModel:
+      type: object
+      properties:
+        ruleGroup:
+          $ref: '#/components/schemas/RuleGroupModel'
+        enabled:
+          type: boolean
+          description: This field tells whether the `ruleGroup` is enabled or not
+          examples:
+          - 'true'
+      required:
+      - ruleGroup
+      - enabled
     RuleGroupModel:
       type: object
       properties:
@@ -1236,174 +1271,6 @@ components:
           $ref: '#/components/schemas/RuleGroupSpendRestrictions'
       required:
       - name
-    CardResponseModel:
-      type: object
-      properties:
-        uuid:
-          type: string
-          description: This is a system-generated unique identifier of the card issued.
-          examples:
-          - 8105fb1b-852c-4d93-88eb-2fb2361d4b45
-        userUuid:
-          type: string
-          description: 'This is a system-generated unique identifier of the user
-
-            that was created using the Create User API.'
-          examples:
-          - 7ace3a56-3cb1-44db-a81d-2735e54c7c15
-        companyUuid:
-          type: string
-          description: This field contains a unique identifier of the company for which the card has been configured.
-          examples:
-          - 10cdeb1d-c3af-4288-b770-5d7620171f37
-        cardProgramUuid:
-          type: string
-          description: 'This is a system-generated unique identifier for the card program
-
-            that was created using the Create Card Program API.'
-          examples:
-          - dfb04381-3a10-4185-9ed3-5a97f43dd1a2
-        instrument:
-          $ref: '#/components/schemas/InstrumentType'
-        creationDate:
-          type: string
-          format: date-time
-          description: This field contains the date on which the card was created.
-          examples:
-          - '2025-02-28 13:31:00'
-        cardStatus:
-          $ref: '#/components/schemas/CardStatusParameter'
-        expiryDate:
-          type: string
-          description: 'This field contains the expiry date of the card.
-
-            The format is `MM/yy`'
-          examples:
-          - 12/31
-        maskedPan:
-          $ref: '#/components/schemas/MaskedPanParameter'
-        cardMode:
-          type: string
-          description: This field contains the mode of the card.
-          enum:
-          - PRIMARY
-          - SECONDARY
-          examples:
-          - PRIMARY
-        currency:
-          type: string
-          description: This field contains the Primary currency of Card
-          examples:
-          - USD
-        customerTitle:
-          type: string
-          description: This field contains the fourth line embossing of the card.
-          examples:
-          - Founding Member
-        physicalCardUuid:
-          type: string
-          description: This is a system-generated unique identifier of the PHYSICAL card issued.
-          examples:
-          - a1f65835-be50-450c-a197-8676aa4565d0
-        linkedVirtualCardUuid:
-          type: string
-          description: This is a system-generated unique identifier of the linked VIRTUAL card.
-          examples:
-          - 86d3111d-6d55-45e0-91c1-32c1397f39ab
-      required:
-      - uuid
-      - userUuid
-      - companyUuid
-      - cardProgramUuid
-      - instrument
-      - creationDate
-      - cardStatus
-      - maskedPan
-      - cardMode
-      - currency
-    AmountModel:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: decimal
-          description: This field contains the balance amount available for the card.
-          examples:
-          - '1234.56'
-        currency:
-          type: string
-          description: This field contains the currency of Card
-          examples:
-          - AED
-      required:
-      - amount
-    MaskedPanParameter:
-      type: string
-      description: 'This field contains the partially hidden Primary Account Number
-
-        i.e. all digits are masked, except for the last four ones.'
-      examples:
-      - '**********1234'
-    CardRequestModel:
-      type: object
-      properties:
-        userUuid:
-          type: string
-          description: 'This is a system-generated unique identifier of the user
-
-            that was created using the Create User API.'
-          examples:
-          - f5ba1741-983f-4f51-8375-701461c5bacc
-        cardProgramUuid:
-          type: string
-          description: 'This is a system-generated unique identifier of the card program
-
-            that was created using the Create Card Program API.
-
-            If no cardProgramUuid is provided, then the default card program of the user will be used.'
-          examples:
-          - 56db03b7-29ef-46e3-82ad-68b94abb051f
-        customerTitle:
-          type: string
-          description: 'This is a specific name for the user to be displayed on the card in addition
-
-            to the cardholder name. This field adds another layer of individuality and exclusivity
-
-            for the user. Also known as 4th line embossing.'
-          examples:
-          - Founding Member
-        instrument:
-          $ref: '#/components/schemas/InstrumentType'
-      required:
-      - userUuid
-      - instrument
-    CardRenewalModel:
-      type: object
-      properties:
-        originalCardUuid:
-          type: string
-          description: This is a system-generated unique identifier of the card being renewed.
-        renewedCardUuid:
-          type: string
-          description: 'This is a system-generated unique identifier of the renewed card
-
-            that is issued in place of the original card.'
-      required:
-      - originalCardUuid
-      - renewedCardUuid
-      x--orders:
-      - originalCardUuid
-      - renewedCardUuid
-      x--ignore-properties: []
-    InstrumentType:
-      type: string
-      description: This field specifies the type of card that is being issued.
-      enum:
-      - VIRTUAL
-      - PHYSICAL
-      - VIRTUAL_AND_PHYSICAL
-      examples:
-      - VIRTUAL
     CardStatusModel:
       type: object
       properties:
@@ -1436,6 +1303,188 @@ components:
       - status
       - reason
       x--ignore-properties: []
+    CardStatusParameter:
+      type: string
+      description: This field contains the current status of the card.
+      enum:
+      - PENDING
+      - ISSUED
+      - ACTIVATED
+      - DISABLED
+      - LOCKED
+      - REPLACED
+      - REJECTED
+      - EXPIRED
+      examples:
+      - ISSUED
+    CardAmountModel:
+      type: object
+      properties:
+        requestedAmount:
+          type: number
+          format: decimal
+          description: This field contains the amount that has been requested to be loaded onto a card.
+          examples:
+          - '100.00'
+        comments:
+          type: string
+          description: Comments related to the load request
+      required:
+      - requestedAmount
+    RuleGroupLoadRestrictions:
+      type: object
+      description: Details of card load-related restrictions.
+      properties:
+        minimumLoad:
+          type: number
+          format: decimal
+          examples:
+          - 1.5
+        maximumLoad:
+          type: number
+          format: decimal
+          examples:
+          - 123.45
+        loadCountDailyLimit:
+          type: number
+          format: int32
+          examples:
+          - 3
+        loadCountWeeklyLimit:
+          type: number
+          format: int32
+          examples:
+          - 5
+        loadCountMonthlyLimit:
+          type: number
+          format: int32
+          examples:
+          - 10
+        loadDailyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 123.45
+        loadWeeklyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 523.45
+        loadMonthlyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 1023.45
+    CardStatementResponse:
+      type: object
+      properties:
+        companyName:
+          type: string
+          description: Name of the company.
+          examples:
+          - SimpliFi
+        statementDate:
+          type: string
+          format: date
+          description: The date on which the statement is created.
+          examples:
+          - '2025-02-28'
+        maskPan:
+          type: string
+          description: The Masked PAN of card.
+          examples:
+          - '************2737'
+        currency:
+          type: string
+          description: The currency of the card.
+          examples:
+          - AED
+        startDate:
+          type: string
+          format: date-time
+          description: The start date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        endDate:
+          type: string
+          format: date-time
+          description: The end date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        openingBalance:
+          type: number
+          format: decimal
+          description: The opening balance of the card from the start date of the date range.
+          examples:
+          - '6.95'
+        currentBalance:
+          type: number
+          format: decimal
+          description: The current balance of the card
+          examples:
+          - '6.95'
+        settledBalance:
+          type: number
+          format: decimal
+          description: The settled balance of the card
+          examples:
+          - '6.95'
+        unsettledBalance:
+          type: number
+          format: decimal
+          description: The unsettled balance of the card
+          examples:
+          - '6.95'
+        blockedAmount:
+          type: number
+          format: decimal
+          description: The blocked amount of the card
+          examples:
+          - '6.95'
+        totals:
+          type: object
+          additionalProperties:
+            type: number
+            format: decimal
+          properties: {}
+        transactions:
+          type: array
+          description: The array of transactions.
+          items:
+            $ref: '#/components/schemas/TransactionResponseDetails'
+      required:
+      - companyName
+      - statementDate
+      - maskPan
+      - currency
+      - startDate
+      - endDate
+      - openingBalance
+      - currentBalance
+      - settledBalance
+      - unsettledBalance
+      - blockedAmount
+      - totals
+      - transactions
+    RuleGroupMerchantRules:
+      type: object
+      description: Allow or deny merchant category codes.
+      properties:
+        allow:
+          type: boolean
+          examples:
+          - 'true'
+        mcc:
+          type: array
+          items:
+            type: string
+        mccException:
+          type: array
+          items:
+            type: string
+      required:
+      - allow
+      - mcc
     RuleGroupSpendRestrictions:
       type: object
       description: Details of card spend-related restrictions.
@@ -1480,6 +1529,60 @@ components:
       description: This is a unique identifier of the transaction.
       examples:
       - f0888e10-43e3-4686-9c79-256633d79559
+    RuleGroupTransactionRestrictions:
+      type: object
+      description: Details of transaction-related restrictions.
+      properties:
+        merchantRules:
+          $ref: '#/components/schemas/RuleGroupMerchantRules'
+      required:
+      - merchantRules
+    MaskedPanParameter:
+      type: string
+      description: 'This field contains the partially hidden Primary Account Number
+
+        i.e. all digits are masked, except for the last four ones.'
+      examples:
+      - '**********1234'
+    TransactionIdParameter:
+      type: string
+      description: This is an identifier of the transaction.
+      examples:
+      - '6712309'
+    AmountModel:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: decimal
+          description: This field contains the balance amount available for the card.
+          examples:
+          - '1234.56'
+        currency:
+          type: string
+          description: This field contains the currency of Card
+          examples:
+          - AED
+      required:
+      - amount
+    CardRenewalModel:
+      type: object
+      properties:
+        originalCardUuid:
+          type: string
+          description: This is a system-generated unique identifier of the card being renewed.
+        renewedCardUuid:
+          type: string
+          description: 'This is a system-generated unique identifier of the renewed card
+
+            that is issued in place of the original card.'
+      required:
+      - originalCardUuid
+      - renewedCardUuid
+      x--orders:
+      - originalCardUuid
+      - renewedCardUuid
+      x--ignore-properties: []
     TransactionResponseDetails:
       type: object
       properties:
@@ -1618,227 +1721,124 @@ components:
       - transactionAmount
       - transactionCurrency
       - transactionDate
-    TransactionIdParameter:
-      type: string
-      description: This is an identifier of the transaction.
-      examples:
-      - '6712309'
-    CardStatementResponse:
+    CardResponseModel:
       type: object
       properties:
-        companyName:
+        uuid:
           type: string
-          description: Name of the company.
+          description: This is a system-generated unique identifier of the card issued.
           examples:
-          - SimpliFi
-        statementDate:
+          - 8105fb1b-852c-4d93-88eb-2fb2361d4b45
+        userUuid:
           type: string
-          format: date
-          description: The date on which the statement is created.
+          description: 'This is a system-generated unique identifier of the user
+
+            that was created using the Create User API.'
           examples:
-          - '2025-02-28'
-        maskPan:
+          - 7ace3a56-3cb1-44db-a81d-2735e54c7c15
+        companyUuid:
           type: string
-          description: The Masked PAN of card.
+          description: This field contains a unique identifier of the company for which the card has been configured.
           examples:
-          - '************2737'
+          - 10cdeb1d-c3af-4288-b770-5d7620171f37
+        cardProgramUuid:
+          type: string
+          description: 'This is a system-generated unique identifier for the card program
+
+            that was created using the Create Card Program API.'
+          examples:
+          - dfb04381-3a10-4185-9ed3-5a97f43dd1a2
+        instrument:
+          $ref: '#/components/schemas/InstrumentType'
+        creationDate:
+          type: string
+          format: date-time
+          description: This field contains the date on which the card was created.
+          examples:
+          - '2025-02-28 13:31:00'
+        cardStatus:
+          $ref: '#/components/schemas/CardStatusParameter'
+        expiryDate:
+          type: string
+          description: 'This field contains the expiry date of the card.
+
+            The format is `MM/yy`'
+          examples:
+          - 12/31
+        maskedPan:
+          $ref: '#/components/schemas/MaskedPanParameter'
+        cardMode:
+          type: string
+          description: This field contains the mode of the card.
+          enum:
+          - PRIMARY
+          - SECONDARY
+          examples:
+          - PRIMARY
         currency:
           type: string
-          description: The currency of the card.
+          description: This field contains the Primary currency of Card
           examples:
-          - AED
-        startDate:
+          - USD
+        customerTitle:
           type: string
-          format: date-time
-          description: The start date of the date range.
+          description: This field contains the fourth line embossing of the card.
           examples:
-          - '2025-02-28 13:31:00'
-        endDate:
+          - Founding Member
+        physicalCardUuid:
           type: string
-          format: date-time
-          description: The end date of the date range.
+          description: This is a system-generated unique identifier of the PHYSICAL card issued.
           examples:
-          - '2025-02-28 13:31:00'
-        openingBalance:
-          type: number
-          format: decimal
-          description: The opening balance of the card from the start date of the date range.
+          - a1f65835-be50-450c-a197-8676aa4565d0
+        linkedVirtualCardUuid:
+          type: string
+          description: This is a system-generated unique identifier of the linked VIRTUAL card.
           examples:
-          - '6.95'
-        currentBalance:
-          type: number
-          format: decimal
-          description: The current balance of the card
-          examples:
-          - '6.95'
-        settledBalance:
-          type: number
-          format: decimal
-          description: The settled balance of the card
-          examples:
-          - '6.95'
-        unsettledBalance:
-          type: number
-          format: decimal
-          description: The unsettled balance of the card
-          examples:
-          - '6.95'
-        blockedAmount:
-          type: number
-          format: decimal
-          description: The blocked amount of the card
-          examples:
-          - '6.95'
-        totals:
-          type: object
-          additionalProperties:
-            type: number
-            format: decimal
-          properties: {}
-        transactions:
-          type: array
-          description: The array of transactions.
-          items:
-            $ref: '#/components/schemas/TransactionResponseDetails'
+          - 86d3111d-6d55-45e0-91c1-32c1397f39ab
       required:
-      - companyName
-      - statementDate
-      - maskPan
+      - uuid
+      - userUuid
+      - companyUuid
+      - cardProgramUuid
+      - instrument
+      - creationDate
+      - cardStatus
+      - maskedPan
+      - cardMode
       - currency
-      - startDate
-      - endDate
-      - openingBalance
-      - currentBalance
-      - settledBalance
-      - unsettledBalance
-      - blockedAmount
-      - totals
-      - transactions
-    RuleGroupResponseModel:
+    CardRequestModel:
       type: object
       properties:
-        ruleGroup:
-          $ref: '#/components/schemas/RuleGroupModel'
-        enabled:
-          type: boolean
-          description: This field tells whether the `ruleGroup` is enabled or not
-          examples:
-          - 'true'
-      required:
-      - ruleGroup
-      - enabled
-    RuleGroupLoadRestrictions:
-      type: object
-      description: Details of card load-related restrictions.
-      properties:
-        minimumLoad:
-          type: number
-          format: decimal
-          examples:
-          - 1.5
-        maximumLoad:
-          type: number
-          format: decimal
-          examples:
-          - 123.45
-        loadCountDailyLimit:
-          type: number
-          format: int32
-          examples:
-          - 3
-        loadCountWeeklyLimit:
-          type: number
-          format: int32
-          examples:
-          - 5
-        loadCountMonthlyLimit:
-          type: number
-          format: int32
-          examples:
-          - 10
-        loadDailyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 123.45
-        loadWeeklyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 523.45
-        loadMonthlyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 1023.45
-    CardStatusParameter:
-      type: string
-      description: This field contains the current status of the card.
-      enum:
-      - PENDING
-      - ISSUED
-      - ACTIVATED
-      - DISABLED
-      - LOCKED
-      - REPLACED
-      - REJECTED
-      - EXPIRED
-      examples:
-      - ISSUED
-    CardAmountModel:
-      type: object
-      properties:
-        requestedAmount:
-          type: number
-          format: decimal
-          description: This field contains the amount that has been requested to be loaded onto a card.
-          examples:
-          - '100.00'
-        comments:
+        userUuid:
           type: string
-          description: Comments related to the load request
-      required:
-      - requestedAmount
-    ErrorModel:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: A 5-7 digit number defining the error
+          description: 'This is a system-generated unique identifier of the user
+
+            that was created using the Create User API.'
           examples:
-          - '99997'
-        message:
+          - f5ba1741-983f-4f51-8375-701461c5bacc
+        cardProgramUuid:
           type: string
-          description: A brief message defining the error
+          description: 'This is a system-generated unique identifier of the card program
+
+            that was created using the Create Card Program API.
+
+            If no cardProgramUuid is provided, then the default card program of the user will be used.'
           examples:
-          - General Error
-    RuleGroupTransactionRestrictions:
-      type: object
-      description: Details of transaction-related restrictions.
-      properties:
-        merchantRules:
-          $ref: '#/components/schemas/RuleGroupMerchantRules'
-      required:
-      - merchantRules
-    RuleGroupMerchantRules:
-      type: object
-      description: Allow or deny merchant category codes.
-      properties:
-        allow:
-          type: boolean
+          - 56db03b7-29ef-46e3-82ad-68b94abb051f
+        customerTitle:
+          type: string
+          description: 'This is a specific name for the user to be displayed on the card in addition
+
+            to the cardholder name. This field adds another layer of individuality and exclusivity
+
+            for the user. Also known as 4th line embossing.'
           examples:
-          - 'true'
-        mcc:
-          type: array
-          items:
-            type: string
-        mccException:
-          type: array
-          items:
-            type: string
+          - Founding Member
+        instrument:
+          $ref: '#/components/schemas/InstrumentType'
       required:
-      - allow
-      - mcc
+      - userUuid
+      - instrument
   securitySchemes:
     bearerAuth:
       type: http

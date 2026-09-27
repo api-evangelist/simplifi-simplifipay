@@ -543,6 +543,137 @@ paths:
       - bearerAuth: []
 components:
   schemas:
+    DocumentModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This is a system-generated unique identifier of the document
+          examples:
+          - e2a60b44-88ef-4102-a1ac-fb0f00a3fd3e
+        userUuid:
+          type: string
+          description: 'This is a system-generated unique identifier of the user that was
+
+            created using the Create User API.'
+          examples:
+          - 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
+        documentType:
+          type: string
+          description: This field contains the type of the document attached by the cardholder.
+          enum:
+          - ID_CARD
+          - PASSPORT
+          examples:
+          - PASSPORT
+        documentContext:
+          type: string
+          description: This field contains the orientation of the document to be uploaded.
+          enum:
+          - DOCUMENT_FRONT
+          - DOCUMENT_BACK
+          - FACE
+          examples:
+          - DOCUMENT_FRONT
+      required:
+      - userUuid
+      - documentType
+      - documentContext
+    UserRequestModel:
+      type: object
+      properties:
+        username:
+          type: string
+          description: This is a unique identifier of the user in the system. We recommend providing a unique name here.
+          examples:
+          - john.smith
+        firstName:
+          type: string
+          description: This is the first name of the user.
+          examples:
+          - John
+        middleName:
+          type: string
+          description: This is the middle name of the user.
+          examples:
+          - M
+        lastName:
+          type: string
+          description: This is the last name of the user.
+          examples:
+          - Smith
+        gender:
+          type: string
+          description: This is the gender of the user.
+          enum:
+          - MALE
+          - FEMALE
+          examples:
+          - MALE
+        userDetail:
+          $ref: '#/components/schemas/UserDetailModel'
+        address:
+          $ref: '#/components/schemas/AddressModel'
+        contacts:
+          type: array
+          description: 'This array of objects is a collection of contact fields,
+
+            possessing sub-fields explained in the rows below.'
+          items:
+            $ref: '#/components/schemas/ContactModel'
+      required:
+      - username
+      - firstName
+      - lastName
+      - gender
+      - userDetail
+      - address
+      - contacts
+    AddressModel:
+      type: object
+      properties:
+        addressType:
+          type: string
+          description: This field contains the address type. `PRIMARY` address is set during user creation.
+          enum:
+          - PRIMARY
+          - DELIVERY
+          examples:
+          - PRIMARY
+        streetAddress:
+          type: string
+          description: This field contains the street address of the user.
+        address2:
+          type: string
+          description: This field contains the second line of address of the user.
+        cityCode:
+          type: string
+          description: This field contains the city name of the user.
+        stateCode:
+          type: string
+          description: This field contains the state name of the user.
+        countryCode:
+          type: string
+          description: This field contains the country code of the user.
+        postalCode:
+          type: string
+          description: This field contains the postal code of the user.
+      required:
+      - addressType
+      - countryCode
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
     UserDetailModel:
       type: object
       properties:
@@ -576,6 +707,62 @@ components:
       - cardProgramUuid
       - dob
       - roleName
+    AddressRequestModel:
+      type: object
+      properties:
+        streetAddress:
+          type: string
+          description: This field contains the street address of the user.
+          examples:
+          - Dubai
+        address2:
+          type: string
+          description: This field contains the second line of address of the user.
+        cityCode:
+          type: string
+          description: This field contains the city name of the user.
+          examples:
+          - Dubai
+        stateCode:
+          type: string
+          description: This field contains the state name of the user.
+          examples:
+          - DXB
+        countryCode:
+          type: string
+          description: This field contains the country code of the user.
+          examples:
+          - UAE
+        postalCode:
+          type: string
+          description: This field contains the postal code of the user.
+          examples:
+          - 0
+      required:
+      - streetAddress
+      - cityCode
+      - stateCode
+      - countryCode
+    ContactModel:
+      type: object
+      properties:
+        contactType:
+          type: string
+          description: This field contains the contact type
+          enum:
+          - PHONE
+          - WHATSAPP
+          - EMAIL
+          examples:
+          - EMAIL
+        contactValue:
+          type: string
+          description: This field contains the contact value of the user.
+          examples:
+          - +971123456789, john.smit@simplifipay.com
+      required:
+      - contactType
+      - contactValue
     UserModel:
       type: object
       properties:
@@ -657,193 +844,6 @@ components:
       - gender
       - userStatus
       - createdAt
-      - userDetail
-      - address
-      - contacts
-    ContactModel:
-      type: object
-      properties:
-        contactType:
-          type: string
-          description: This field contains the contact type
-          enum:
-          - PHONE
-          - WHATSAPP
-          - EMAIL
-          examples:
-          - EMAIL
-        contactValue:
-          type: string
-          description: This field contains the contact value of the user.
-          examples:
-          - +971123456789, john.smit@simplifipay.com
-      required:
-      - contactType
-      - contactValue
-    DocumentModel:
-      type: object
-      properties:
-        uuid:
-          type: string
-          description: This is a system-generated unique identifier of the document
-          examples:
-          - e2a60b44-88ef-4102-a1ac-fb0f00a3fd3e
-        userUuid:
-          type: string
-          description: 'This is a system-generated unique identifier of the user that was
-
-            created using the Create User API.'
-          examples:
-          - 96f78ee1-9e0d-47b1-acc8-d4e65d711aaf
-        documentType:
-          type: string
-          description: This field contains the type of the document attached by the cardholder.
-          enum:
-          - ID_CARD
-          - PASSPORT
-          examples:
-          - PASSPORT
-        documentContext:
-          type: string
-          description: This field contains the orientation of the document to be uploaded.
-          enum:
-          - DOCUMENT_FRONT
-          - DOCUMENT_BACK
-          - FACE
-          examples:
-          - DOCUMENT_FRONT
-      required:
-      - userUuid
-      - documentType
-      - documentContext
-    AddressRequestModel:
-      type: object
-      properties:
-        streetAddress:
-          type: string
-          description: This field contains the street address of the user.
-          examples:
-          - Dubai
-        address2:
-          type: string
-          description: This field contains the second line of address of the user.
-        cityCode:
-          type: string
-          description: This field contains the city name of the user.
-          examples:
-          - Dubai
-        stateCode:
-          type: string
-          description: This field contains the state name of the user.
-          examples:
-          - DXB
-        countryCode:
-          type: string
-          description: This field contains the country code of the user.
-          examples:
-          - UAE
-        postalCode:
-          type: string
-          description: This field contains the postal code of the user.
-          examples:
-          - 0
-      required:
-      - streetAddress
-      - cityCode
-      - stateCode
-      - countryCode
-    AddressModel:
-      type: object
-      properties:
-        addressType:
-          type: string
-          description: This field contains the address type. `PRIMARY` address is set during user creation.
-          enum:
-          - PRIMARY
-          - DELIVERY
-          examples:
-          - PRIMARY
-        streetAddress:
-          type: string
-          description: This field contains the street address of the user.
-        address2:
-          type: string
-          description: This field contains the second line of address of the user.
-        cityCode:
-          type: string
-          description: This field contains the city name of the user.
-        stateCode:
-          type: string
-          description: This field contains the state name of the user.
-        countryCode:
-          type: string
-          description: This field contains the country code of the user.
-        postalCode:
-          type: string
-          description: This field contains the postal code of the user.
-      required:
-      - addressType
-      - countryCode
-    ErrorModel:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: A 5-7 digit number defining the error
-          examples:
-          - '99997'
-        message:
-          type: string
-          description: A brief message defining the error
-          examples:
-          - General Error
-    UserRequestModel:
-      type: object
-      properties:
-        username:
-          type: string
-          description: This is a unique identifier of the user in the system. We recommend providing a unique name here.
-          examples:
-          - john.smith
-        firstName:
-          type: string
-          description: This is the first name of the user.
-          examples:
-          - John
-        middleName:
-          type: string
-          description: This is the middle name of the user.
-          examples:
-          - M
-        lastName:
-          type: string
-          description: This is the last name of the user.
-          examples:
-          - Smith
-        gender:
-          type: string
-          description: This is the gender of the user.
-          enum:
-          - MALE
-          - FEMALE
-          examples:
-          - MALE
-        userDetail:
-          $ref: '#/components/schemas/UserDetailModel'
-        address:
-          $ref: '#/components/schemas/AddressModel'
-        contacts:
-          type: array
-          description: 'This array of objects is a collection of contact fields,
-
-            possessing sub-fields explained in the rows below.'
-          items:
-            $ref: '#/components/schemas/ContactModel'
-      required:
-      - username
-      - firstName
-      - lastName
-      - gender
       - userDetail
       - address
       - contacts

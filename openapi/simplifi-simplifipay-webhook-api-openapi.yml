@@ -327,34 +327,6 @@ paths:
       operationId: updatesTheStatusOfWebhook
 components:
   schemas:
-    WebhookEventType:
-      type: string
-      enum:
-      - CARD_ACTIVATION
-      - CARD_ISSUANCE
-      - CARD_PIN_SETUP
-      - CARD_RENEWED
-      - CARD_STATUS_CHANGE
-      - CARD_TYPE_CHANGE
-      - CARD_RULE_GROUP_CREATION
-      - CARD_RULE_GROUP_DELETION
-      - CARD_LOAD
-      - CARD_UNLOAD
-      - CARD_TO_CARD_TRANSFER
-      - CARD_HOLDER_CREATION
-      - CARD_HOLDER_UPDATION
-      - CARD_HOLDER_DELETION
-      - CARD_PROGRAM_CREATION
-      - WALLET_RULE_GROUP_CREATION
-      - WALLET_RULE_GROUP_DELETION
-      - FUNDS_TRANSFER
-      - RAISE_FUNDING_SOURCE
-      - RULE_GROUP_CREATION
-      - RULE_GROUP_UPDATION
-      - RULE_GROUP_DELETION
-      - TRANSACTION
-      - TRANSACTION_ENRICHMENT
-      - FEES_APPLY
     WebhookRequestModel:
       type: object
       properties:
@@ -380,13 +352,6 @@ components:
       - name
       - eventType
       - endpointUrl
-    WebhookEventModel:
-      type: object
-      properties:
-        eventType:
-          $ref: '#/components/schemas/WebhookEventType'
-      required:
-      - eventType
     WebhookResponseModel:
       type: object
       properties:
@@ -433,6 +398,13 @@ components:
       - endpointUrl
       - creationDate
       - lastModified
+    WebhookEventModel:
+      type: object
+      properties:
+        eventType:
+          $ref: '#/components/schemas/WebhookEventType'
+      required:
+      - eventType
     ErrorModel:
       type: object
       properties:
@@ -446,6 +418,34 @@ components:
           description: A brief message defining the error
           examples:
           - General Error
+    WebhookEventType:
+      type: string
+      enum:
+      - CARD_ACTIVATION
+      - CARD_ISSUANCE
+      - CARD_PIN_SETUP
+      - CARD_RENEWED
+      - CARD_STATUS_CHANGE
+      - CARD_TYPE_CHANGE
+      - CARD_RULE_GROUP_CREATION
+      - CARD_RULE_GROUP_DELETION
+      - CARD_LOAD
+      - CARD_UNLOAD
+      - CARD_TO_CARD_TRANSFER
+      - CARD_HOLDER_CREATION
+      - CARD_HOLDER_UPDATION
+      - CARD_HOLDER_DELETION
+      - CARD_PROGRAM_CREATION
+      - WALLET_RULE_GROUP_CREATION
+      - WALLET_RULE_GROUP_DELETION
+      - FUNDS_TRANSFER
+      - RAISE_FUNDING_SOURCE
+      - RULE_GROUP_CREATION
+      - RULE_GROUP_UPDATION
+      - RULE_GROUP_DELETION
+      - TRANSACTION
+      - TRANSACTION_ENRICHMENT
+      - FEES_APPLY
   securitySchemes:
     bearerAuth:
       type: http
