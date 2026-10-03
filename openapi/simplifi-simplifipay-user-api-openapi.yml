@@ -579,6 +579,94 @@ components:
       - userUuid
       - documentType
       - documentContext
+    AddressModel:
+      type: object
+      properties:
+        addressType:
+          type: string
+          description: This field contains the address type. `PRIMARY` address is set during user creation.
+          enum:
+          - PRIMARY
+          - DELIVERY
+          examples:
+          - PRIMARY
+        streetAddress:
+          type: string
+          description: This field contains the street address of the user.
+        address2:
+          type: string
+          description: This field contains the second line of address of the user.
+        cityCode:
+          type: string
+          description: This field contains the city name of the user.
+        stateCode:
+          type: string
+          description: This field contains the state name of the user.
+        countryCode:
+          type: string
+          description: This field contains the country code of the user.
+        postalCode:
+          type: string
+          description: This field contains the postal code of the user.
+      required:
+      - addressType
+      - countryCode
+    ContactModel:
+      type: object
+      properties:
+        contactType:
+          type: string
+          description: This field contains the contact type
+          enum:
+          - PHONE
+          - WHATSAPP
+          - EMAIL
+          examples:
+          - EMAIL
+        contactValue:
+          type: string
+          description: This field contains the contact value of the user.
+          examples:
+          - +971123456789, john.smit@simplifipay.com
+      required:
+      - contactType
+      - contactValue
+    AddressRequestModel:
+      type: object
+      properties:
+        streetAddress:
+          type: string
+          description: This field contains the street address of the user.
+          examples:
+          - Dubai
+        address2:
+          type: string
+          description: This field contains the second line of address of the user.
+        cityCode:
+          type: string
+          description: This field contains the city name of the user.
+          examples:
+          - Dubai
+        stateCode:
+          type: string
+          description: This field contains the state name of the user.
+          examples:
+          - DXB
+        countryCode:
+          type: string
+          description: This field contains the country code of the user.
+          examples:
+          - UAE
+        postalCode:
+          type: string
+          description: This field contains the postal code of the user.
+          examples:
+          - 0
+      required:
+      - streetAddress
+      - cityCode
+      - stateCode
+      - countryCode
     UserRequestModel:
       type: object
       properties:
@@ -629,38 +717,6 @@ components:
       - userDetail
       - address
       - contacts
-    AddressModel:
-      type: object
-      properties:
-        addressType:
-          type: string
-          description: This field contains the address type. `PRIMARY` address is set during user creation.
-          enum:
-          - PRIMARY
-          - DELIVERY
-          examples:
-          - PRIMARY
-        streetAddress:
-          type: string
-          description: This field contains the street address of the user.
-        address2:
-          type: string
-          description: This field contains the second line of address of the user.
-        cityCode:
-          type: string
-          description: This field contains the city name of the user.
-        stateCode:
-          type: string
-          description: This field contains the state name of the user.
-        countryCode:
-          type: string
-          description: This field contains the country code of the user.
-        postalCode:
-          type: string
-          description: This field contains the postal code of the user.
-      required:
-      - addressType
-      - countryCode
     ErrorModel:
       type: object
       properties:
@@ -674,95 +730,6 @@ components:
           description: A brief message defining the error
           examples:
           - General Error
-    UserDetailModel:
-      type: object
-      properties:
-        cardProgramUuid:
-          type: string
-          description: This field contains a unique identifier of the card program.
-          examples:
-          - a0f07d6c-d6e8-4bda-9dcc-f64fb3a720f6
-        dob:
-          type: string
-          format: date-time
-          description: This field contains the Date of Birth of the user.
-          examples:
-          - '2025-02-28 13:31:00'
-        roleName:
-          type: string
-          description: This field contains a unique identifier showing the role of the user such as `CUSTOMER`
-          enum:
-          - CUSTOMER
-          - CLIENT_ADMIN
-          - SUPPORT_SPECIALIST
-          - OPS_MANAGER
-          examples:
-          - CUSTOMER
-        position:
-          type: string
-          description: This field contains the position (designation) of the user such as `Employee`
-          examples:
-          - Employee
-      required:
-      - cardProgramUuid
-      - dob
-      - roleName
-    AddressRequestModel:
-      type: object
-      properties:
-        streetAddress:
-          type: string
-          description: This field contains the street address of the user.
-          examples:
-          - Dubai
-        address2:
-          type: string
-          description: This field contains the second line of address of the user.
-        cityCode:
-          type: string
-          description: This field contains the city name of the user.
-          examples:
-          - Dubai
-        stateCode:
-          type: string
-          description: This field contains the state name of the user.
-          examples:
-          - DXB
-        countryCode:
-          type: string
-          description: This field contains the country code of the user.
-          examples:
-          - UAE
-        postalCode:
-          type: string
-          description: This field contains the postal code of the user.
-          examples:
-          - 0
-      required:
-      - streetAddress
-      - cityCode
-      - stateCode
-      - countryCode
-    ContactModel:
-      type: object
-      properties:
-        contactType:
-          type: string
-          description: This field contains the contact type
-          enum:
-          - PHONE
-          - WHATSAPP
-          - EMAIL
-          examples:
-          - EMAIL
-        contactValue:
-          type: string
-          description: This field contains the contact value of the user.
-          examples:
-          - +971123456789, john.smit@simplifipay.com
-      required:
-      - contactType
-      - contactValue
     UserModel:
       type: object
       properties:
@@ -847,6 +814,39 @@ components:
       - userDetail
       - address
       - contacts
+    UserDetailModel:
+      type: object
+      properties:
+        cardProgramUuid:
+          type: string
+          description: This field contains a unique identifier of the card program.
+          examples:
+          - a0f07d6c-d6e8-4bda-9dcc-f64fb3a720f6
+        dob:
+          type: string
+          format: date-time
+          description: This field contains the Date of Birth of the user.
+          examples:
+          - '2025-02-28 13:31:00'
+        roleName:
+          type: string
+          description: This field contains a unique identifier showing the role of the user such as `CUSTOMER`
+          enum:
+          - CUSTOMER
+          - CLIENT_ADMIN
+          - SUPPORT_SPECIALIST
+          - OPS_MANAGER
+          examples:
+          - CUSTOMER
+        position:
+          type: string
+          description: This field contains the position (designation) of the user such as `Employee`
+          examples:
+          - Employee
+      required:
+      - cardProgramUuid
+      - dob
+      - roleName
   securitySchemes:
     bearerAuth:
       type: http

@@ -340,111 +340,28 @@ paths:
       operationId: applyFeeAgainstCardUuidPresentInQueue
 components:
   schemas:
-    ApplyFeesOnCardRequest:
-      type: object
-      properties:
-        feeApplicationUuids:
-          type: array
-          description: This field contains the unique uuid of fee application event.
-          items:
-            type: string
-      required:
-      - feeApplicationUuids
-    FeeConfigurationBaseModel:
-      type: object
-      properties:
-        feeOperationType:
-          type: string
-          description: This field contains the operation type for which we want to setup fees
-          enum:
-          - PRIMARY_VIRTUAL_CARD_ISSUANCE
-          - PRIMARY_VIRTUAL_CARD_RENEWAL
-          - SECONDARY_CARD_ISSUANCE
-          - SECONDARY_CARD_RENEWAL
-          - PHYSICAL_CARD_ISSUANCE
-          - PHYSICAL_CARD_RENEWAL
-          - ATM_WITHDRAWAL
-          - SUBSCRIPTION_FEE
-          - DELIVERY_CHARGE
-          examples:
-          - ATM_WITHDRAWAL
-        feeStatusType:
-          type: string
-          description: This field contains the status of the fee configuration
-          enum:
-          - ACTIVE
-          - INACTIVE
-          examples:
-          - ACTIVE
-        capAmount:
-          type: number
-          format: decimal
-          description: Maximum amount to charge
-          examples:
-          - '75.0'
-        currency:
-          type: string
-          description: This field tells the currency of on which fees will be detected
-          examples:
-          - USD
-        description:
-          type: string
-          description: This field contains the description of the fee
-          examples:
-          - ATM Withdrawal Fee
-      required:
-      - feeOperationType
-      - currency
-    FeeAmountConfigResponseModel:
-      allOf:
-      - $ref: '#/components/schemas/FeeConfigurationBaseModel'
-      - type: object
-        properties:
-          feeAmountUuid:
-            type: string
-            description: This is a system-generated unique identifier of the fee amount configuration.
-            examples:
-            - 1c173742-98d2-4e26-97df-6ac5acae5fc3
-        required:
-        - feeAmountUuid
-    ErrorModel:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: A 5-7 digit number defining the error
-          examples:
-          - '99997'
-        message:
-          type: string
-          description: A brief message defining the error
-          examples:
-          - General Error
-    FeesSetupResponseModel:
+    FeesSetupRequestModel:
       allOf:
       - $ref: '#/components/schemas/FeesSetupBaseModel'
       - type: object
         properties:
           fees:
             type: array
+            description: This array of objects contains fees setup configuration with respect to fee operation type
             items:
-              $ref: '#/components/schemas/FeeConfigurationResponseModel'
-    FeeConfigurationResponseModel:
+              $ref: '#/components/schemas/FeeConfigurationRequestModel'
+        required:
+        - fees
+    FeeConfigurationRequestModel:
       allOf:
       - $ref: '#/components/schemas/FeeConfigurationBaseModel'
       - type: object
         properties:
-          feesUuid:
-            type: string
-            description: This is a system-generated unique identifier of the fee configuration.
-            examples:
-            - e00507d5-f5a0-4951-9037-2b15ab852c88
           feeAmounts:
             type: array
             items:
-              $ref: '#/components/schemas/FeeAmountConfigResponseModel'
+              $ref: '#/components/schemas/FeeAmountConfigRequestModel'
         required:
-        - feesUuid
         - feeAmounts
     FeeAmountConfigRequestModel:
       type: object
@@ -477,17 +394,6 @@ components:
       required:
       - feesDetectType
       - feeAmount
-    FeeConfigurationRequestModel:
-      allOf:
-      - $ref: '#/components/schemas/FeeConfigurationBaseModel'
-      - type: object
-        properties:
-          feeAmounts:
-            type: array
-            items:
-              $ref: '#/components/schemas/FeeAmountConfigRequestModel'
-        required:
-        - feeAmounts
     FeeApplicationEventResponse:
       type: object
       properties:
@@ -558,10 +464,57 @@ components:
       - feeAmount
       - currency
       - feesDetectType
-    FeesStatusUpdateModel:
+    FeesApplicationCardRequest:
       type: object
       properties:
-        status:
+        feeConfigUuid:
+          type: string
+          description: This field contains the unique uuid of fees configuration.
+          examples:
+          - b767416b-e6d6-4e09-b741-daa211b4c60c
+      required:
+      - feeConfigUuid
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
+    FeesSetupResponseModel:
+      allOf:
+      - $ref: '#/components/schemas/FeesSetupBaseModel'
+      - type: object
+        properties:
+          fees:
+            type: array
+            items:
+              $ref: '#/components/schemas/FeeConfigurationResponseModel'
+    FeeConfigurationBaseModel:
+      type: object
+      properties:
+        feeOperationType:
+          type: string
+          description: This field contains the operation type for which we want to setup fees
+          enum:
+          - PRIMARY_VIRTUAL_CARD_ISSUANCE
+          - PRIMARY_VIRTUAL_CARD_RENEWAL
+          - SECONDARY_CARD_ISSUANCE
+          - SECONDARY_CARD_RENEWAL
+          - PHYSICAL_CARD_ISSUANCE
+          - PHYSICAL_CARD_RENEWAL
+          - ATM_WITHDRAWAL
+          - SUBSCRIPTION_FEE
+          - DELIVERY_CHARGE
+          examples:
+          - ATM_WITHDRAWAL
+        feeStatusType:
           type: string
           description: This field contains the status of the fee configuration
           enum:
@@ -569,8 +522,64 @@ components:
           - INACTIVE
           examples:
           - ACTIVE
+        capAmount:
+          type: number
+          format: decimal
+          description: Maximum amount to charge
+          examples:
+          - '75.0'
+        currency:
+          type: string
+          description: This field tells the currency of on which fees will be detected
+          examples:
+          - USD
+        description:
+          type: string
+          description: This field contains the description of the fee
+          examples:
+          - ATM Withdrawal Fee
       required:
-      - status
+      - feeOperationType
+      - currency
+    FeeAmountConfigResponseModel:
+      allOf:
+      - $ref: '#/components/schemas/FeeConfigurationBaseModel'
+      - type: object
+        properties:
+          feeAmountUuid:
+            type: string
+            description: This is a system-generated unique identifier of the fee amount configuration.
+            examples:
+            - 1c173742-98d2-4e26-97df-6ac5acae5fc3
+        required:
+        - feeAmountUuid
+    FeeConfigurationResponseModel:
+      allOf:
+      - $ref: '#/components/schemas/FeeConfigurationBaseModel'
+      - type: object
+        properties:
+          feesUuid:
+            type: string
+            description: This is a system-generated unique identifier of the fee configuration.
+            examples:
+            - e00507d5-f5a0-4951-9037-2b15ab852c88
+          feeAmounts:
+            type: array
+            items:
+              $ref: '#/components/schemas/FeeAmountConfigResponseModel'
+        required:
+        - feesUuid
+        - feeAmounts
+    ApplyFeesOnCardRequest:
+      type: object
+      properties:
+        feeApplicationUuids:
+          type: array
+          description: This field contains the unique uuid of fee application event.
+          items:
+            type: string
+      required:
+      - feeApplicationUuids
     FeesSetupBaseModel:
       type: object
       properties:
@@ -591,28 +600,19 @@ components:
       required:
       - entityType
       - entityUuid
-    FeesSetupRequestModel:
-      allOf:
-      - $ref: '#/components/schemas/FeesSetupBaseModel'
-      - type: object
-        properties:
-          fees:
-            type: array
-            description: This array of objects contains fees setup configuration with respect to fee operation type
-            items:
-              $ref: '#/components/schemas/FeeConfigurationRequestModel'
-        required:
-        - fees
-    FeesApplicationCardRequest:
+    FeesStatusUpdateModel:
       type: object
       properties:
-        feeConfigUuid:
+        status:
           type: string
-          description: This field contains the unique uuid of fees configuration.
+          description: This field contains the status of the fee configuration
+          enum:
+          - ACTIVE
+          - INACTIVE
           examples:
-          - b767416b-e6d6-4e09-b741-daa211b4c60c
+          - ACTIVE
       required:
-      - feeConfigUuid
+      - status
   securitySchemes:
     bearerAuth:
       type: http

@@ -1208,15 +1208,58 @@ paths:
       operationId: removeRuleGroupOnCard
 components:
   schemas:
-    InstrumentType:
-      type: string
-      description: This field specifies the type of card that is being issued.
-      enum:
-      - VIRTUAL
-      - PHYSICAL
-      - VIRTUAL_AND_PHYSICAL
-      examples:
-      - VIRTUAL
+    CardRequestModel:
+      type: object
+      properties:
+        userUuid:
+          type: string
+          description: 'This is a system-generated unique identifier of the user
+
+            that was created using the Create User API.'
+          examples:
+          - f5ba1741-983f-4f51-8375-701461c5bacc
+        cardProgramUuid:
+          type: string
+          description: 'This is a system-generated unique identifier of the card program
+
+            that was created using the Create Card Program API.
+
+            If no cardProgramUuid is provided, then the default card program of the user will be used.'
+          examples:
+          - 56db03b7-29ef-46e3-82ad-68b94abb051f
+        customerTitle:
+          type: string
+          description: 'This is a specific name for the user to be displayed on the card in addition
+
+            to the cardholder name. This field adds another layer of individuality and exclusivity
+
+            for the user. Also known as 4th line embossing.'
+          examples:
+          - Founding Member
+        instrument:
+          $ref: '#/components/schemas/InstrumentType'
+      required:
+      - userUuid
+      - instrument
+    RuleGroupMerchantRules:
+      type: object
+      description: Allow or deny merchant category codes.
+      properties:
+        allow:
+          type: boolean
+          examples:
+          - 'true'
+        mcc:
+          type: array
+          items:
+            type: string
+        mccException:
+          type: array
+          items:
+            type: string
+      required:
+      - allow
+      - mcc
     ErrorModel:
       type: object
       properties:
@@ -1230,19 +1273,50 @@ components:
           description: A brief message defining the error
           examples:
           - General Error
-    RuleGroupResponseModel:
+    TransactionIdParameter:
+      type: string
+      description: This is an identifier of the transaction.
+      examples:
+      - '6712309'
+    RuleGroupSpendRestrictions:
       type: object
+      description: Details of card spend-related restrictions.
       properties:
-        ruleGroup:
-          $ref: '#/components/schemas/RuleGroupModel'
-        enabled:
-          type: boolean
-          description: This field tells whether the `ruleGroup` is enabled or not
+        setLimitPerTxn:
+          type: number
+          format: decimal
           examples:
-          - 'true'
-      required:
-      - ruleGroup
-      - enabled
+          - 123.45
+        velocityDailyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 3.45
+        velocityWeeklyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 23.45
+        velocityMonthlyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 123.45
+        txnCountDaily:
+          type: number
+          format: int32
+          examples:
+          - 3
+        txnCountWeekly:
+          type: number
+          format: int32
+          examples:
+          - 5
+        txnCountMonthly:
+          type: number
+          format: int32
+          examples:
+          - 10
     RuleGroupModel:
       type: object
       properties:
@@ -1271,6 +1345,26 @@ components:
           $ref: '#/components/schemas/RuleGroupSpendRestrictions'
       required:
       - name
+    MaskedPanParameter:
+      type: string
+      description: 'This field contains the partially hidden Primary Account Number
+
+        i.e. all digits are masked, except for the last four ones.'
+      examples:
+      - '**********1234'
+    RuleGroupResponseModel:
+      type: object
+      properties:
+        ruleGroup:
+          $ref: '#/components/schemas/RuleGroupModel'
+        enabled:
+          type: boolean
+          description: This field tells whether the `ruleGroup` is enabled or not
+          examples:
+          - 'true'
+      required:
+      - ruleGroup
+      - enabled
     CardStatusModel:
       type: object
       properties:
@@ -1317,64 +1411,24 @@ components:
       - EXPIRED
       examples:
       - ISSUED
-    CardAmountModel:
+    CardRenewalModel:
       type: object
       properties:
-        requestedAmount:
-          type: number
-          format: decimal
-          description: This field contains the amount that has been requested to be loaded onto a card.
-          examples:
-          - '100.00'
-        comments:
+        originalCardUuid:
           type: string
-          description: Comments related to the load request
+          description: This is a system-generated unique identifier of the card being renewed.
+        renewedCardUuid:
+          type: string
+          description: 'This is a system-generated unique identifier of the renewed card
+
+            that is issued in place of the original card.'
       required:
-      - requestedAmount
-    RuleGroupLoadRestrictions:
-      type: object
-      description: Details of card load-related restrictions.
-      properties:
-        minimumLoad:
-          type: number
-          format: decimal
-          examples:
-          - 1.5
-        maximumLoad:
-          type: number
-          format: decimal
-          examples:
-          - 123.45
-        loadCountDailyLimit:
-          type: number
-          format: int32
-          examples:
-          - 3
-        loadCountWeeklyLimit:
-          type: number
-          format: int32
-          examples:
-          - 5
-        loadCountMonthlyLimit:
-          type: number
-          format: int32
-          examples:
-          - 10
-        loadDailyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 123.45
-        loadWeeklyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 523.45
-        loadMonthlyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 1023.45
+      - originalCardUuid
+      - renewedCardUuid
+      x--orders:
+      - originalCardUuid
+      - renewedCardUuid
+      x--ignore-properties: []
     CardStatementResponse:
       type: object
       properties:
@@ -1466,89 +1520,20 @@ components:
       - blockedAmount
       - totals
       - transactions
-    RuleGroupMerchantRules:
-      type: object
-      description: Allow or deny merchant category codes.
-      properties:
-        allow:
-          type: boolean
-          examples:
-          - 'true'
-        mcc:
-          type: array
-          items:
-            type: string
-        mccException:
-          type: array
-          items:
-            type: string
-      required:
-      - allow
-      - mcc
-    RuleGroupSpendRestrictions:
-      type: object
-      description: Details of card spend-related restrictions.
-      properties:
-        setLimitPerTxn:
-          type: number
-          format: decimal
-          examples:
-          - 123.45
-        velocityDailyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 3.45
-        velocityWeeklyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 23.45
-        velocityMonthlyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 123.45
-        txnCountDaily:
-          type: number
-          format: int32
-          examples:
-          - 3
-        txnCountWeekly:
-          type: number
-          format: int32
-          examples:
-          - 5
-        txnCountMonthly:
-          type: number
-          format: int32
-          examples:
-          - 10
+    InstrumentType:
+      type: string
+      description: This field specifies the type of card that is being issued.
+      enum:
+      - VIRTUAL
+      - PHYSICAL
+      - VIRTUAL_AND_PHYSICAL
+      examples:
+      - VIRTUAL
     TransactionUuidParameter:
       type: string
       description: This is a unique identifier of the transaction.
       examples:
       - f0888e10-43e3-4686-9c79-256633d79559
-    RuleGroupTransactionRestrictions:
-      type: object
-      description: Details of transaction-related restrictions.
-      properties:
-        merchantRules:
-          $ref: '#/components/schemas/RuleGroupMerchantRules'
-      required:
-      - merchantRules
-    MaskedPanParameter:
-      type: string
-      description: 'This field contains the partially hidden Primary Account Number
-
-        i.e. all digits are masked, except for the last four ones.'
-      examples:
-      - '**********1234'
-    TransactionIdParameter:
-      type: string
-      description: This is an identifier of the transaction.
-      examples:
-      - '6712309'
     AmountModel:
       type: object
       properties:
@@ -1565,24 +1550,14 @@ components:
           - AED
       required:
       - amount
-    CardRenewalModel:
+    RuleGroupTransactionRestrictions:
       type: object
+      description: Details of transaction-related restrictions.
       properties:
-        originalCardUuid:
-          type: string
-          description: This is a system-generated unique identifier of the card being renewed.
-        renewedCardUuid:
-          type: string
-          description: 'This is a system-generated unique identifier of the renewed card
-
-            that is issued in place of the original card.'
+        merchantRules:
+          $ref: '#/components/schemas/RuleGroupMerchantRules'
       required:
-      - originalCardUuid
-      - renewedCardUuid
-      x--orders:
-      - originalCardUuid
-      - renewedCardUuid
-      x--ignore-properties: []
+      - merchantRules
     TransactionResponseDetails:
       type: object
       properties:
@@ -1806,39 +1781,64 @@ components:
       - maskedPan
       - cardMode
       - currency
-    CardRequestModel:
+    CardAmountModel:
       type: object
       properties:
-        userUuid:
-          type: string
-          description: 'This is a system-generated unique identifier of the user
-
-            that was created using the Create User API.'
+        requestedAmount:
+          type: number
+          format: decimal
+          description: This field contains the amount that has been requested to be loaded onto a card.
           examples:
-          - f5ba1741-983f-4f51-8375-701461c5bacc
-        cardProgramUuid:
+          - '100.00'
+        comments:
           type: string
-          description: 'This is a system-generated unique identifier of the card program
-
-            that was created using the Create Card Program API.
-
-            If no cardProgramUuid is provided, then the default card program of the user will be used.'
-          examples:
-          - 56db03b7-29ef-46e3-82ad-68b94abb051f
-        customerTitle:
-          type: string
-          description: 'This is a specific name for the user to be displayed on the card in addition
-
-            to the cardholder name. This field adds another layer of individuality and exclusivity
-
-            for the user. Also known as 4th line embossing.'
-          examples:
-          - Founding Member
-        instrument:
-          $ref: '#/components/schemas/InstrumentType'
+          description: Comments related to the load request
       required:
-      - userUuid
-      - instrument
+      - requestedAmount
+    RuleGroupLoadRestrictions:
+      type: object
+      description: Details of card load-related restrictions.
+      properties:
+        minimumLoad:
+          type: number
+          format: decimal
+          examples:
+          - 1.5
+        maximumLoad:
+          type: number
+          format: decimal
+          examples:
+          - 123.45
+        loadCountDailyLimit:
+          type: number
+          format: int32
+          examples:
+          - 3
+        loadCountWeeklyLimit:
+          type: number
+          format: int32
+          examples:
+          - 5
+        loadCountMonthlyLimit:
+          type: number
+          format: int32
+          examples:
+          - 10
+        loadDailyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 123.45
+        loadWeeklyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 523.45
+        loadMonthlyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 1023.45
   securitySchemes:
     bearerAuth:
       type: http

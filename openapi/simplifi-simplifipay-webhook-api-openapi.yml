@@ -327,31 +327,19 @@ paths:
       operationId: updatesTheStatusOfWebhook
 components:
   schemas:
-    WebhookRequestModel:
+    ErrorModel:
       type: object
       properties:
-        name:
-          type: string
-          description: A name to uniquely identify the webhook.
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
           examples:
-          - Card Status Change
-        eventType:
-          $ref: '#/components/schemas/WebhookEventType'
-        endpointUrl:
+          - '99997'
+        message:
           type: string
-          description: The endpoint URL hosted by you where webhooks will be sent.
+          description: A brief message defining the error
           examples:
-          - https://webhook.simplifipay.com
-        extra:
-          type: object
-          description: A key-value pair of any extra header to be sent when calling the `endpoitnUrl`.
-          additionalProperties:
-            type: string
-          properties: {}
-      required:
-      - name
-      - eventType
-      - endpointUrl
+          - General Error
     WebhookResponseModel:
       type: object
       properties:
@@ -398,6 +386,31 @@ components:
       - endpointUrl
       - creationDate
       - lastModified
+    WebhookRequestModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name to uniquely identify the webhook.
+          examples:
+          - Card Status Change
+        eventType:
+          $ref: '#/components/schemas/WebhookEventType'
+        endpointUrl:
+          type: string
+          description: The endpoint URL hosted by you where webhooks will be sent.
+          examples:
+          - https://webhook.simplifipay.com
+        extra:
+          type: object
+          description: A key-value pair of any extra header to be sent when calling the `endpoitnUrl`.
+          additionalProperties:
+            type: string
+          properties: {}
+      required:
+      - name
+      - eventType
+      - endpointUrl
     WebhookEventModel:
       type: object
       properties:
@@ -405,19 +418,6 @@ components:
           $ref: '#/components/schemas/WebhookEventType'
       required:
       - eventType
-    ErrorModel:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: A 5-7 digit number defining the error
-          examples:
-          - '99997'
-        message:
-          type: string
-          description: A brief message defining the error
-          examples:
-          - General Error
     WebhookEventType:
       type: string
       enum:
