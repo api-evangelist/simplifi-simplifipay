@@ -667,6 +667,20 @@ paths:
       operationId: fundingSourceStatement
 components:
   schemas:
+    CardProgramStatusChangeRequestModel:
+      type: object
+      properties:
+        cardProgramStatus:
+          type: string
+          description: This field specifies the status (ACTIVE, SUSPENDED, INACTIVE) of the Card Program.
+          enum:
+          - ACTIVE
+          - SUSPENDED
+          - INACTIVE
+          examples:
+          - SUSPENDED
+      required:
+      - cardProgramStatus
     StatementResponseDetails:
       type: object
       properties:
@@ -757,6 +771,219 @@ components:
       - fundRequestCategory
       - previousBalance
       - currentBalance
+    RaiseFundingResponseModel:
+      type: object
+      properties:
+        cardProgramUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the program
+
+            that was created using the Create Card Program API.'
+          examples:
+          - c83d26ed-f093-4e43-b81b-35884f068d4b
+        amount:
+          type: number
+          format: decimal
+          description: This field contains the amount that has been requested for fund transfer.
+          examples:
+          - '10000.00'
+        transactionType:
+          type: string
+          description: This field contains the type of the transaction either `CREDIT` or `DEBIT`.
+          enum:
+          - CREDIT
+          - DEBIT
+          examples:
+          - CREDIT
+        status:
+          type: string
+          description: This field contains the status of the Raise Funding
+          enum:
+          - PENDING
+          - ACKNOWLEDGED
+          - APPROVED
+          - NOT_APPROVED
+          - REJECTED
+          examples:
+          - PENDING
+      required:
+      - cardProgramUuid
+      - amount
+      - transactionType
+      - status
+    FileUploadModel:
+      type: object
+      properties:
+        cardProgramUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the program
+
+            that was created using the Create Card Program API.'
+          examples:
+          - 22b52244-fb76-4ae7-be85-ecafba89e5ca
+        amount:
+          type: number
+          description: This field contains the amount that has been requested for fund transfer.
+          examples:
+          - '10000.00'
+        fundRequestType:
+          type: string
+          description: This field contains the type for fund request.
+          enum:
+          - LOAD
+          - UNLOAD
+          examples:
+          - LOAD
+        documentUploadUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the document
+
+            that was uploaded'
+          examples:
+          - e95a7a97-5889-4001-8c40-ed79a8ab6ae9
+      required:
+      - cardProgramUuid
+      - amount
+      - fundRequestType
+      - documentUploadUuid
+    FundingSourceResponseModel:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: This is a system-generated unique identifier for the funding source that was created.
+          examples:
+          - 84caba0c-275a-474c-b6f6-567a6a76b636
+        cardProgramUuid:
+          type: string
+          description: 'This field contains the system generated unique identifier for the program
+
+            that was created using the Create Card Program API.'
+          examples:
+          - e283c96c-01e6-4afb-9b38-b4d2622e0a57
+        fundingSource:
+          type: string
+          description: This field contains a token that identifies the funding source that is to be linked with the card program.
+          examples:
+          - '1234567'
+        currency:
+          type: string
+          description: Currency of card program.
+          examples:
+          - USD
+      required:
+      - uuid
+      - cardProgramUuid
+      - fundingSource
+      - currency
+    TransactionIdParameter:
+      type: string
+      description: This is an identifier of the transaction.
+      examples:
+      - '6712309'
+    StatementResponse:
+      type: object
+      properties:
+        companyName:
+          type: string
+          description: Name of the company.
+          examples:
+          - SimpliFi
+        statementDate:
+          type: string
+          format: date
+          description: The date on which the statement is created.
+          examples:
+          - '2025-02-28'
+        accountId:
+          type: string
+          description: The account ID of wallet.
+          examples:
+          - '885180123'
+        currency:
+          type: string
+          description: The currency in which the amounts are transacted.
+          examples:
+          - USD
+        startDate:
+          type: string
+          format: date-time
+          description: The start date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        endDate:
+          type: string
+          format: date-time
+          description: The end date of the date range.
+          examples:
+          - '2025-02-28 13:31:00'
+        openingBalance:
+          type: number
+          format: decimal
+          description: The opening balance on the account from the start date of the date range.
+          examples:
+          - '6.95'
+        closingBalance:
+          type: number
+          format: decimal
+          description: The closing balance on the account till the end date of the date range.
+          examples:
+          - '6.95'
+        transactions:
+          type: array
+          description: The array of transactions.
+          items:
+            $ref: '#/components/schemas/StatementResponseDetails'
+      required:
+      - companyName
+      - statementDate
+      - accountId
+      - currency
+      - startDate
+      - endDate
+      - openingBalance
+      - closingBalance
+      - transactions
+    FundingSourceBalanceModel:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: decimal
+          description: Amount to be transferred.
+          examples:
+          - '100.50'
+        currency:
+          type: string
+          description: This field contains the balance amount of the funding source.
+          examples:
+          - AED
+      required:
+      - amount
+      - currency
+    CardProgramTransferFundsModel:
+      type: object
+      properties:
+        sourceCardProgramUuid:
+          type: string
+          description: Source Card program UUID from where funds is being transferred from.
+          examples:
+          - 381ad98a-16bd-4de1-9fe3-b30683ece550
+        destCardProgramUuid:
+          type: string
+          description: Destination Card program UUID from where funds is being transferred to.
+          examples:
+          - b9166cc8-cb84-4dd4-a728-56e2860ddf1a
+        amount:
+          type: number
+          format: decimal
+          description: Amount to be transferred.
+          examples:
+          - '100.50'
+      required:
+      - sourceCardProgramUuid
+      - destCardProgramUuid
+      - amount
     CardProgramResponseModel:
       type: object
       properties:
@@ -837,65 +1064,6 @@ components:
       - companyUuid
       - cardProgramStatus
       - cardProgramTemplateUuid
-    RaiseFundingRequestModel:
-      type: object
-      properties:
-        cardProgramUuid:
-          type: string
-          description: 'This field contains the system generated unique identifier for the program
-
-            that was created using the Create Card Program API.'
-          examples:
-          - c83d26ed-f093-4e43-b81b-35884f068d4b
-        amount:
-          type: number
-          format: decimal
-          description: This field contains the amount that has been requested for fund transfer.
-          examples:
-          - '10000.00'
-        transactionType:
-          type: string
-          description: This field contains the type of the transaction either `CREDIT` or `DEBIT`.
-          enum:
-          - CREDIT
-          - DEBIT
-          examples:
-          - CREDIT
-        documentUploadUuid:
-          type: string
-          description: 'This field contains the system generated unique identifier for the document
-
-            that was uploaded'
-          examples:
-          - e95a7a97-5889-4001-8c40-ed79a8ab6ae9
-      required:
-      - cardProgramUuid
-      - amount
-      - transactionType
-      - documentUploadUuid
-    CardProgramTransferFundsModel:
-      type: object
-      properties:
-        sourceCardProgramUuid:
-          type: string
-          description: Source Card program UUID from where funds is being transferred from.
-          examples:
-          - 381ad98a-16bd-4de1-9fe3-b30683ece550
-        destCardProgramUuid:
-          type: string
-          description: Destination Card program UUID from where funds is being transferred to.
-          examples:
-          - b9166cc8-cb84-4dd4-a728-56e2860ddf1a
-        amount:
-          type: number
-          format: decimal
-          description: Amount to be transferred.
-          examples:
-          - '100.50'
-      required:
-      - sourceCardProgramUuid
-      - destCardProgramUuid
-      - amount
     CardPoi:
       type: object
       description: 'This object is a collection of Point of Interest configuration fields showing where the card
@@ -932,83 +1100,21 @@ components:
             The allowed values are `true` and `false`.'
           examples:
           - 'true'
-    StatementResponse:
+    FundingSourceRequestModel:
       type: object
       properties:
-        companyName:
+        fundingSource:
           type: string
-          description: Name of the company.
+          description: 'This field contains a token that identifies the funding source that is to be linked with
+
+            the card program. This information will be shared separately. If you don’t have them
+
+            already, click on [this link](https://simplifipay.com/).'
           examples:
-          - SimpliFi
-        statementDate:
-          type: string
-          format: date
-          description: The date on which the statement is created.
-          examples:
-          - '2025-02-28'
-        accountId:
-          type: string
-          description: The account ID of wallet.
-          examples:
-          - '885180123'
-        currency:
-          type: string
-          description: The currency in which the amounts are transacted.
-          examples:
-          - USD
-        startDate:
-          type: string
-          format: date-time
-          description: The start date of the date range.
-          examples:
-          - '2025-02-28 13:31:00'
-        endDate:
-          type: string
-          format: date-time
-          description: The end date of the date range.
-          examples:
-          - '2025-02-28 13:31:00'
-        openingBalance:
-          type: number
-          format: decimal
-          description: The opening balance on the account from the start date of the date range.
-          examples:
-          - '6.95'
-        closingBalance:
-          type: number
-          format: decimal
-          description: The closing balance on the account till the end date of the date range.
-          examples:
-          - '6.95'
-        transactions:
-          type: array
-          description: The array of transactions.
-          items:
-            $ref: '#/components/schemas/StatementResponseDetails'
+          - '1234567'
       required:
-      - companyName
-      - statementDate
-      - accountId
-      - currency
-      - startDate
-      - endDate
-      - openingBalance
-      - closingBalance
-      - transactions
-    ErrorModel:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: A 5-7 digit number defining the error
-          examples:
-          - '99997'
-        message:
-          type: string
-          description: A brief message defining the error
-          examples:
-          - General Error
-    FileUploadModel:
+      - fundingSource
+    RaiseFundingRequestModel:
       type: object
       properties:
         cardProgramUuid:
@@ -1017,20 +1123,21 @@ components:
 
             that was created using the Create Card Program API.'
           examples:
-          - 22b52244-fb76-4ae7-be85-ecafba89e5ca
+          - c83d26ed-f093-4e43-b81b-35884f068d4b
         amount:
           type: number
+          format: decimal
           description: This field contains the amount that has been requested for fund transfer.
           examples:
           - '10000.00'
-        fundRequestType:
+        transactionType:
           type: string
-          description: This field contains the type for fund request.
+          description: This field contains the type of the transaction either `CREDIT` or `DEBIT`.
           enum:
-          - LOAD
-          - UNLOAD
+          - CREDIT
+          - DEBIT
           examples:
-          - LOAD
+          - CREDIT
         documentUploadUuid:
           type: string
           description: 'This field contains the system generated unique identifier for the document
@@ -1041,7 +1148,7 @@ components:
       required:
       - cardProgramUuid
       - amount
-      - fundRequestType
+      - transactionType
       - documentUploadUuid
     CardProgramRequestModel:
       type: object
@@ -1080,69 +1187,19 @@ components:
       required:
       - name
       - cardProgramTemplateUuid
-    FundingSourceRequestModel:
+    ErrorModel:
       type: object
       properties:
-        fundingSource:
-          type: string
-          description: 'This field contains a token that identifies the funding source that is to be linked with
-
-            the card program. This information will be shared separately. If you don’t have them
-
-            already, click on [this link](https://simplifipay.com/).'
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
           examples:
-          - '1234567'
-      required:
-      - fundingSource
-    TransactionIdParameter:
-      type: string
-      description: This is an identifier of the transaction.
-      examples:
-      - '6712309'
-    FundingSourceResponseModel:
-      type: object
-      properties:
-        uuid:
+          - '99997'
+        message:
           type: string
-          description: This is a system-generated unique identifier for the funding source that was created.
+          description: A brief message defining the error
           examples:
-          - 84caba0c-275a-474c-b6f6-567a6a76b636
-        cardProgramUuid:
-          type: string
-          description: 'This field contains the system generated unique identifier for the program
-
-            that was created using the Create Card Program API.'
-          examples:
-          - e283c96c-01e6-4afb-9b38-b4d2622e0a57
-        fundingSource:
-          type: string
-          description: This field contains a token that identifies the funding source that is to be linked with the card program.
-          examples:
-          - '1234567'
-        currency:
-          type: string
-          description: Currency of card program.
-          examples:
-          - USD
-      required:
-      - uuid
-      - cardProgramUuid
-      - fundingSource
-      - currency
-    CardProgramStatusChangeRequestModel:
-      type: object
-      properties:
-        cardProgramStatus:
-          type: string
-          description: This field specifies the status (ACTIVE, SUSPENDED, INACTIVE) of the Card Program.
-          enum:
-          - ACTIVE
-          - SUSPENDED
-          - INACTIVE
-          examples:
-          - SUSPENDED
-      required:
-      - cardProgramStatus
+          - General Error
     CardConfigModel:
       type: object
       description: 'This object is a collection of configuration fields including both Point of Interest and Velocity
@@ -1153,63 +1210,6 @@ components:
           $ref: '#/components/schemas/CardPoi'
       required:
       - poi
-    FundingSourceBalanceModel:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: decimal
-          description: Amount to be transferred.
-          examples:
-          - '100.50'
-        currency:
-          type: string
-          description: This field contains the balance amount of the funding source.
-          examples:
-          - AED
-      required:
-      - amount
-      - currency
-    RaiseFundingResponseModel:
-      type: object
-      properties:
-        cardProgramUuid:
-          type: string
-          description: 'This field contains the system generated unique identifier for the program
-
-            that was created using the Create Card Program API.'
-          examples:
-          - c83d26ed-f093-4e43-b81b-35884f068d4b
-        amount:
-          type: number
-          format: decimal
-          description: This field contains the amount that has been requested for fund transfer.
-          examples:
-          - '10000.00'
-        transactionType:
-          type: string
-          description: This field contains the type of the transaction either `CREDIT` or `DEBIT`.
-          enum:
-          - CREDIT
-          - DEBIT
-          examples:
-          - CREDIT
-        status:
-          type: string
-          description: This field contains the status of the Raise Funding
-          enum:
-          - PENDING
-          - ACKNOWLEDGED
-          - APPROVED
-          - NOT_APPROVED
-          - REJECTED
-          examples:
-          - PENDING
-      required:
-      - cardProgramUuid
-      - amount
-      - transactionType
-      - status
   securitySchemes:
     bearerAuth:
       type: http

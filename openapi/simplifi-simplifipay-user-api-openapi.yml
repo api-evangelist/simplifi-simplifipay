@@ -631,105 +631,6 @@ components:
       required:
       - contactType
       - contactValue
-    AddressRequestModel:
-      type: object
-      properties:
-        streetAddress:
-          type: string
-          description: This field contains the street address of the user.
-          examples:
-          - Dubai
-        address2:
-          type: string
-          description: This field contains the second line of address of the user.
-        cityCode:
-          type: string
-          description: This field contains the city name of the user.
-          examples:
-          - Dubai
-        stateCode:
-          type: string
-          description: This field contains the state name of the user.
-          examples:
-          - DXB
-        countryCode:
-          type: string
-          description: This field contains the country code of the user.
-          examples:
-          - UAE
-        postalCode:
-          type: string
-          description: This field contains the postal code of the user.
-          examples:
-          - 0
-      required:
-      - streetAddress
-      - cityCode
-      - stateCode
-      - countryCode
-    UserRequestModel:
-      type: object
-      properties:
-        username:
-          type: string
-          description: This is a unique identifier of the user in the system. We recommend providing a unique name here.
-          examples:
-          - john.smith
-        firstName:
-          type: string
-          description: This is the first name of the user.
-          examples:
-          - John
-        middleName:
-          type: string
-          description: This is the middle name of the user.
-          examples:
-          - M
-        lastName:
-          type: string
-          description: This is the last name of the user.
-          examples:
-          - Smith
-        gender:
-          type: string
-          description: This is the gender of the user.
-          enum:
-          - MALE
-          - FEMALE
-          examples:
-          - MALE
-        userDetail:
-          $ref: '#/components/schemas/UserDetailModel'
-        address:
-          $ref: '#/components/schemas/AddressModel'
-        contacts:
-          type: array
-          description: 'This array of objects is a collection of contact fields,
-
-            possessing sub-fields explained in the rows below.'
-          items:
-            $ref: '#/components/schemas/ContactModel'
-      required:
-      - username
-      - firstName
-      - lastName
-      - gender
-      - userDetail
-      - address
-      - contacts
-    ErrorModel:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: A 5-7 digit number defining the error
-          examples:
-          - '99997'
-        message:
-          type: string
-          description: A brief message defining the error
-          examples:
-          - General Error
     UserModel:
       type: object
       properties:
@@ -847,6 +748,105 @@ components:
       - cardProgramUuid
       - dob
       - roleName
+    UserRequestModel:
+      type: object
+      properties:
+        username:
+          type: string
+          description: This is a unique identifier of the user in the system. We recommend providing a unique name here.
+          examples:
+          - john.smith
+        firstName:
+          type: string
+          description: This is the first name of the user.
+          examples:
+          - John
+        middleName:
+          type: string
+          description: This is the middle name of the user.
+          examples:
+          - M
+        lastName:
+          type: string
+          description: This is the last name of the user.
+          examples:
+          - Smith
+        gender:
+          type: string
+          description: This is the gender of the user.
+          enum:
+          - MALE
+          - FEMALE
+          examples:
+          - MALE
+        userDetail:
+          $ref: '#/components/schemas/UserDetailModel'
+        address:
+          $ref: '#/components/schemas/AddressModel'
+        contacts:
+          type: array
+          description: 'This array of objects is a collection of contact fields,
+
+            possessing sub-fields explained in the rows below.'
+          items:
+            $ref: '#/components/schemas/ContactModel'
+      required:
+      - username
+      - firstName
+      - lastName
+      - gender
+      - userDetail
+      - address
+      - contacts
+    AddressRequestModel:
+      type: object
+      properties:
+        streetAddress:
+          type: string
+          description: This field contains the street address of the user.
+          examples:
+          - Dubai
+        address2:
+          type: string
+          description: This field contains the second line of address of the user.
+        cityCode:
+          type: string
+          description: This field contains the city name of the user.
+          examples:
+          - Dubai
+        stateCode:
+          type: string
+          description: This field contains the state name of the user.
+          examples:
+          - DXB
+        countryCode:
+          type: string
+          description: This field contains the country code of the user.
+          examples:
+          - UAE
+        postalCode:
+          type: string
+          description: This field contains the postal code of the user.
+          examples:
+          - 0
+      required:
+      - streetAddress
+      - cityCode
+      - stateCode
+      - countryCode
+    ErrorModel:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: A 5-7 digit number defining the error
+          examples:
+          - '99997'
+        message:
+          type: string
+          description: A brief message defining the error
+          examples:
+          - General Error
   securitySchemes:
     bearerAuth:
       type: http

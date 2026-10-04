@@ -412,27 +412,45 @@ paths:
       operationId: removeRuleGroupOnFundingAccount
 components:
   schemas:
-    RuleGroupTransactionRestrictions:
+    RuleGroupSpendRestrictions:
       type: object
-      description: Details of transaction-related restrictions.
+      description: Details of card spend-related restrictions.
       properties:
-        merchantRules:
-          $ref: '#/components/schemas/RuleGroupMerchantRules'
-      required:
-      - merchantRules
-    RuleGroupResponseModel:
-      type: object
-      properties:
-        ruleGroup:
-          $ref: '#/components/schemas/RuleGroupModel'
-        enabled:
-          type: boolean
-          description: This field tells whether the `ruleGroup` is enabled or not
+        setLimitPerTxn:
+          type: number
+          format: decimal
           examples:
-          - 'true'
-      required:
-      - ruleGroup
-      - enabled
+          - 123.45
+        velocityDailyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 3.45
+        velocityWeeklyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 23.45
+        velocityMonthlyLimit:
+          type: number
+          format: decimal
+          examples:
+          - 123.45
+        txnCountDaily:
+          type: number
+          format: int32
+          examples:
+          - 3
+        txnCountWeekly:
+          type: number
+          format: int32
+          examples:
+          - 5
+        txnCountMonthly:
+          type: number
+          format: int32
+          examples:
+          - 10
     RuleGroupModel:
       type: object
       properties:
@@ -461,6 +479,27 @@ components:
           $ref: '#/components/schemas/RuleGroupSpendRestrictions'
       required:
       - name
+    RuleGroupResponseModel:
+      type: object
+      properties:
+        ruleGroup:
+          $ref: '#/components/schemas/RuleGroupModel'
+        enabled:
+          type: boolean
+          description: This field tells whether the `ruleGroup` is enabled or not
+          examples:
+          - 'true'
+      required:
+      - ruleGroup
+      - enabled
+    RuleGroupTransactionRestrictions:
+      type: object
+      description: Details of transaction-related restrictions.
+      properties:
+        merchantRules:
+          $ref: '#/components/schemas/RuleGroupMerchantRules'
+      required:
+      - merchantRules
     RuleGroupMerchantRules:
       type: object
       description: Allow or deny merchant category codes.
@@ -537,45 +576,6 @@ components:
           format: decimal
           examples:
           - 1023.45
-    RuleGroupSpendRestrictions:
-      type: object
-      description: Details of card spend-related restrictions.
-      properties:
-        setLimitPerTxn:
-          type: number
-          format: decimal
-          examples:
-          - 123.45
-        velocityDailyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 3.45
-        velocityWeeklyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 23.45
-        velocityMonthlyLimit:
-          type: number
-          format: decimal
-          examples:
-          - 123.45
-        txnCountDaily:
-          type: number
-          format: int32
-          examples:
-          - 3
-        txnCountWeekly:
-          type: number
-          format: int32
-          examples:
-          - 5
-        txnCountMonthly:
-          type: number
-          format: int32
-          examples:
-          - 10
   securitySchemes:
     bearerAuth:
       type: http
