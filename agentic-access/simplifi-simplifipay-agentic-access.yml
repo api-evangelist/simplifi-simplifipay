@@ -1,17 +1,20 @@
-generated: '2026-07-21'
+generated: '2026-09-23'
 method: generated
-source: openapi/simplifi-simplifipay-openapi.yml
+source: openapi/simplifi-simplifipay-auth-api-openapi.yml, openapi/simplifi-simplifipay-card-api-openapi.yml,
+  openapi/simplifi-simplifipay-card-program-api-openapi.yml, openapi/simplifi-simplifipay-fee-api-openapi.yml,
+  openapi/simplifi-simplifipay-funding-source-api-openapi.yml, openapi/simplifi-simplifipay-transaction-api-openapi.yml,
+  openapi/simplifi-simplifipay-user-api-openapi.yml, openapi/simplifi-simplifipay-webhook-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 52
   by_action_class:
-    acting: 39
-    connected: 13
+    acting: 38
+    connected: 14
   by_consequence:
-    write: 38
-    read: 13
+    write: 37
+    read: 14
     physical: 1
   human_in_the_loop_required: 0
 operations:
@@ -34,224 +37,6 @@ operations:
 - path: /v1/auth/sdk/{companyName}
   method: post
   operationId: loginToGenerateSdkAdminJwtToken
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/card-program
-  method: post
-  operationId: createCardProgram
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/card-program/{uuid}
-  method: get
-  operationId: getCardProgram
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/card-program/{uuid}/status
-  method: patch
-  operationId: changeCardProgramStatus
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/card-program/{uuid}/funding-source
-  method: post
-  operationId: linkFundingSourceToCardProgram
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/card-program/{uuid}/funding-source-balance
-  method: get
-  operationId: getBalanceOfFundingSource
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/card-program/transfer-fund
-  method: post
-  operationId: transferFundsFromOneCardProgramToOther
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/document/upload
-  method: post
-  operationId: raiseFundingDocumentUpload
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/card-program/raise-funding
-  method: post
-  operationId: raiseFunding
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/statement
-  method: get
-  operationId: fundingSourceStatement
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/funding-source/{thirdPartyId}/rule-group
-  method: post
-  operationId: createRuleGroupOnFundingAccount
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/funding-source/{thirdPartyId}/rule-group
-  method: put
-  operationId: updateRuleGroupOnFundingAccount
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/funding-source/{thirdPartyId}/rule-group
-  method: delete
-  operationId: deleteRuleGroupOnFundingAccount
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/funding-source/{thirdPartyId}/rule-group
-  method: get
-  operationId: getRuleGroupsOnFundingAccount
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/funding-source/{thirdPartyId}/rule-group/{ruleGroupUuid}
-  method: post
-  operationId: appplyRuleGroupOnFundingAccount
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/funding-source/{thirdPartyId}/rule-group/{ruleGroupUuid}
-  method: delete
-  operationId: removeRuleGroupOnFundingAccount
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -507,6 +292,308 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v1/card-program
+  method: post
+  operationId: createCardProgram
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/card-program/{uuid}
+  method: get
+  operationId: getCardProgram
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/card-program/{uuid}/status
+  method: patch
+  operationId: changeCardProgramStatus
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/card-program/{uuid}/funding-source
+  method: post
+  operationId: linkFundingSourceToCardProgram
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/card-program/{uuid}/funding-source-balance
+  method: get
+  operationId: getBalanceOfFundingSource
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/card-program/transfer-fund
+  method: post
+  operationId: transferFundsFromOneCardProgramToOther
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/document/upload
+  method: post
+  operationId: raiseFundingDocumentUpload
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/card-program/raise-funding
+  method: post
+  operationId: raiseFunding
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/statement
+  method: get
+  operationId: fundingSourceStatement
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/fees
+  method: post
+  operationId: addFeeConfiguration
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/fees/{uuid}
+  method: get
+  operationId: fetchFeeConfig
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/fees/{uuid}
+  method: patch
+  operationId: changeTheStatusOfFeeConfig
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/fees/application/card/{cardUuid}
+  method: post
+  operationId: addFeeEventAgainstCardUuidInQueue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/fees/application/card/{cardUuid}/apply
+  method: post
+  operationId: applyFeeAgainstCardUuidPresentInQueue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/funding-source/{thirdPartyId}/rule-group
+  method: post
+  operationId: createRuleGroupOnFundingAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/funding-source/{thirdPartyId}/rule-group
+  method: put
+  operationId: updateRuleGroupOnFundingAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/funding-source/{thirdPartyId}/rule-group
+  method: delete
+  operationId: deleteRuleGroupOnFundingAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/funding-source/{thirdPartyId}/rule-group
+  method: get
+  operationId: getRuleGroupsOnFundingAccount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/funding-source/{thirdPartyId}/rule-group/{ruleGroupUuid}
+  method: post
+  operationId: appplyRuleGroupOnFundingAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/funding-source/{thirdPartyId}/rule-group/{ruleGroupUuid}
+  method: delete
+  operationId: removeRuleGroupOnFundingAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/transaction
+  method: post
+  operationId: listAllTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v1/user
   method: get
   operationId: listAllUsers
@@ -594,96 +681,6 @@ operations:
 - path: /v1/user/{uuid}/address/{type}
   method: post
   operationId: addUpdateAddressOfUser
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/transaction
-  method: post
-  operationId: listAllTransactions
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/fees
-  method: post
-  operationId: addFeeConfiguration
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/fees/{uuid}
-  method: get
-  operationId: fetchFeeConfig
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/fees/{uuid}
-  method: patch
-  operationId: changeTheStatusOfFeeConfig
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/fees/application/card/{cardUuid}
-  method: post
-  operationId: addFeeEventAgainstCardUuidInQueue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/fees/application/card/{cardUuid}/apply
-  method: post
-  operationId: applyFeeAgainstCardUuidPresentInQueue
   x-agentic-access:
     action-class: acting
     consequence: write
